@@ -1,4 +1,5 @@
 QT       += core gui
+UI_DIR=../CGLab_DS
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
