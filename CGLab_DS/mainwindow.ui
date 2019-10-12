@@ -11,7 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CGLab-DS ©RPG</string>
+  </property>
+  <property name="statusTip">
+   <string/>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QStatusBar" name="statusbar"/>
@@ -21,11 +24,60 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="showAbout"/>
+   </widget>
+   <addaction name="menuAbout"/>
   </widget>
+  <action name="showAbout">
+   <property name="text">
+    <string>关于软件</string>
+   </property>
+   <property name="toolTip">
+    <string>展示关于</string>
+   </property>
+   <property name="statusTip">
+    <string>展示关于</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>showAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
