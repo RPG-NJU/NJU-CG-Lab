@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/MainWindow">
+        <file alias="aboutAuthor">img/MainWindow/aboutAuthor.png</file>
+    </qresource>
+</RCC>

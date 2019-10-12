@@ -29,17 +29,33 @@ public:
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuAbout;
-    QMenu *menu;
+    QMenu *menuFile;
+    QMenu *menuEdit;
+    QMenu *menuProject;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        QFont font;
+        font.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
+        font.setPointSize(12);
+        MainWindow->setFont(font);
         actionAboutAuthor = new QAction(MainWindow);
         actionAboutAuthor->setObjectName(QString::fromUtf8("actionAboutAuthor"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/MainWindow/aboutAuthor"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAboutAuthor->setIcon(icon);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
+        font1.setPointSize(9);
+        actionAboutAuthor->setFont(font1);
         actionAboutSoftware = new QAction(MainWindow);
         actionAboutSoftware->setObjectName(QString::fromUtf8("actionAboutSoftware"));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
+        actionAboutSoftware->setFont(font2);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         MainWindow->setCentralWidget(centralwidget);
@@ -48,17 +64,24 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 800, 23));
+        menubar->setFont(font1);
         menuAbout = new QMenu(menubar);
         menuAbout->setObjectName(QString::fromUtf8("menuAbout"));
-        QFont font;
-        font.setPointSize(9);
-        menuAbout->setFont(font);
-        menu = new QMenu(menubar);
-        menu->setObjectName(QString::fromUtf8("menu"));
+        QFont font3;
+        font3.setPointSize(9);
+        menuAbout->setFont(font3);
+        menuFile = new QMenu(menubar);
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuEdit = new QMenu(menubar);
+        menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
+        menuProject = new QMenu(menubar);
+        menuProject->setObjectName(QString::fromUtf8("menuProject"));
         MainWindow->setMenuBar(menubar);
 
-        menubar->addAction(menu->menuAction());
+        menubar->addAction(menuFile->menuAction());
+        menubar->addAction(menuProject->menuAction());
+        menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuAbout->menuAction());
         menuAbout->addAction(actionAboutAuthor);
         menuAbout->addAction(actionAboutSoftware);
@@ -89,7 +112,9 @@ public:
         menuAbout->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
         menuAbout->setTitle(QCoreApplication::translate("MainWindow", "\345\205\263\344\272\216", nullptr));
-        menu->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
+        menuEdit->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
+        menuProject->setTitle(QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256", nullptr));
     } // retranslateUi
 
 };
