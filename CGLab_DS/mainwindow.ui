@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CGLab-DS ©RPG</string>
+   <string>绘图板 ©RPG</string>
   </property>
   <property name="statusTip">
    <string/>
@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAbout">
@@ -42,42 +42,34 @@
     <property name="title">
      <string>关于</string>
     </property>
-    <addaction name="showAbout"/>
+    <addaction name="actionAboutAuthor"/>
+    <addaction name="actionAboutSoftware"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
    <addaction name="menuAbout"/>
   </widget>
-  <action name="showAbout">
+  <action name="actionAboutAuthor">
+   <property name="text">
+    <string>关于作者</string>
+   </property>
+   <property name="statusTip">
+    <string>展示更多关于作者……</string>
+   </property>
+  </action>
+  <action name="actionAboutSoftware">
    <property name="text">
     <string>关于软件</string>
    </property>
-   <property name="toolTip">
-    <string>展示关于</string>
-   </property>
    <property name="statusTip">
-    <string>展示关于</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+I</string>
+    <string>展示更多关于软件……</string>
    </property>
   </action>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>showAbout</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
