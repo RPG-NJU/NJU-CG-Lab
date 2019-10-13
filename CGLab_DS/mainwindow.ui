@@ -71,11 +71,23 @@
     <property name="title">
      <string>项目</string>
     </property>
+    <addaction name="actionProjectView"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProject"/>
    <addaction name="menuEdit"/>
    <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="actionAboutAuthor">
    <property name="icon">
@@ -96,6 +108,10 @@
    </property>
   </action>
   <action name="actionAboutSoftware">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/aboutSoftware</normaloff>:/MainWindow/aboutSoftware</iconset>
+   </property>
    <property name="text">
     <string>关于软件</string>
    </property>
@@ -106,6 +122,11 @@
     <font>
      <family>华文中宋</family>
     </font>
+   </property>
+  </action>
+  <action name="actionProjectView">
+   <property name="text">
+    <string>视图</string>
    </property>
   </action>
  </widget>

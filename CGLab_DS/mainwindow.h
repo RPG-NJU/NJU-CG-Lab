@@ -14,8 +14,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+	
+
+private slots:
+    void on_actionAboutAuthor_triggered();
+//    void on_MainWindow_openAboutAuthorDialog();
 
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

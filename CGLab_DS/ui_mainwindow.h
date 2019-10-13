@@ -16,6 +16,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,6 +26,7 @@ class Ui_MainWindow
 public:
     QAction *actionAboutAuthor;
     QAction *actionAboutSoftware;
+    QAction *actionProjectView;
     QWidget *centralwidget;
     QStatusBar *statusbar;
     QMenuBar *menubar;
@@ -32,6 +34,7 @@ public:
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuProject;
+    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -53,9 +56,14 @@ public:
         actionAboutAuthor->setFont(font1);
         actionAboutSoftware = new QAction(MainWindow);
         actionAboutSoftware->setObjectName(QString::fromUtf8("actionAboutSoftware"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/MainWindow/aboutSoftware"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAboutSoftware->setIcon(icon1);
         QFont font2;
         font2.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
         actionAboutSoftware->setFont(font2);
+        actionProjectView = new QAction(MainWindow);
+        actionProjectView->setObjectName(QString::fromUtf8("actionProjectView"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         MainWindow->setCentralWidget(centralwidget);
@@ -78,6 +86,9 @@ public:
         menuProject = new QMenu(menubar);
         menuProject->setObjectName(QString::fromUtf8("menuProject"));
         MainWindow->setMenuBar(menubar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuProject->menuAction());
@@ -85,6 +96,7 @@ public:
         menubar->addAction(menuAbout->menuAction());
         menuAbout->addAction(actionAboutAuthor);
         menuAbout->addAction(actionAboutSoftware);
+        menuProject->addAction(actionProjectView);
 
         retranslateUi(MainWindow);
 
@@ -105,6 +117,7 @@ public:
 #if QT_CONFIG(statustip)
         actionAboutSoftware->setStatusTip(QCoreApplication::translate("MainWindow", "\345\261\225\347\244\272\346\233\264\345\244\232\345\205\263\344\272\216\350\275\257\344\273\266\342\200\246\342\200\246", nullptr));
 #endif // QT_CONFIG(statustip)
+        actionProjectView->setText(QCoreApplication::translate("MainWindow", "\350\247\206\345\233\276", nullptr));
 #if QT_CONFIG(tooltip)
         menuAbout->setToolTip(QString());
 #endif // QT_CONFIG(tooltip)
@@ -115,6 +128,7 @@ public:
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
         menuProject->setTitle(QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256", nullptr));
+        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 
 };
