@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "AboutAuthorDialog.h"
 
@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this); // �������Ƿ�������֮����UI���ֵĲ��ִ���
+    ui->setupUi(this); // 这个语句是分析代码之后建立UI部分的部分代码
 }
 
 MainWindow::~MainWindow()
@@ -17,12 +17,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAboutAuthor_triggered()
 /*
- * �ڵ�ǰ���е���Ŀ�ļ��У����Ҳ���connect���������Ӵ˲ۺ���������ź�
- * �����ֱ�ӱ�д���źŲۻ��Ʋ�ͬ�������������ʾ�ģ���ͨ��Qt Designerֱ���γɺ�����ܵ�
- * <<����ע�⣬��Ҫ�Լ����ĺ�����>>
- * ʵ���ϣ���صĶ���ʹ�����BuildĿ¼�е�moc_*.cpp��
- * ����Qt�����������Ŀ��ʱ���Լ�������ά�����ļ����ݣ���ʹ������Ŀ�ļ�Ŀ¼�У�Ҳ��Ӱ����Ŀ�����ɺͱ���
- * ��ʵ�ϣ���Qt Designer��Ƶ�ҳ��Ĳ��ִ������ɣ������϶���ui->setupUi(this);����
+ * 在当前所有的项目文件中，并找不到connect函数来连接此槽函数和相关信号
+ * 与代码直接编写的信号槽机制不同，如这个函数所示的，是通过Qt Designer直接形成函数框架的
+ * <<所以注意，不要自己更改函数名>>
+ * 实际上，相关的定义和代码在Build目录中的moc_*.cpp中
+ * 这是Qt编译和生成项目的时候，自己创建和维护的文件内容，即使不在项目文件目录中，也不影响项目的生成和编译
+ * 事实上，由Qt Designer设计的页面的部分代码生成，基本上都由ui->setupUi(this);生成
  */
 {
     QDialog* about_author_dialog = new AboutAuthorDialog();

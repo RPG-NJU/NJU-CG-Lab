@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+ï»¿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -17,7 +17,7 @@ public:
 	
 
 private slots:
-    void on_actionAboutAuthor_triggered(); // ÓÃ»§µã»÷ÁË ¡°¹ØÓÚ×÷Õß¡±
+    void on_actionAboutAuthor_triggered(); // ç”¨æˆ·ç‚¹å‡»äº† â€œå…³äºä½œè€…â€
 
 private:
     Ui::MainWindow *ui;

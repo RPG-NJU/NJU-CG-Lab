@@ -129,6 +129,14 @@
     <string>视图</string>
    </property>
   </action>
+  <action name="actionYMY">
+   <property name="text">
+    <string>关于YMY的彩蛋</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y, Ctrl+M, Ctrl+Y</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="img.qrc"/>
