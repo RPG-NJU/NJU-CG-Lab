@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>349</width>
+    <width>412</width>
     <height>150</height>
    </rect>
   </property>
@@ -22,8 +22,8 @@
    <iconset resource="img.qrc">
     <normaloff>:/MainWindow/aboutAuthor</normaloff>:/MainWindow/aboutAuthor</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
     <widget class="QTextBrowser" name="textBrowser">
      <property name="autoFillBackground">
       <bool>false</bool>
@@ -46,7 +46,14 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignRight">
+   <item row="2" column="1">
+    <widget class="QPushButton" name="buttonAuthorGithub">
+     <property name="text">
+      <string>作者GitHub主页</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
     <widget class="QPushButton" name="buttonConnectAuthor">
      <property name="text">
       <string>联系作者</string>

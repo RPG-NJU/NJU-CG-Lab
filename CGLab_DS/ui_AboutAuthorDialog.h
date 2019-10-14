@@ -13,44 +13,50 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextBrowser>
-#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_AboutAuthorDialog
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
     QTextBrowser *textBrowser;
+    QPushButton *buttonAuthorGithub;
     QPushButton *buttonConnectAuthor;
 
     void setupUi(QDialog *AboutAuthorDialog)
     {
         if (AboutAuthorDialog->objectName().isEmpty())
             AboutAuthorDialog->setObjectName(QString::fromUtf8("AboutAuthorDialog"));
-        AboutAuthorDialog->resize(349, 150);
+        AboutAuthorDialog->resize(412, 150);
         QFont font;
         font.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
         AboutAuthorDialog->setFont(font);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/MainWindow/aboutAuthor"), QSize(), QIcon::Normal, QIcon::Off);
         AboutAuthorDialog->setWindowIcon(icon);
-        verticalLayout = new QVBoxLayout(AboutAuthorDialog);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        gridLayout = new QGridLayout(AboutAuthorDialog);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         textBrowser = new QTextBrowser(AboutAuthorDialog);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
         textBrowser->setAutoFillBackground(false);
         textBrowser->setStyleSheet(QString::fromUtf8("background-color:transparent"));
         textBrowser->setFrameShape(QFrame::NoFrame);
 
-        verticalLayout->addWidget(textBrowser);
+        gridLayout->addWidget(textBrowser, 0, 0, 1, 2);
+
+        buttonAuthorGithub = new QPushButton(AboutAuthorDialog);
+        buttonAuthorGithub->setObjectName(QString::fromUtf8("buttonAuthorGithub"));
+
+        gridLayout->addWidget(buttonAuthorGithub, 2, 1, 1, 1);
 
         buttonConnectAuthor = new QPushButton(AboutAuthorDialog);
         buttonConnectAuthor->setObjectName(QString::fromUtf8("buttonConnectAuthor"));
 
-        verticalLayout->addWidget(buttonConnectAuthor, 0, Qt::AlignRight);
+        gridLayout->addWidget(buttonConnectAuthor, 2, 0, 1, 1);
 
 
         retranslateUi(AboutAuthorDialog);
@@ -70,6 +76,7 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent"
                         ":0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">Email\357\274\232officialRPG2017@gmail.com</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">GitHub\357\274\232HELLORPG</span></p></body></html>", nullptr));
+        buttonAuthorGithub->setText(QCoreApplication::translate("AboutAuthorDialog", "\344\275\234\350\200\205GitHub\344\270\273\351\241\265", nullptr));
         buttonConnectAuthor->setText(QCoreApplication::translate("AboutAuthorDialog", "\350\201\224\347\263\273\344\275\234\350\200\205", nullptr));
     } // retranslateUi
 
