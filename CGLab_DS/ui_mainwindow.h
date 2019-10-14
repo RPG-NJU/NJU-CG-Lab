@@ -1,4 +1,4 @@
-﻿/********************************************************************************
+/********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.13.1
@@ -27,7 +27,7 @@ public:
     QAction *actionAboutAuthor;
     QAction *actionAboutSoftware;
     QAction *actionProjectView;
-    QAction *actionYMY;
+    QAction *actionReleaseHistory;
     QWidget *centralwidget;
     QStatusBar *statusbar;
     QMenuBar *menubar;
@@ -65,8 +65,8 @@ public:
         actionAboutSoftware->setFont(font2);
         actionProjectView = new QAction(MainWindow);
         actionProjectView->setObjectName(QString::fromUtf8("actionProjectView"));
-        actionYMY = new QAction(MainWindow);
-        actionYMY->setObjectName(QString::fromUtf8("actionYMY"));
+        actionReleaseHistory = new QAction(MainWindow);
+        actionReleaseHistory->setObjectName(QString::fromUtf8("actionReleaseHistory"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         MainWindow->setCentralWidget(centralwidget);
@@ -99,6 +99,9 @@ public:
         menubar->addAction(menuAbout->menuAction());
         menuAbout->addAction(actionAboutAuthor);
         menuAbout->addAction(actionAboutSoftware);
+        menuAbout->addSeparator();
+        menuAbout->addSeparator();
+        menuAbout->addAction(actionReleaseHistory);
         menuProject->addAction(actionProjectView);
 
         retranslateUi(MainWindow);
@@ -121,10 +124,7 @@ public:
         actionAboutSoftware->setStatusTip(QCoreApplication::translate("MainWindow", "\345\261\225\347\244\272\346\233\264\345\244\232\345\205\263\344\272\216\350\275\257\344\273\266\342\200\246\342\200\246", nullptr));
 #endif // QT_CONFIG(statustip)
         actionProjectView->setText(QCoreApplication::translate("MainWindow", "\350\247\206\345\233\276", nullptr));
-        actionYMY->setText(QCoreApplication::translate("MainWindow", "\345\205\263\344\272\216YMY\347\232\204\345\275\251\350\233\213", nullptr));
-#if QT_CONFIG(shortcut)
-        actionYMY->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Y, Ctrl+M, Ctrl+Y", nullptr));
-#endif // QT_CONFIG(shortcut)
+        actionReleaseHistory->setText(QCoreApplication::translate("MainWindow", "\345\216\206\345\217\262\347\211\210\346\234\254", nullptr));
 #if QT_CONFIG(tooltip)
         menuAbout->setToolTip(QString());
 #endif // QT_CONFIG(tooltip)

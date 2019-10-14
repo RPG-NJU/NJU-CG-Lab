@@ -1,6 +1,11 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "AboutAuthorDialog.h"
+#include "AboutSoftwareDialog.h"
+#include <QMessageBox>
+
+#include <windows.h>
+#include <shellapi.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,4 +33,18 @@ void MainWindow::on_actionAboutAuthor_triggered()
     QDialog* about_author_dialog = new AboutAuthorDialog();
     about_author_dialog->exec();
     return;
+}
+
+
+void MainWindow::on_actionAboutSoftware_triggered()
+{
+	QDialog* about_software_dialog = new AboutSoftwareDialog();
+	about_software_dialog->exec();
+	return;
+}
+
+void MainWindow::on_actionReleaseHistory_triggered()
+{
+	ShellExecute(nullptr, L"open", L"https://github.com/HELLORPG/RPG-DrawingSoftware/releases", nullptr, nullptr, SW_SHOWMAXIMIZED);
+	return;
 }

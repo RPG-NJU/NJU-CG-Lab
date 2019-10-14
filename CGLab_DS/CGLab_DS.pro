@@ -18,15 +18,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     AboutAuthorDialog.cpp \
+    AboutSoftwareDialog.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     AboutAuthorDialog.h \
+    AboutSoftwareDialog.h \
     mainwindow.h
 
 FORMS += \
     AboutAuthorDialog.ui \
+    AboutSoftwareDialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

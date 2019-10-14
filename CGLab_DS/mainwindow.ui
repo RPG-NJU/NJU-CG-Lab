@@ -56,6 +56,9 @@
     </property>
     <addaction name="actionAboutAuthor"/>
     <addaction name="actionAboutSoftware"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionReleaseHistory"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -129,12 +132,9 @@
     <string>视图</string>
    </property>
   </action>
-  <action name="actionYMY">
+  <action name="actionReleaseHistory">
    <property name="text">
-    <string>关于YMY的彩蛋</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Y, Ctrl+M, Ctrl+Y</string>
+    <string>历史版本</string>
    </property>
   </action>
  </widget>

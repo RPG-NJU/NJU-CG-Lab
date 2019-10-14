@@ -19,6 +19,10 @@ public:
 private slots:
     void on_actionAboutAuthor_triggered(); // 用户点击了 “关于作者”
 
+    void on_actionAboutSoftware_triggered(); // 用户点击了 “关于软件”
+
+    void on_actionReleaseHistory_triggered(); // 用户点击了 “历史版本”
+
 private:
     Ui::MainWindow *ui;
 
