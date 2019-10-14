@@ -30,19 +30,20 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>华文中宋</family>
-     <pointsize>9</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <widget class="QMenu" name="menuAbout">
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <family>华文中宋</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="toolTip">
@@ -59,6 +60,7 @@
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionReleaseHistory"/>
+    <addaction name="actionUpgrade"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -106,7 +108,7 @@
    <property name="font">
     <font>
      <family>华文中宋</family>
-     <pointsize>9</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
   </action>
@@ -135,6 +137,22 @@
   <action name="actionReleaseHistory">
    <property name="text">
     <string>历史版本</string>
+   </property>
+   <property name="statusTip">
+    <string>查看软件发布的历史版本……</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionUpgrade">
+   <property name="text">
+    <string>更新</string>
+   </property>
+   <property name="statusTip">
+    <string>手动检查更新……</string>
    </property>
   </action>
  </widget>

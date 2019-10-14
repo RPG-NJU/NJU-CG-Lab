@@ -7,6 +7,10 @@
 #include <windows.h>
 #include <shellapi.h>
 
+
+
+// reply of the requery
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -47,4 +51,10 @@ void MainWindow::on_actionReleaseHistory_triggered()
 {
 	ShellExecute(nullptr, L"open", L"https://github.com/HELLORPG/RPG-DrawingSoftware/releases", nullptr, nullptr, SW_SHOWMAXIMIZED);
 	return;
+}
+
+void MainWindow::on_actionUpgrade_triggered()
+{
+    ShellExecute(nullptr, L"open", L"https://github.com/HELLORPG/RPG-DrawingSoftware/releases/latest", nullptr, nullptr, SW_SHOWMAXIMIZED);
+    return;
 }
