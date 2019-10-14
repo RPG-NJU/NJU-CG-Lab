@@ -17,8 +17,7 @@ public:
 	
 
 private slots:
-    void on_actionAboutAuthor_triggered();
-//    void on_MainWindow_openAboutAuthorDialog();
+    void on_actionAboutAuthor_triggered(); // 用户点击了 “关于作者”
 
 private:
     Ui::MainWindow *ui;
