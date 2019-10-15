@@ -19,12 +19,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AboutAuthorDialog.cpp \
     AboutSoftwareDialog.cpp \
+    DrawingArea.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     AboutAuthorDialog.h \
     AboutSoftwareDialog.h \
+    DrawingArea.h \
     mainwindow.h
 
 FORMS += \
