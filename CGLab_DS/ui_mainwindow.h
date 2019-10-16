@@ -36,7 +36,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    DrawingArea *widget;
+    DrawingArea *drawingArea;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuAbout;
@@ -49,7 +49,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(854, 688);
+        MainWindow->resize(874, 734);
         QFont font;
         font.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
         font.setPointSize(12);
@@ -85,14 +85,15 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         scrollArea = new QScrollArea(centralwidget);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 830, 595));
-        scrollAreaWidgetContents->setMinimumSize(QSize(400, 400));
-        widget = new DrawingArea(scrollAreaWidgetContents);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(0, 0, 400, 400));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 852, 643));
+        scrollAreaWidgetContents->setMinimumSize(QSize(800, 600));
+        drawingArea = new DrawingArea(scrollAreaWidgetContents);
+        drawingArea->setObjectName(QString::fromUtf8("drawingArea"));
+        drawingArea->setGeometry(QRect(0, 0, 800, 600));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(scrollArea);
@@ -103,7 +104,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 854, 26));
+        menubar->setGeometry(QRect(0, 0, 874, 26));
         QFont font3;
         font3.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
         font3.setPointSize(11);

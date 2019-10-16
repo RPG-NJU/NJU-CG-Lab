@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>854</width>
-    <height>688</height>
+    <width>874</width>
+    <height>734</height>
    </rect>
   </property>
   <property name="font">
@@ -26,6 +26,9 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QScrollArea" name="scrollArea">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -34,23 +37,23 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>830</width>
-         <height>595</height>
+         <width>852</width>
+         <height>643</height>
         </rect>
        </property>
        <property name="minimumSize">
         <size>
-         <width>400</width>
-         <height>400</height>
+         <width>800</width>
+         <height>600</height>
         </size>
        </property>
-       <widget class="DrawingArea" name="widget" native="true">
+       <widget class="DrawingArea" name="drawingArea" native="true">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>400</width>
-          <height>400</height>
+          <width>800</width>
+          <height>600</height>
          </rect>
         </property>
        </widget>
@@ -65,7 +68,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>854</width>
+     <width>874</width>
      <height>26</height>
     </rect>
    </property>
