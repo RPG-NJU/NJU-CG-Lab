@@ -23,7 +23,7 @@
    <string/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QScrollArea" name="scrollArea">
       <property name="frameShape">
@@ -56,13 +56,15 @@
           <height>600</height>
          </rect>
         </property>
+        <property name="statusTip">
+         <string/>
+        </property>
        </widget>
       </widget>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -133,6 +135,7 @@
     <bool>false</bool>
    </attribute>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
    <property name="icon">
     <iconset resource="img.qrc">

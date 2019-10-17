@@ -1,6 +1,8 @@
 ﻿#include "DrawingArea.h"
 #include <QPainter>
-//#include <QDebug>
+#include <QMouseEvent>
+#include <QDebug>
+#include <QString>
 
 //constexpr int INIT_WIDTH = 800;
 #define INIT_WIDTH 800
@@ -20,6 +22,7 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	/*QPainter painter(this);
 	painter.drawImage(0, 0, paper);*/
 	// 需要重写绘图函数paintEvent来完成
+	this->setMouseTracking(true);
 	
 	return;
 }
@@ -31,4 +34,19 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 
 	return;
 }
+
+void DrawingArea::mouseMoveEvent(QMouseEvent* event)
+{
+	qDebug() << QString("鼠标位置为") << event->pos() << endl;
+	QString x = QString::number(event->pos().x());
+	QString y = QString::number(event->pos().y());
+	qDebug() << x << "," << y << endl;
+	QString location = x + " , " + y;
+	
+	//this->setStatusTip(x + " , " + y);
+	emit newLocation(location);
+
+	return;
+}
+
 

@@ -13,6 +13,10 @@ private:
 public:
     DrawingArea(QWidget* parent = nullptr);
 	void paintEvent(QPaintEvent* event) override; // 绘图事件函数重写
+	void mouseMoveEvent(QMouseEvent* event) override; // 鼠标移动函数重写
+
+signals:
+	void newLocation(const QString& location, int timeout = 0);
 };
 
 #endif // DRAWINGAERA_H

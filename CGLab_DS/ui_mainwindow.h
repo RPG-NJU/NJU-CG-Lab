@@ -12,13 +12,13 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "DrawingArea.h"
 
@@ -33,17 +33,17 @@ public:
     QAction *actionReleaseHistory;
     QAction *actionUpgrade;
     QWidget *centralwidget;
-    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     DrawingArea *drawingArea;
-    QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuAbout;
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuProject;
     QToolBar *toolBar;
+    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -81,8 +81,8 @@ public:
         actionUpgrade->setObjectName(QString::fromUtf8("actionUpgrade"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        horizontalLayout = new QHBoxLayout(centralwidget);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        verticalLayout = new QVBoxLayout(centralwidget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         scrollArea = new QScrollArea(centralwidget);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
         scrollArea->setFrameShape(QFrame::NoFrame);
@@ -96,12 +96,9 @@ public:
         drawingArea->setGeometry(QRect(0, 0, 800, 600));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
-        horizontalLayout->addWidget(scrollArea);
+        verticalLayout->addWidget(scrollArea);
 
         MainWindow->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 874, 26));
@@ -122,6 +119,9 @@ public:
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
+        statusBar = new QStatusBar(MainWindow);
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
+        MainWindow->setStatusBar(statusBar);
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuProject->menuAction());
@@ -162,6 +162,9 @@ public:
         actionUpgrade->setText(QCoreApplication::translate("MainWindow", "\346\233\264\346\226\260", nullptr));
 #if QT_CONFIG(statustip)
         actionUpgrade->setStatusTip(QCoreApplication::translate("MainWindow", "\346\211\213\345\212\250\346\243\200\346\237\245\346\233\264\346\226\260\342\200\246\342\200\246", nullptr));
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(statustip)
+        drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
 #if QT_CONFIG(tooltip)
         menuAbout->setToolTip(QString());
