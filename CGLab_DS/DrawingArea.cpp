@@ -30,6 +30,8 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	return;
 }
 
+
+// 重写事件函数区域
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
@@ -48,12 +50,22 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
 #endif
 	
-	QString location = x + " , " + y;
+	QString location = "[x=" + x + " | " + "y=" + y + "]" + 
+        tr("    画板大小 = ") + QString::number(INIT_WIDTH) + tr("×") + QString::number(INIT_HEIGHT);
 	
 	//this->setStatusTip(x + " , " + y);
 	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
 
 	return;
 }
+
+void DrawingArea::leaveEvent(QEvent* event)
+{
+	qDebug() << "Mouse Out" << endl;
+	emit mouseLeave();
+}
+
+
+// 重写事件函数终止
 
 

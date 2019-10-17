@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this); // 这个语句是分析代码之后建立UI部分的部分代码
 	QObject::connect(ui->drawingArea, &DrawingArea::newLocationStatus, ui->statusBar, &QStatusBar::showMessage);
+	QObject::connect(ui->drawingArea, &DrawingArea::mouseLeave, ui->statusBar, &QStatusBar::clearMessage);
 }
 
 MainWindow::~MainWindow()
