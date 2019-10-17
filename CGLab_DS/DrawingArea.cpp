@@ -65,6 +65,27 @@ void DrawingArea::leaveEvent(QEvent* event)
 	emit mouseLeave();
 }
 
+void DrawingArea::mousePressEvent(QMouseEvent* event)
+{
+
+	if (event->button() == Qt::LeftButton) // 识别左键
+	{
+#ifdef PRINT_MOUSE_EVENT
+		qDebug() << "[Press Mouse Left Button]" << endl;
+#endif
+	}
+
+	else if (event->button() == Qt::RightButton) // 识别右键
+	{
+#ifdef PRINT_MOUSE_EVENT
+		qDebug() << "[Press Mouse Right Button]" << endl;
+#endif
+	}
+
+	return;
+}
+
+
 
 // 重写事件函数终止
 
