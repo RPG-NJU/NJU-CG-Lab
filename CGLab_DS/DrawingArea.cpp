@@ -4,9 +4,12 @@
 #include <QDebug>
 #include <QString>
 
+#include "Define.h"
+
 //constexpr int INIT_WIDTH = 800;
 #define INIT_WIDTH 800
 #define INIT_HEIGHT 600
+
 
 
 DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
@@ -37,14 +40,18 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 
 void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 {
-	qDebug() << QString("鼠标位置为") << event->pos() << endl;
+	//qDebug() << QString("鼠标位置为") << event->pos() << endl;
 	QString x = QString::number(event->pos().x());
 	QString y = QString::number(event->pos().y());
-	qDebug() << x << "," << y << endl;
+
+#ifdef PRINT_MOUSE_LOCATION
+	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
+#endif
+	
 	QString location = x + " , " + y;
 	
 	//this->setStatusTip(x + " , " + y);
-	emit newLocation(location);
+	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
 
 	return;
 }

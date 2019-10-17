@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 #include "DrawingArea.h"
-#include <QStatusBar>
+//#include <QStatusBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

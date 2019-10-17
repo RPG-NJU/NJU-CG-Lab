@@ -26,6 +26,7 @@ SOURCES += \
 HEADERS += \
     AboutAuthorDialog.h \
     AboutSoftwareDialog.h \
+    Define.h \
     DrawingArea.h \
     mainwindow.h
 
