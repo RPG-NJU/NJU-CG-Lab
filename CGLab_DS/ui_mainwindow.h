@@ -32,6 +32,7 @@ public:
     QAction *actionProjectView;
     QAction *actionReleaseHistory;
     QAction *actionUpgrade;
+    QAction *actionChooseNature;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -79,6 +80,11 @@ public:
         actionReleaseHistory->setFont(font2);
         actionUpgrade = new QAction(MainWindow);
         actionUpgrade->setObjectName(QString::fromUtf8("actionUpgrade"));
+        actionChooseNature = new QAction(MainWindow);
+        actionChooseNature->setObjectName(QString::fromUtf8("actionChooseNature"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/MainWindow/Nature"), QSize(), QIcon::Normal, QIcon::Off);
+        actionChooseNature->setIcon(icon2);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -89,7 +95,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 852, 643));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 852, 617));
         scrollAreaWidgetContents->setMinimumSize(QSize(800, 600));
         drawingArea = new DrawingArea(scrollAreaWidgetContents);
         drawingArea->setObjectName(QString::fromUtf8("drawingArea"));
@@ -134,6 +140,7 @@ public:
         menuAbout->addAction(actionReleaseHistory);
         menuAbout->addAction(actionUpgrade);
         menuProject->addAction(actionProjectView);
+        toolBar->addAction(actionChooseNature);
 
         retranslateUi(MainWindow);
 
@@ -163,6 +170,10 @@ public:
 #if QT_CONFIG(statustip)
         actionUpgrade->setStatusTip(QCoreApplication::translate("MainWindow", "\346\211\213\345\212\250\346\243\200\346\237\245\346\233\264\346\226\260\342\200\246\342\200\246", nullptr));
 #endif // QT_CONFIG(statustip)
+        actionChooseNature->setText(QCoreApplication::translate("MainWindow", "\350\207\252\347\204\266\347\272\277\346\235\241", nullptr));
+#if QT_CONFIG(tooltip)
+        actionChooseNature->setToolTip(QCoreApplication::translate("MainWindow", "\350\207\252\347\204\266\347\272\277\346\235\241", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)

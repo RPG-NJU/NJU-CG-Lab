@@ -2,5 +2,6 @@
     <qresource prefix="/MainWindow">
         <file alias="aboutAuthor">img/MainWindow/aboutAuthor.png</file>
         <file alias="aboutSoftware">img/MainWindow/aboutSoftware.png</file>
+        <file alias="Nature">img/MainWindow/Nature.png</file>
     </qresource>
 </RCC>

@@ -40,6 +40,7 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 	return;
 }
 
+
 void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 {
 	//qDebug() << QString("鼠标位置为") << event->pos() << endl;
@@ -50,8 +51,11 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
 #endif
 	
-	QString location = "[x=" + x + " | " + "y=" + y + "]" + 
-        tr("    画板大小 = ") + QString::number(INIT_WIDTH) + tr("×") + QString::number(INIT_HEIGHT);
+	QString location = "(" + x + "," + y + ")" + 
+        "    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) + 
+		"\xc3\x97"/*×*/ + QString::number(INIT_HEIGHT);
+	// 两串UTF-8编码分别为：画板大小 ×
+	// 使用了python来完成编码的转化，str.encode("utf-8")即可
 	
 	//this->setStatusTip(x + " , " + y);
 	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
@@ -59,11 +63,24 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 	return;
 }
 
+
 void DrawingArea::leaveEvent(QEvent* event)
 {
-	qDebug() << "Mouse Out" << endl;
+	qDebug() << "[Mouse Out]" << endl;
 	emit mouseLeave();
 }
+
+
+void DrawingArea::enterEvent(QEvent* event)
+{
+#ifdef PRINT_MOUSE_EVENT
+	qDebug() << "[Mouse In]" << endl;
+#endif
+
+	return;
+}
+
+
 
 void DrawingArea::mousePressEvent(QMouseEvent* event)
 {
@@ -84,6 +101,27 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 
 	return;
 }
+
+
+void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
+{
+	if (event->button() == Qt::LeftButton) // 识别左键
+	{
+#ifdef PRINT_MOUSE_EVENT
+		qDebug() << "[Release Mouse Left Button]" << endl;
+#endif
+	}
+
+	else if (event->button() == Qt::RightButton) // 识别右键
+	{
+#ifdef PRINT_MOUSE_EVENT
+		qDebug() << "[Release Mouse Right Button]" << endl;
+#endif
+	}
+
+	return;
+}
+
 
 
 
