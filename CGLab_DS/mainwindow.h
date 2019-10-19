@@ -28,6 +28,10 @@ private slots:
 
     void on_actionUpgrade_triggered(); // 用户点击了 “更新”
 
+    void on_actionChooseNature_triggered(); // 用户选择了 “自然线条”
+
+    void on_actionStraightLine_triggered(); // 用户选择了 “直线”
+
 private:
     Ui::MainWindow *ui;
 

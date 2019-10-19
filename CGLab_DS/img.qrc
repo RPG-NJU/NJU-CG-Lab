@@ -3,5 +3,6 @@
         <file alias="aboutAuthor">img/MainWindow/aboutAuthor.png</file>
         <file alias="aboutSoftware">img/MainWindow/aboutSoftware.png</file>
         <file alias="Nature">img/MainWindow/Nature.png</file>
+        <file alias="StraightLine">img/MainWindow/StraightLine.png</file>
     </qresource>
 </RCC>

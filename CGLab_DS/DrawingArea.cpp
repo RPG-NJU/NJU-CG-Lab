@@ -123,8 +123,37 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 }
 
 
-
-
 // 重写事件函数终止
 
 
+
+// 关于画笔部分的函数
+
+QString DrawingArea::penModeToQString(PaintMode mode)
+{
+	switch (mode)
+	{
+	case None: return("None"); 
+	case Nature: return("Nature");
+	case StraightLine: return("StraightLine");
+	default: return("Undefine");
+	}
+}
+
+
+
+void DrawingArea::changePenMode(const PaintMode new_mode)
+{
+	penMode = new_mode;
+
+#ifdef PRINT_PEN
+	QString penModeStr = penModeToQString(penMode);
+	qDebug() << "[Change Pen Mode to" << penModeStr << "]" << endl;
+#endif
+
+
+	return;
+}
+
+
+// 关于画笔部分的函数结束

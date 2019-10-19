@@ -62,3 +62,15 @@ void MainWindow::on_actionUpgrade_triggered()
     ShellExecute(nullptr, L"open", L"https://github.com/HELLORPG/RPG-DrawingSoftware/releases/latest", nullptr, nullptr, SW_SHOWMAXIMIZED);
     return;
 }
+
+void MainWindow::on_actionChooseNature_triggered()
+{
+	ui->drawingArea->changePenMode(Nature);
+	return;
+}
+
+void MainWindow::on_actionStraightLine_triggered()
+{
+    ui->drawingArea->changePenMode(StraightLine);
+    return;
+}

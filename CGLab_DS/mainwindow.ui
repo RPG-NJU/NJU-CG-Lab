@@ -135,6 +135,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionChooseNature"/>
+   <addaction name="actionStraightLine"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -214,6 +215,18 @@
    </property>
    <property name="toolTip">
     <string>自然线条</string>
+   </property>
+  </action>
+  <action name="actionStraightLine">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/StraightLine</normaloff>:/MainWindow/StraightLine</iconset>
+   </property>
+   <property name="text">
+    <string>直线</string>
+   </property>
+   <property name="toolTip">
+    <string>直线</string>
    </property>
   </action>
  </widget>

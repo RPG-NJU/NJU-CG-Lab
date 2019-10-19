@@ -3,13 +3,17 @@
 
 #define PRINT_MOUSE_LOCATION
 #define PRINT_MOUSE_EVENT
+#define PRINT_PEN
 
 
 
 enum PaintMode
 {
-	Nature,
-	Line
+	None, 
+	Nature, 
+	StraightLine
 };
+
+
 
 #endif // DEFINE_H

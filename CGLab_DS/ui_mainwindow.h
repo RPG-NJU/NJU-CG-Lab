@@ -33,6 +33,7 @@ public:
     QAction *actionReleaseHistory;
     QAction *actionUpgrade;
     QAction *actionChooseNature;
+    QAction *actionStraightLine;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -85,6 +86,11 @@ public:
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/MainWindow/Nature"), QSize(), QIcon::Normal, QIcon::Off);
         actionChooseNature->setIcon(icon2);
+        actionStraightLine = new QAction(MainWindow);
+        actionStraightLine->setObjectName(QString::fromUtf8("actionStraightLine"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/MainWindow/StraightLine"), QSize(), QIcon::Normal, QIcon::Off);
+        actionStraightLine->setIcon(icon3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -141,6 +147,7 @@ public:
         menuAbout->addAction(actionUpgrade);
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
+        toolBar->addAction(actionStraightLine);
 
         retranslateUi(MainWindow);
 
@@ -173,6 +180,10 @@ public:
         actionChooseNature->setText(QCoreApplication::translate("MainWindow", "\350\207\252\347\204\266\347\272\277\346\235\241", nullptr));
 #if QT_CONFIG(tooltip)
         actionChooseNature->setToolTip(QCoreApplication::translate("MainWindow", "\350\207\252\347\204\266\347\272\277\346\235\241", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionStraightLine->setText(QCoreApplication::translate("MainWindow", "\347\233\264\347\272\277", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStraightLine->setToolTip(QCoreApplication::translate("MainWindow", "\347\233\264\347\272\277", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
