@@ -157,3 +157,15 @@ void DrawingArea::changePenMode(const PaintMode new_mode)
 
 
 // 关于画笔部分的函数结束
+
+
+// 关于绘图的函数
+
+void DrawingArea::draw(QImage& thisPaper)
+{
+
+	return;
+}
+
+
+// 关于绘图的函数结束
