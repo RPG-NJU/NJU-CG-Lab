@@ -14,6 +14,16 @@ enum PaintMode
 	StraightLine
 };
 
+enum PrimitiveType
+{
+	/*
+	 * 用于定义存储的图元的类型
+	 */
+	NoneType,
+	NatureType,
+	StraightLineType
+};
+
 
 
 #endif // DEFINE_H

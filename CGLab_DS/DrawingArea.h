@@ -11,12 +11,11 @@ class DrawingArea : public QWidget
 	Q_OBJECT
 private:
 	// 所需要的数据成员
-
-	// END of DATA
+	bool isDrawing; // 用于表示是否正在作图
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
-	PaintMode penMode; // 用于表示当前画笔的状态
-
+	PaintMode penMode = None; // 用于表示当前画笔的状态
+	// END of DATA
 
 	QString penModeToQString(PaintMode mode);
 	
