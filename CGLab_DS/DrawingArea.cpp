@@ -114,17 +114,22 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 
 	// 应当进行相关的画图工作
 
-	if (isDrawing)
+	if (isDrawing) // 此时正在绘图
 	{
 		end_point = event->pos(); // 获取移动时的鼠标位置
-		switch (penMode)
+		/*switch (penMode)
 		{
 		case None: break;
 		case StraightLine:
 			{
 			qDebug() << "[Draw Line " << begin_point << "|" << end_point << "]" << endl;
 			}
-		}
+		}*/
+		/*
+		 * 没有必要在这里就进行分类讨论
+		 * 
+		 */
+		tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
 	}
 	// END of Drawing Works
 	return;
