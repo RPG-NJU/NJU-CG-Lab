@@ -41,47 +41,6 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 }
 
 
-void DrawingArea::mouseMoveEvent(QMouseEvent* event)
-{
-	//qDebug() << QString("鼠标位置为") << event->pos() << endl;
-	QString x = QString::number(event->pos().x());
-	QString y = QString::number(event->pos().y());
-
-#ifdef PRINT_MOUSE_LOCATION
-	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
-#endif
-	
-	QString location = "(" + x + "," + y + ")" + 
-        "    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) + 
-		"\xc3\x97"/*×*/ + QString::number(INIT_HEIGHT);
-	// 两串UTF-8编码分别为：画板大小 ×
-	// 使用了python来完成编码的转化，str.encode("utf-8")即可
-	
-	//this->setStatusTip(x + " , " + y);
-	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
-
-	return;
-}
-
-
-void DrawingArea::leaveEvent(QEvent* event)
-{
-	qDebug() << "[Mouse Out]" << endl;
-	emit mouseLeave();
-}
-
-
-void DrawingArea::enterEvent(QEvent* event)
-{
-#ifdef PRINT_MOUSE_EVENT
-	qDebug() << "[Mouse In]" << endl;
-#endif
-
-	return;
-}
-
-
-
 void DrawingArea::mousePressEvent(QMouseEvent* event)
 {
 
@@ -90,6 +49,11 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Left Button]" << endl;
 #endif
+		if (!isDrawing)
+		{
+			isDrawing = true;
+			begin_point = event->pos(); // 获得当前鼠标的位置
+		}
 	}
 
 	else if (event->button() == Qt::RightButton) // 识别右键
@@ -110,6 +74,11 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Release Mouse Left Button]" << endl;
 #endif
+
+		if (isDrawing)
+		{
+			isDrawing = false;
+		}
 	}
 
 	else if (event->button() == Qt::RightButton) // 识别右键
@@ -121,6 +90,73 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 
 	return;
 }
+
+
+void DrawingArea::mouseMoveEvent(QMouseEvent* event)
+{
+	//qDebug() << QString("鼠标位置为") << event->pos() << endl;
+	QString x = QString::number(event->pos().x());
+	QString y = QString::number(event->pos().y());
+
+#ifdef PRINT_MOUSE_LOCATION
+	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
+#endif
+	
+	QString location = "(" + x + "," + y + ")" + 
+        "    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) + 
+		"\xc3\x97"/*×*/ + QString::number(INIT_HEIGHT);
+	// 两串UTF-8编码分别为：画板大小 ×
+	// 使用了python来完成编码的转化，str.encode("utf-8")即可
+	
+	//this->setStatusTip(x + " , " + y);
+	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
+
+
+	// 应当进行相关的画图工作
+
+	if (isDrawing)
+	{
+		end_point = event->pos(); // 获取移动时的鼠标位置
+		switch (penMode)
+		{
+		case None: break;
+		case StraightLine:
+			{
+			qDebug() << "[Draw Line " << begin_point << "|" << end_point << "]" << endl;
+			}
+		}
+	}
+	// END of Drawing Works
+	return;
+}
+
+
+void DrawingArea::leaveEvent(QEvent* event)
+{
+	qDebug() << "[Mouse Out]" << endl;
+
+	//// 此时，需要判定位鼠标已经抬起，也就是要终止所有的画图事件
+	//isDrawing = false;
+	/* 不需要这一段代码
+	 * 这是因为当鼠标处于press状态下移出widget的时候，并不会停止坐标的捕获
+	 * 事实上，这个时候鼠标的坐标显示可能是超出画布大小的
+	 * 这个时候，保持绘画的状态不解除
+	 */
+	emit mouseLeave();
+}
+
+
+void DrawingArea::enterEvent(QEvent* event)
+{
+#ifdef PRINT_MOUSE_EVENT
+	qDebug() << "[Mouse In]" << endl;
+#endif
+
+	return;
+}
+
+
+
 
 
 // 重写事件函数终止

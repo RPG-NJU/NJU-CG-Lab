@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QImage>
+#include <QRgb>
+#include <QPoint>
 
 #include "Define.h"
 
@@ -11,10 +13,16 @@ class DrawingArea : public QWidget
 	Q_OBJECT
 private:
 	// 所需要的数据成员
-	bool isDrawing; // 用于表示是否正在作图
+	bool isDrawing = false; // 用于表示是否正在作图
+	
+	PaintMode penMode = None; // 用于表示当前画笔的状态
+	
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
-	PaintMode penMode = None; // 用于表示当前画笔的状态
+	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
+
+	QPoint begin_point, end_point;
+	
 	// END of DATA
 
 	QString penModeToQString(PaintMode mode);
