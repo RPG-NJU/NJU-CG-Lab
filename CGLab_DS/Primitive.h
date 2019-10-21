@@ -1,16 +1,35 @@
-#ifndef PRIMITIVE_H
+ï»¿#ifndef PRIMITIVE_H
 #define PRIMITIVE_H
 
+#include "Define.h"
+
 /*
- * Õâ¸öÀàµÄÉèÏëÊÇÓÃÀ´Íê³ÉÍ¼ÔªµÄ¶¨Òå
- * Ö»ÓĞ¶¨ÒåÁËÍ¼Ôª£¬²ÅÄÜ¹»ÔÚÏßĞÔ´æ´¢ÖĞ´æ´¢Í¼Ôª
- * ÕâÑù×Ó¿ÉÒÔ°ÑÍ¼Ïñ½øĞĞÒ»¶¨µÄÄ£¿é»¯¹ÜÀí£¬¶ø²»ÊÇÒ»³É²»±ä
+ * è¿™ä¸ªç±»çš„è®¾æƒ³æ˜¯ç”¨æ¥å®Œæˆå›¾å…ƒçš„å®šä¹‰
+ * åªæœ‰å®šä¹‰äº†å›¾å…ƒï¼Œæ‰èƒ½å¤Ÿåœ¨çº¿æ€§å­˜å‚¨ä¸­å­˜å‚¨å›¾å…ƒ
+ * è¿™æ ·å­å¯ä»¥æŠŠå›¾åƒè¿›è¡Œä¸€å®šçš„æ¨¡å—åŒ–ç®¡ç†ï¼Œè€Œä¸æ˜¯ä¸€æˆä¸å˜
  */
+
+struct StraightLinePrimitive
+{
+	int begin_x;
+	int begin_y;
+	int end_x;
+	int end_y;
+};
+
 
 class Primitive
 {
+private:
+	PrimitiveType type; // å›¾å…ƒçš„ç±»å‹
+	int p_num; // ç”¨äºä»£è¡¨å›¾å…ƒç¼–å·ï¼Œprimitive number
+
+	// å›¾å…ƒä¿¡æ¯å­˜å‚¨
+
+	// END of å›¾å…ƒä¿¡æ¯å­˜å‚¨
+	
 public:
-    Primitive();
+    Primitive(int p_num);
 };
 
 #endif // PRIMITIVE_H

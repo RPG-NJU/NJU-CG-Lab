@@ -1,6 +1,6 @@
-#include "Primitive.h"
+﻿#include "Primitive.h"
 
-Primitive::Primitive()
+Primitive::Primitive(int p_num) : p_num(p_num)
 {
-
+	type = NoneType;
 }
