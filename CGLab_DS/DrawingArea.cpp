@@ -130,6 +130,7 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		 * 
 		 */
 		tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
+		// 之后进行draw操作
 	}
 	// END of Drawing Works
 	return;
