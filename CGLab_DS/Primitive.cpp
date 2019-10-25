@@ -2,5 +2,5 @@
 
 Primitive::Primitive(int p_num) : p_num(p_num)
 {
-	type = NoneType;
+	type = PrimitiveType::None;
 }

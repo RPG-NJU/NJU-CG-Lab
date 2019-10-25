@@ -65,12 +65,12 @@ void MainWindow::on_actionUpgrade_triggered()
 
 void MainWindow::on_actionChooseNature_triggered()
 {
-	ui->drawingArea->changePenMode(Nature);
+	ui->drawingArea->changePenMode(DrawMode::Nature);
 	return;
 }
 
 void MainWindow::on_actionStraightLine_triggered()
 {
-    ui->drawingArea->changePenMode(StraightLine);
+    ui->drawingArea->changePenMode(DrawMode::StraightLine);
     return;
 }

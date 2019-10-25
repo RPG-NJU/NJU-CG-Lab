@@ -131,6 +131,7 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		 */
 		tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
 		// 之后进行draw操作
+		draw(tempPaper); //进行绘图操作
 	}
 	// END of Drawing Works
 	return;
@@ -171,20 +172,20 @@ void DrawingArea::enterEvent(QEvent* event)
 
 // 关于画笔部分的函数
 
-QString DrawingArea::penModeToQString(PaintMode mode)
+QString DrawingArea::penModeToQString(DrawMode mode)
 {
 	switch (mode)
 	{
-	case None: return("None"); 
-	case Nature: return("Nature");
-	case StraightLine: return("StraightLine");
+	case DrawMode::None: return("None"); 
+	case DrawMode::Nature: return("Nature");
+	case DrawMode::StraightLine: return("StraightLine");
 	default: return("Undefine");
 	}
 }
 
 
 
-void DrawingArea::changePenMode(const PaintMode new_mode)
+void DrawingArea::changePenMode(const DrawMode new_mode)
 {
 	penMode = new_mode;
 
@@ -205,9 +206,60 @@ void DrawingArea::changePenMode(const PaintMode new_mode)
 
 void DrawingArea::draw(QImage& thisPaper)
 {
-
+	switch (penMode)
+	{
+	case DrawMode::None: break; // 此时不做任何操作
+	case DrawMode::StraightLine:
+		{
+#ifdef PRINT_DRAW
+		qDebug() << "[Draw Line " << begin_point << "to" << end_point << "]" << endl;
+#endif
+		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
+		}
+	}
 	return;
 }
 
 
+void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm)
+{
+	int x1 = line_begin.x(), x2 = line_end.x();
+	int y1 = line_begin.y(), y2 = line_end.y();
+	/*
+	 * 这里重新存储了直线的起始位置和终止位置
+	 * 没有绝对性的必要，只是为了简化变量的名字
+	 */
+
+	switch (algorithm)
+	{
+	case StraightLineAlgorithm::DDA:
+		{
+		break;
+		}
+	case StraightLineAlgorithm::Bresenham:
+		{
+		break;
+		}
+	case StraightLineAlgorithm::None:
+		{
+		break;
+		}
+	default:
+		{
+		qDebug() << "!!! < 未匹配当前算法 >" << endl;
+		break;
+		}
+	}
+
+	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
+	return;
+}
+
 // 关于绘图的函数结束
+
+
+
+// 直线绘图函数
+
+
+// 直线绘图函数结束
