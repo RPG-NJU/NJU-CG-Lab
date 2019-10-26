@@ -83,6 +83,10 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 		if (isDrawing)
 		{
 			isDrawing = false;
+
+			// 此时应该将缓存的直线刷新进入真实图片
+			paper = tempPaper;
+			this->update();
 		}
 	}
 
