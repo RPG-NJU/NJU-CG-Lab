@@ -8,8 +8,11 @@
 #include <QPen>
 
 #include <vector>
+#include <cmath>
+#include <algorithm>
 
 using std::vector;
+using std::swap;
 
 #include "Define.h"
 

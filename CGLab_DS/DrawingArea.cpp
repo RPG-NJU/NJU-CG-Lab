@@ -25,6 +25,9 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	/*QPainter painter(this);
 	painter.drawImage(0, 0, paper);*/
 	// 需要重写绘图函数paintEvent来完成
+
+	pen.setWidth(2);
+	
 	this->setMouseTracking(true);
 	
 	return;
@@ -233,7 +236,8 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 	 */
 
 	vector<MyPoint> points;
-	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用
+	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
+	painter.setPen(pen);
 	
 	switch (algorithm)
 	{
@@ -257,6 +261,10 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 		}
 	}
 
+	for (int i(0); i < points.size(); ++i)
+	{
+		painter.drawPoint(points[i].x, points[i].y);
+	}
 	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
 	return;
 }
@@ -272,22 +280,40 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 	vector<MyPoint> points;
 
 	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
+	qDebug() << "k=" << k << endl;
 	
-	if (k < 1)
+	if (abs(k) < 1)
 	{
-		const double d(y2 - y1);
+		if (x2 < x1)
+		{
+			swap(x1, x2);
+			swap(y1, y2);
+			//k = -k;
+		}
+		//const double d(y2 - y1);
+		const double s(x2 - x1);
+		//qDebug() << d << "," << static_cast<int>(round(d * k)) << endl;
+		qDebug() << "now k=" << k << endl;
+		qDebug() << "x, y = " << x1 << y1 << x2 << y2 << endl;
 		for (int i(0); i <= x2 - x1; ++i)
 		{
-			points.push_back({ x1 + i, y1 + static_cast<int>(round(d * k)) });
+			points.push_back({ x1 + i, y1 + static_cast<int>(round(k * i)) });
 		}
 	}
 	else
 	{
 		k = 1 / k; // 目前这么写，有可能导致一定的误差
-		const double d(x2 - x1);
+		if (y2 < y1)
+		{
+			swap(y1, y2);
+			swap(x1, x2);
+			//k = -k;
+		}
+		//const double d(x2 - x1);
+		const double s(y2 - y1);
 		for (int i(0); i <= y2 - y1; ++i)
 		{
-			points.push_back({ x1 + static_cast<int>(round(d * k)), y1 + i});
+			points.push_back({ x1 + static_cast<int>(round(k * i)), y1 + i});
 		}
 	}
 
