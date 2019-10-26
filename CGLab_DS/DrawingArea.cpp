@@ -230,6 +230,9 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 	 * 没有绝对性的必要，只是为了简化变量的名字
 	 */
 
+	vector<MyPoint> points;
+	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用
+	
 	switch (algorithm)
 	{
 	case StraightLineAlgorithm::DDA:
@@ -242,6 +245,7 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 		}
 	case StraightLineAlgorithm::None:
 		{
+		points = createStraightLineByNone(x1, x2, y1, y2);
 		break;
 		}
 	default:
@@ -260,6 +264,33 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 
 
 // 直线绘图函数
+
+vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, int y2)
+{
+	vector<MyPoint> points;
+
+	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
+	
+	if (k < 1)
+	{
+		const double d(y2 - y1);
+		for (int i(0); i <= x2 - x1; ++i)
+		{
+			points.push_back({ x1 + i, y1 + static_cast<int>(round(d * k)) });
+		}
+	}
+	else
+	{
+		k = 1 / k; // 目前这么写，有可能导致一定的误差
+		const double d(x2 - x1);
+		for (int i(0); i <= y2 - y1; ++i)
+		{
+			points.push_back({ x1 + static_cast<int>(round(d * k)), y1 + i});
+		}
+	}
+
+	return points;
+}
 
 
 // 直线绘图函数结束
