@@ -35,8 +35,10 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
-	painter.drawImage(0, 0, paper);
-
+	
+	//painter.drawImage(0, 0, paper);
+	isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);
+	
 	return;
 }
 
