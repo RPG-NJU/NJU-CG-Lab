@@ -284,7 +284,7 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 	vector<MyPoint> points;
 
 	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
-	qDebug() << "k=" << k << endl;
+	//qDebug() << "k=" << k << endl;
 	
 	if (abs(k) < 1)
 	{
@@ -297,8 +297,8 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 		//const double d(y2 - y1);
 		const double s(x2 - x1);
 		//qDebug() << d << "," << static_cast<int>(round(d * k)) << endl;
-		qDebug() << "now k=" << k << endl;
-		qDebug() << "x, y = " << x1 << y1 << x2 << y2 << endl;
+		//qDebug() << "now k=" << k << endl;
+		//qDebug() << "x, y = " << x1 << y1 << x2 << y2 << endl;
 		for (int i(0); i <= x2 - x1; ++i)
 		{
 			points.push_back({ x1 + i, y1 + static_cast<int>(round(k * i)) });
