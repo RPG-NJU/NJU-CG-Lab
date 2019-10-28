@@ -38,7 +38,7 @@ private:
 
 	QString penModeToQString(DrawMode mode);
 
-	vector<Primitive> primitives;
+	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
 	
 public:

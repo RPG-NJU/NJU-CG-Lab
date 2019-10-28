@@ -87,7 +87,9 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 			// 此时应该将缓存的直线刷新进入真实图片
 			paper = tempPaper;
 			this->update();
+			
 			// 同时还需要，存储图元信息
+			appendPrimitiveByMouseEvent();
 		}
 	}
 
@@ -343,9 +345,17 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 	case DrawMode::None: break; // 此时没有需要添加的图元
 	case DrawMode::StraightLine:
 		{
-			
+		primitives.push_back(new StraightLinePrimtive(begin_point, end_point, pen, now_primitive_num));
+		++now_primitive_num;
 		}
 	}
+
+	for (auto x : primitives)
+	{
+		x->print();
+	}
+
+	return;
 }
 
 

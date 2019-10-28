@@ -3,6 +3,7 @@
 
 #include <QPen>
 #include <QPoint>
+#include <QDebug>
 
 #include "Define.h"
 
@@ -38,7 +39,7 @@ public:
 	//Primitive(QPen pen) : pen_in_use(pen) { }
 	//Primitive() :
 	//	type(PrimitiveType::None), p_num(0) { }
-
+	virtual void print() const;
 };
 
 
@@ -56,7 +57,8 @@ public:
 	StraightLinePrimtive() :
 		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0) { }
 	StraightLinePrimtive(QPoint begin, QPoint end, QPen pen, int p_num) :
-		begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), Primitive(p_num, pen, PrimitiveType::StraightLine) { }
+		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
+	void print() const override;
 };
 #endif // PRIMITIVE_H
