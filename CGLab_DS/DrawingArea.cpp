@@ -87,6 +87,7 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 			// 此时应该将缓存的直线刷新进入真实图片
 			paper = tempPaper;
 			this->update();
+			// 同时还需要，存储图元信息
 		}
 	}
 
@@ -126,7 +127,7 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 	if (isDrawing) // 此时正在绘图
 	{
 		end_point = event->pos(); // 获取移动时的鼠标位置
-		/*switch (penMode)
+		/*switch (drawMode)
 		{
 		case None: break;
 		case StraightLine:
@@ -196,10 +197,10 @@ QString DrawingArea::penModeToQString(DrawMode mode)
 
 void DrawingArea::changePenMode(const DrawMode new_mode)
 {
-	penMode = new_mode;
+	drawMode = new_mode;
 
 #ifdef PRINT_PEN
-	QString penModeStr = penModeToQString(penMode);
+	QString penModeStr = penModeToQString(drawMode);
 	qDebug() << "[Change Pen Mode to" << penModeStr << "]" << endl;
 #endif
 
@@ -215,7 +216,7 @@ void DrawingArea::changePenMode(const DrawMode new_mode)
 
 void DrawingArea::draw(QImage& thisPaper)
 {
-	switch (penMode)
+	switch (drawMode)
 	{
 	case DrawMode::None: break; // 此时不做任何操作
 	case DrawMode::StraightLine:
@@ -330,3 +331,23 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 
 
 // 直线绘图函数结束
+
+
+
+// 对图元进行操作
+
+void DrawingArea::appendPrimitiveByMouseEvent()
+{
+	switch (drawMode)
+	{
+	case DrawMode::None: break; // 此时没有需要添加的图元
+	case DrawMode::StraightLine:
+		{
+			
+		}
+	}
+}
+
+
+
+// 对图元进行操作结束

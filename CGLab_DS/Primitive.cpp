@@ -1,27 +1,19 @@
 ﻿#include "Primitive.h"
 
-Primitive::Primitive(int p_num) : p_num(p_num)
+bool StraightLinePrimtive::setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy)
 {
-	type = PrimitiveType::None;
-	// 只有type为None的时候，才可以进行set图元操作
-}
-
-
-void StraightLinePrimitive::setData(int x1, int y1, int x2, int y2)
-{
-	begin_x = x1;
-	begin_y = y1;
-	end_x = x2;
-	end_y = y2;
-}
-
-
-bool Primitive::setStraightLine(int x1, int y1, int x2, int y2, QPen pen)
-{
-	if (type != PrimitiveType::None)
+	if (type != PrimitiveType::None) // 此时不可以设定数据
 		return false;
 	
+	this->p_num = p_num;
 	pen_in_use = pen;
-	straight_line.setData(x1, y1, x2, y2);
+	type = PrimitiveType::StraightLine;
+
+	begin_x = begin_xy.x();
+	begin_y = begin_xy.y();
+	end_x = end_xy.x();
+	end_y = end_xy.y();
+
 	return true;
 }
+

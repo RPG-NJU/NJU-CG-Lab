@@ -24,7 +24,7 @@ private:
 	// 所需要的数据成员
 	bool isDrawing = false; // 用于表示是否正在作图
 	
-	DrawMode penMode = DrawMode::None; // 用于表示当前画笔的状态
+	DrawMode drawMode = DrawMode::None; // 用于表示当前画笔的状态
 	
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
@@ -55,6 +55,8 @@ public:
 	void drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm);
 
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
+
+	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息 
 	
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
