@@ -15,6 +15,7 @@ using std::vector;
 using std::swap;
 
 #include "Define.h"
+#include "Primitive.h"
 
 class DrawingArea : public QWidget
 {
@@ -36,6 +37,9 @@ private:
 	// END of DATA
 
 	QString penModeToQString(DrawMode mode);
+
+	vector<Primitive> primitives;
+	int now_primitive_num = 0;
 	
 public:
     DrawingArea(QWidget* parent = nullptr);

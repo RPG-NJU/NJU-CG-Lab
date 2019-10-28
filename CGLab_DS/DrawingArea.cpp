@@ -269,6 +269,10 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 	{
 		painter.drawPoint(points[i].x, points[i].y);
 	}
+
+	// 在完成了绘图之后，还需要将图元信息存储
+
+	
 	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
 	return;
 }

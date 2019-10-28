@@ -1,6 +1,8 @@
 ﻿#ifndef PRIMITIVE_H
 #define PRIMITIVE_H
 
+#include <QPen>
+
 #include "Define.h"
 
 /*
@@ -25,7 +27,8 @@ private:
 	int p_num; // 用于代表图元编号，primitive number
 
 	// 图元信息存储
-
+	QPen pen_in_use;
+	StraightLinePrimitive straight_line;
 	// END of 图元信息存储
 	
 public:

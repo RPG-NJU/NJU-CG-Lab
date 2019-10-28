@@ -4,8 +4,15 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    MainWindow window;
-    window.show();
-    return app.exec();
+	if (argc == 2)
+	{
+		
+	}
+	else
+	{
+		QApplication app(argc, argv);
+		MainWindow window;
+		window.show();
+		return app.exec();
+	}
 }
