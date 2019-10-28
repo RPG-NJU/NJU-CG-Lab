@@ -8,3 +8,8 @@ CGLab_DS/CGLab_DS.vcxproj.*
 CGLab_DS/CGLab_DS.vcxproj
 CGLab_DS/x64/
 CGLab_DS/CGLab_DS.sln
+CGLab_DS/Makefile
+CGLab_DS/Makefile.Debug
+CGLab_DS/Makefile.Release
+CGLab_DS/object_script.CGLab_DS.Debug
+CGLab_DS/object_script.CGLab_DS.Release

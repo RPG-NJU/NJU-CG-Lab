@@ -4,6 +4,7 @@ UI_DIR=../CGLab_DS
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+# CONFIG += console # 这是为了达到控制台输出而添加的
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
