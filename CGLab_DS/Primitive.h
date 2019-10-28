@@ -17,6 +17,8 @@ struct StraightLinePrimitive
 	int begin_y;
 	int end_x;
 	int end_y;
+
+	void setData(int x1, int y1, int x2, int y2);
 };
 
 
@@ -33,6 +35,7 @@ private:
 	
 public:
     Primitive(int p_num);
+	bool setStraightLine(int x1, int y1, int x2, int y2, QPen pen);
 };
 
 #endif // PRIMITIVE_H

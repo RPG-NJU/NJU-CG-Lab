@@ -22,6 +22,7 @@ SOURCES += \
     AboutSoftwareDialog.cpp \
     DrawingArea.cpp \
     Primitive.cpp \
+    PrimitiveData.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     Define.h \
     DrawingArea.h \
     Primitive.h \
+    PrimitiveData.h \
     mainwindow.h
 
 FORMS += \
