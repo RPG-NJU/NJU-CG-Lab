@@ -5,6 +5,9 @@
 #include <QFileDialog>
 #include <QString>
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QTextEdit>
 
 #include "DrawingArea.h"
 #include "Define.h"

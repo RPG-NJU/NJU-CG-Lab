@@ -100,7 +100,28 @@ void MainWindow::on_actionOpenFile_triggered()
 		return;
 	}
 
-	
+	auto end_of_name = file_path.end();
+	--end_of_name;
+	if (*end_of_name == 't') // 此时文件的后缀名为 .txt，为指令文件
+	{
+		//qDebug() << "command file" << endl;
+		/*QFile file(file_path);
+		if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QMessageBox::warning(this, tr("Read File"),
+				tr("Cannot open file:\n%1").arg(file_path));
+			return;
+		}
+		QTextStream in(&file);
+		QTextEdit *textEdit = new QTextEdit(this);
+		qDebug() << "new edit" << endl;
+		textEdit->setText(in.readAll());
+		file.close();*/
+		ui->drawingArea->openCommandFile(file_path);
+	}
+	else // 此时为图像文件
+	{
+		
+	}
 
 	return;
 }

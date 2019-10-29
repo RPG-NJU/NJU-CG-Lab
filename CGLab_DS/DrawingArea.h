@@ -6,6 +6,9 @@
 #include <QRgb>
 #include <QPoint>
 #include <QPen>
+#include <QString>
+#include <QFile>
+#include <QTextEdit>
 
 #include <vector>
 #include <cmath>
@@ -40,7 +43,8 @@ private:
 
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
-	
+
+	//QTextEdit* show_command_text;
 public:
     DrawingArea(QWidget* parent = nullptr);
 	void paintEvent(QPaintEvent* event) override; // 绘图事件函数重写
@@ -56,7 +60,11 @@ public:
 
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
 
-	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息 
+	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
+
+
+	// 文件系统
+	void openCommandFile(QString file_path);
 	
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟

@@ -21,6 +21,7 @@ SOURCES += \
     AboutAuthorDialog.cpp \
     AboutSoftwareDialog.cpp \
     DrawingArea.cpp \
+    DrawingArea_File.cpp \
     Primitive.cpp \
     main.cpp \
     mainwindow.cpp

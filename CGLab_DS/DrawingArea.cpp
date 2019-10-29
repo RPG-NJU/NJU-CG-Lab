@@ -5,6 +5,7 @@
 #include <QString>
 
 #include "Define.h"
+#include <QMessageBox>
 
 //constexpr int INIT_WIDTH = 800;
 #define INIT_WIDTH 800
@@ -15,7 +16,7 @@
 DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 {
 	/*qDebug() << this->width() << " " << this->height() << endl;
-    qDebug() << this->geometry().width() << " " << this->geometry().height() << endl;*/
+	qDebug() << this->geometry().width() << " " << this->geometry().height() << endl;*/
 	/*
 	 * 在这里通过这种方式是无法获得在Qt Designer中设计好的DrawingArea的大小的
 	 * 这是因为，在ui_mainwindow.h的初始化中，是先调用了new DrawingArea函数，然后才进行setGeometry设定的，所以此时还无法捕获大小
@@ -27,9 +28,11 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	// 需要重写绘图函数paintEvent来完成
 
 	pen.setWidth(2);
-	
+
 	this->setMouseTracking(true);
-	
+
+
+	//show_command_text = new QTextEdit(this);
 	return;
 }
 
@@ -38,10 +41,10 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
-	
+
 	//painter.drawImage(0, 0, paper);
 	isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);
-	
+
 	return;
 }
 
@@ -88,7 +91,7 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 			// 此时应该将缓存的直线刷新进入真实图片
 			paper = tempPaper;
 			this->update();
-			
+
 			// 同时还需要，存储图元信息
 			appendPrimitiveByMouseEvent();
 		}
@@ -114,13 +117,13 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_LOCATION
 	qDebug() << "当前鼠标的坐标为：" << x << "," << y << endl;
 #endif
-	
-	QString location = "(" + x + "," + y + ")" + 
-        "    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) + 
+
+	QString location = "(" + x + "," + y + ")" +
+		"    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) +
 		"\xc3\x97"/*×*/ + QString::number(INIT_HEIGHT);
 	// 两串UTF-8编码分别为：画板大小 ×
 	// 使用了python来完成编码的转化，str.encode("utf-8")即可
-	
+
 	//this->setStatusTip(x + " , " + y);
 	emit newLocationStatus(location); // 通过emit发出信号，鼠标位置更新
 
@@ -140,7 +143,7 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		}*/
 		/*
 		 * 没有必要在这里就进行分类讨论
-		 * 
+		 *
 		 */
 		tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
 		// 之后进行draw操作
@@ -186,7 +189,7 @@ QString DrawingArea::penModeToQString(DrawMode mode)
 {
 	switch (mode)
 	{
-	case DrawMode::None: return("None"); 
+	case DrawMode::None: return("None");
 	case DrawMode::Nature: return("Nature");
 	case DrawMode::StraightLine: return("StraightLine");
 	default: return("Undefine");
@@ -220,13 +223,13 @@ void DrawingArea::draw(QImage& thisPaper)
 	{
 	case DrawMode::None: break; // 此时不做任何操作
 	case DrawMode::StraightLine:
-		{
+	{
 #ifdef PRINT_DRAW
 		qDebug() << "[Draw Line " << begin_point << "to" << end_point << "]" << endl;
 #endif
 		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
 		break;
-		}
+	}
 	}
 	return;
 }
@@ -244,27 +247,27 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 	vector<MyPoint> points;
 	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
 	painter.setPen(pen);
-	
+
 	switch (algorithm)
 	{
 	case StraightLineAlgorithm::DDA:
-		{
+	{
 		break;
-		}
+	}
 	case StraightLineAlgorithm::Bresenham:
-		{
+	{
 		break;
-		}
+	}
 	case StraightLineAlgorithm::None:
-		{
+	{
 		points = createStraightLineByNone(x1, x2, y1, y2);
 		break;
-		}
+	}
 	default:
-		{
+	{
 		qDebug() << "!!! < 未匹配当前算法 >" << endl;
 		break;
-		}
+	}
 	}
 
 	for (int i(0); i < points.size(); ++i)
@@ -274,7 +277,7 @@ void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, c
 
 	// 在完成了绘图之后，还需要将图元信息存储
 
-	
+
 	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
 	return;
 }
@@ -291,7 +294,7 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 
 	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
 	//qDebug() << "k=" << k << endl;
-	
+
 	if (abs(k) < 1)
 	{
 		if (x2 < x1)
@@ -323,7 +326,7 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 		const double s(y2 - y1);
 		for (int i(0); i <= y2 - y1; ++i)
 		{
-			points.push_back({ x1 + static_cast<int>(round(k * i)), y1 + i});
+			points.push_back({ x1 + static_cast<int>(round(k * i)), y1 + i });
 		}
 	}
 
@@ -343,10 +346,10 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 	{
 	case DrawMode::None: break; // 此时没有需要添加的图元
 	case DrawMode::StraightLine:
-		{
+	{
 		primitives.push_back(new StraightLinePrimtive(begin_point, end_point, pen, now_primitive_num));
 		++now_primitive_num;
-		}
+	}
 	}
 
 	for (auto x : primitives)
@@ -360,3 +363,6 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 
 
 // 对图元进行操作结束
+
+
+
