@@ -6,6 +6,7 @@
 #define PRINT_PEN
 #define PRINT_DRAW
 #define PRINT_ACTION // 如果定义，则调试输出所有action触发
+#define PRINT_FILE_OP // 如果定义，则调试输出文件读写的过程
 
 
 

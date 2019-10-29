@@ -1,11 +1,6 @@
 ﻿#include "DrawingArea.h"
-#include <QPainter>
-#include <QMouseEvent>
-#include <QDebug>
-#include <QString>
 
 #include "Define.h"
-#include <QMessageBox>
 
 //constexpr int INIT_WIDTH = 800;
 #define INIT_WIDTH 800

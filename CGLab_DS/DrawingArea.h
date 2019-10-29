@@ -9,13 +9,21 @@
 #include <QString>
 #include <QFile>
 #include <QTextEdit>
+#include <QMessageBox>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QDebug>
 
 #include <vector>
+#include <string>
 #include <cmath>
 #include <algorithm>
+#include <sstream>
 
 using std::vector;
 using std::swap;
+using std::string;
+using std::stringstream;
 
 #include "Define.h"
 #include "Primitive.h"
@@ -64,7 +72,7 @@ public:
 
 
 	// 文件系统
-	void openCommandFile(QString file_path);
+	bool openCommandFile(QString file_path);
 	
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
