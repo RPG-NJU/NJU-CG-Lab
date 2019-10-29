@@ -34,6 +34,7 @@ public:
     QAction *actionUpgrade;
     QAction *actionChooseNature;
     QAction *actionStraightLine;
+    QAction *actionOpenFile;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -91,6 +92,8 @@ public:
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/MainWindow/StraightLine"), QSize(), QIcon::Normal, QIcon::Off);
         actionStraightLine->setIcon(icon3);
+        actionOpenFile = new QAction(MainWindow);
+        actionOpenFile->setObjectName(QString::fromUtf8("actionOpenFile"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -145,6 +148,7 @@ public:
         menuAbout->addSeparator();
         menuAbout->addAction(actionReleaseHistory);
         menuAbout->addAction(actionUpgrade);
+        menuFile->addAction(actionOpenFile);
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
@@ -185,6 +189,13 @@ public:
 #if QT_CONFIG(tooltip)
         actionStraightLine->setToolTip(QCoreApplication::translate("MainWindow", "\347\233\264\347\272\277", nullptr));
 #endif // QT_CONFIG(tooltip)
+        actionOpenFile->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+#if QT_CONFIG(tooltip)
+        actionOpenFile->setToolTip(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200\346\226\207\344\273\266", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionOpenFile->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)

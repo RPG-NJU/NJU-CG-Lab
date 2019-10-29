@@ -107,6 +107,7 @@
     <property name="title">
      <string>文件</string>
     </property>
+    <addaction name="actionOpenFile"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -227,6 +228,17 @@
    </property>
    <property name="toolTip">
     <string>直线</string>
+   </property>
+  </action>
+  <action name="actionOpenFile">
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="toolTip">
+    <string>打开文件</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

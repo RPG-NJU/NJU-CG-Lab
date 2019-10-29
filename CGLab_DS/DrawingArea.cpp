@@ -58,6 +58,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 		{
 			isDrawing = true;
 			begin_point = event->pos(); // 获得当前鼠标的位置
+			end_point = event->pos(); // 增加这行代码为了防止在点击和释放中间没有移动鼠标而导致的错误图元问题
 		}
 	}
 
@@ -175,9 +176,6 @@ void DrawingArea::enterEvent(QEvent* event)
 }
 
 
-
-
-
 // 重写事件函数终止
 
 
@@ -227,6 +225,7 @@ void DrawingArea::draw(QImage& thisPaper)
 		qDebug() << "[Draw Line " << begin_point << "to" << end_point << "]" << endl;
 #endif
 		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
+		break;
 		}
 	}
 	return;
