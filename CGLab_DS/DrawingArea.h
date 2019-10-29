@@ -67,6 +67,8 @@ public:
 	void drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm);
 
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
+	vector<MyPoint> createStraightLineByDDA(int x1, int y1, int x2, int y2);
+	vector<MyPoint> createStraightLineByBresenham(int x1, int y1, int x2, int y2);
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 

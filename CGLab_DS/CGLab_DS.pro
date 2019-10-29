@@ -22,6 +22,7 @@ SOURCES += \
     AboutSoftwareDialog.cpp \
     DrawingArea.cpp \
     DrawingArea_File.cpp \
+    DrawingArea_StraightLine.cpp \
     Primitive.cpp \
     main.cpp \
     mainwindow.cpp

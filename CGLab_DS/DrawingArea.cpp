@@ -23,6 +23,7 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	// 需要重写绘图函数paintEvent来完成
 
 	pen.setWidth(2);
+	pen.setColor(qRgb(0, 0, 0));
 
 	this->setMouseTracking(true);
 
@@ -222,115 +223,14 @@ void DrawingArea::draw(QImage& thisPaper)
 #ifdef PRINT_DRAW
 		qDebug() << "[Draw Line " << begin_point << "to" << end_point << "]" << endl;
 #endif
-		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
+		//drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
+		//drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::DDA);
+		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::Bresenham);
 		break;
 	}
 	}
 	return;
 }
-
-
-void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm)
-{
-	int x1 = line_begin.x(), x2 = line_end.x();
-	int y1 = line_begin.y(), y2 = line_end.y();
-	/*
-	 * 这里重新存储了直线的起始位置和终止位置
-	 * 没有绝对性的必要，只是为了简化变量的名字
-	 */
-
-	vector<MyPoint> points;
-	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
-	painter.setPen(pen);
-
-	switch (algorithm)
-	{
-	case StraightLineAlgorithm::DDA:
-	{
-		break;
-	}
-	case StraightLineAlgorithm::Bresenham:
-	{
-		break;
-	}
-	case StraightLineAlgorithm::None:
-	{
-		points = createStraightLineByNone(x1, x2, y1, y2);
-		break;
-	}
-	default:
-	{
-		qDebug() << "!!! < 未匹配当前算法 >" << endl;
-		break;
-	}
-	}
-
-	for (int i(0); i < points.size(); ++i)
-	{
-		painter.drawPoint(points[i].x, points[i].y);
-	}
-
-	// 在完成了绘图之后，还需要将图元信息存储
-
-
-	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
-	return;
-}
-
-// 关于绘图的函数结束
-
-
-
-// 直线绘图函数
-
-vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, int y2)
-{
-	vector<MyPoint> points;
-
-	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
-	//qDebug() << "k=" << k << endl;
-
-	if (abs(k) < 1)
-	{
-		if (x2 < x1)
-		{
-			swap(x1, x2);
-			swap(y1, y2);
-			//k = -k;
-		}
-		//const double d(y2 - y1);
-		const double s(x2 - x1);
-		//qDebug() << d << "," << static_cast<int>(round(d * k)) << endl;
-		//qDebug() << "now k=" << k << endl;
-		//qDebug() << "x, y = " << x1 << y1 << x2 << y2 << endl;
-		for (int i(0); i <= x2 - x1; ++i)
-		{
-			points.push_back({ x1 + i, y1 + static_cast<int>(round(k * i)) });
-		}
-	}
-	else
-	{
-		k = 1 / k; // 目前这么写，有可能导致一定的误差
-		if (y2 < y1)
-		{
-			swap(y1, y2);
-			swap(x1, x2);
-			//k = -k;
-		}
-		//const double d(x2 - x1);
-		const double s(y2 - y1);
-		for (int i(0); i <= y2 - y1; ++i)
-		{
-			points.push_back({ x1 + static_cast<int>(round(k * i)), y1 + i });
-		}
-	}
-
-	return points;
-}
-
-
-// 直线绘图函数结束
-
 
 
 // 对图元进行操作

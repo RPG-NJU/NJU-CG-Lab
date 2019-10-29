@@ -148,6 +148,12 @@ void MainWindow::on_actionSaveFile_triggered()
 		qDebug() << "[图片保存在了" << file_path << "]" << endl;
 #endif
 	}
+	else // 文件保存失败
+	{
+		QMessageBox::warning(this, tr("Save Wrong!"),
+			tr("\xe5\x9b\xbe\xe5\x83\x8f\xe4\xbf\x9d\xe5\xad\x98\xe5\xa4\xb1\xe8\xb4\xa5:\n%1").arg(file_path));
+		
+	}
 
 	return;
 }
