@@ -2,8 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QString>
+#include <QMessageBox>
 
 #include "DrawingArea.h"
+#include "Define.h"
 //#include <QStatusBar>
 
 QT_BEGIN_NAMESPACE
@@ -31,6 +35,8 @@ private slots:
     void on_actionChooseNature_triggered(); // 用户选择了 “自然线条”
 
     void on_actionStraightLine_triggered(); // 用户选择了 “直线”
+
+    void on_actionOpenFile_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -5,6 +5,7 @@
 #define PRINT_MOUSE_EVENT
 #define PRINT_PEN
 #define PRINT_DRAW
+#define PRINT_ACTION // 如果定义，则调试输出所有action触发
 
 
 

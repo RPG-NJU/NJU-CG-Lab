@@ -1,13 +1,18 @@
-﻿#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "AboutAuthorDialog.h"
-#include "AboutSoftwareDialog.h"
-//#include <QMessageBox>
+﻿//#include <QMessageBox>
 #include <QObject>
 
 #include <windows.h>
 #include <shellapi.h>
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "AboutAuthorDialog.h"
+#include "AboutSoftwareDialog.h"
+
 //#include "ui_mainwindow.h"
+
+
+
 
 
 
@@ -73,4 +78,29 @@ void MainWindow::on_actionStraightLine_triggered()
 {
     ui->drawingArea->changePenMode(DrawMode::StraightLine);
     return;
+}
+
+void MainWindow::on_actionOpenFile_triggered()
+{
+#ifdef PRINT_ACTION
+	qDebug() << "<< ACTION >>    打开文件" << endl;
+#endif
+	QString file_path = QFileDialog::getOpenFileName(this,
+		tr("\xe6\x89\x93\xe5\xbc\x80\xe6\x96\x87\xe4\xbb\xb6"), /*打开文件*/
+		".",
+		tr("\xe6\x8c\x87\xe4\xbb\xa4\xe6\x96\x87\xe4\xbb\xb6(*.txt);; \
+			\xe5\x9b\xbe\xe5\x83\x8f\xe6\x96\x87\xe4\xbb\xb6(*.bmp)")/*指令文件 & 图像文件*/);
+
+	if (file_path.isEmpty()) // 如果获取到的文件名为空
+	{
+		/*QMessageBox::warning(this, tr("Path"),
+			tr("You did not select any file."));*/
+		// 当前的设计中不需要这个提示，因为用户可能就是单纯的关闭了对话框放弃了文件的选择而已
+
+		return;
+	}
+
+	
+
+	return;
 }
