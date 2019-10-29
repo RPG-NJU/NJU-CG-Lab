@@ -34,17 +34,41 @@ bool DrawingArea::openCommandFile(QString file_path)
 	// 下面的操作都基于，文件打开成功的情况
 	QTextStream command_in(&command_file);
 
-	vector<string> command_lines;
+	//vector<string> command_lines;
+	vector<vector<string> > commands;
 
 	while (!command_in.atEnd())
 	{
-		command_lines.push_back(command_in.readLine().toStdString());
+		//command_lines.push_back(command_in.readLine().toStdString());
+		stringstream command_line;
+		string word;
+		vector<string> command;
+		command_line << command_in.readLine().toStdString();
+		while (command_line)
+		{
+			//string word;
+			word.clear();
+			command_line >> word;
+			if (!word.empty()) // 否则可能会传入空的string
+				command.push_back(word);
+		}
+		commands.push_back(command);
+		command.clear();
 	}
 
 #ifdef PRINT_FILE_OP
-	for (auto line : command_lines)
+	/*for (auto line : command_lines)
 	{
 		qDebug() << QString::fromStdString(line) << endl;
+	}*/
+	for (const auto a_command : commands)
+	{
+		QString output;
+		for (const auto command_word : a_command)
+		{
+			output = output + "[" + QString::fromStdString(command_word) + "] ";
+		}
+		qDebug() << output;
 	}
 #endif
 
