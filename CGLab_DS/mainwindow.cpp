@@ -125,3 +125,29 @@ void MainWindow::on_actionOpenFile_triggered()
 
 	return;
 }
+
+void MainWindow::on_actionSaveFile_triggered()
+{
+	QString file_path = QFileDialog::getSaveFileName(this,
+		tr("Save Picture"),
+		".",
+		tr("Picture(*.bmp)"));
+
+	if (file_path.isEmpty()) // 如果没有选择任何的文件路径
+	{
+		return;
+	}
+
+
+	// 此时就是保存文件的操作了
+
+	QImage picture = ui->drawingArea->getPaper();
+	if (picture.save(file_path)) // 此时是已经保存成功了
+	{
+#ifdef PRINT_FILE_OP
+		qDebug() << "[图片保存在了" << file_path << "]" << endl;
+#endif
+	}
+
+	return;
+}

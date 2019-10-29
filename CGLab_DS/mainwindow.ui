@@ -108,6 +108,7 @@
      <string>文件</string>
     </property>
     <addaction name="actionOpenFile"/>
+    <addaction name="actionSaveFile"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -239,6 +240,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSaveFile">
+   <property name="text">
+    <string>保存</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

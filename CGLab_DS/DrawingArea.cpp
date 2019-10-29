@@ -361,3 +361,14 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 
 
 
+// 对外接口
+
+QImage DrawingArea::getPaper() const
+{
+	return paper;
+}
+
+
+// 对外接口结束
+
+

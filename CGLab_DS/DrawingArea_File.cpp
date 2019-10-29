@@ -54,4 +54,6 @@ bool DrawingArea::openCommandFile(QString file_path)
 #endif
 
 	command_file.close(); // 关闭文件，数据已经完全读取
+
+	return true;
 }

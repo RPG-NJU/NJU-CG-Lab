@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QTextEdit>
+#include <QImage>
 
 #include "DrawingArea.h"
 #include "Define.h"
@@ -40,6 +41,8 @@ private slots:
     void on_actionStraightLine_triggered(); // 用户选择了 “直线”
 
     void on_actionOpenFile_triggered();
+
+    void on_actionSaveFile_triggered();
 
 private:
     Ui::MainWindow *ui;
