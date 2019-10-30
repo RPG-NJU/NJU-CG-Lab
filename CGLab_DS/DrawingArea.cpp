@@ -237,36 +237,6 @@ void DrawingArea::draw(QImage& thisPaper)
 
 // 对图元进行操作
 
-void DrawingArea::appendPrimitiveByMouseEvent()
-{
-	switch (drawMode)
-	{
-	case DrawMode::None: break; // 此时没有需要添加的图元
-	case DrawMode::StraightLine:
-	{
-		primitives.push_back(new StraightLinePrimitive(begin_point, end_point, pen, now_primitive_num));
-	}break;
-	case DrawMode::Circle:
-	{
-		primitives.push_back(new EllipsePrimitive((begin_point.x() + end_point.x()) / 2, (begin_point.y() + end_point.y()) / 2,
-			abs(begin_point.x() - end_point.x()) / 2, abs(begin_point.x() - end_point.x()) / 2, now_primitive_num, pen));
-	}break;
-	case DrawMode::Ellipse:
-	{
-		primitives.push_back(new EllipsePrimitive(begin_point, end_point, pen, now_primitive_num));
-	}break;
-	}
-
-	++now_primitive_num;
-
-	for (auto x : primitives)
-	{
-		x->print();
-	}
-
-	return;
-}
-
 
 
 // 对图元进行操作结束

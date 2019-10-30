@@ -78,6 +78,8 @@ public:
 	vector<MyPoint> createEllipse(int x0, int y0, int rx, int ry); // 绘制椭圆的算法（有可能可以整合了绘制圆的算法）
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
+	void appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen);
+	void appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen);
 
 
 	// 文件系统

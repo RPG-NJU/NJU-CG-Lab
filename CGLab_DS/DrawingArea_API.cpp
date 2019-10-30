@@ -104,5 +104,47 @@ void DrawingArea::clearPaper(bool save_primitives)
 	return;
 }
 
+void DrawingArea::appendPrimitiveByMouseEvent()
+{
+	switch (drawMode)
+	{
+	case DrawMode::None: break; // 此时没有需要添加的图元
+	case DrawMode::StraightLine:
+	{
+		primitives.push_back(new StraightLinePrimitive(begin_point, end_point, pen, now_primitive_num));
+	}break;
+	case DrawMode::Circle:
+	{
+		primitives.push_back(new EllipsePrimitive((begin_point.x() + end_point.x()) / 2, (begin_point.y() + end_point.y()) / 2,
+			abs(begin_point.x() - end_point.x()) / 2, abs(begin_point.x() - end_point.x()) / 2, now_primitive_num, pen));
+	}break;
+	case DrawMode::Ellipse:
+	{
+		primitives.push_back(new EllipsePrimitive(begin_point, end_point, pen, now_primitive_num));
+	}break;
+	}
+
+	++now_primitive_num;
+
+	for (auto x : primitives)
+	{
+		x->print();
+	}
+
+	return;
+}
+
+
+void DrawingArea::appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen)
+{
+	primitives.push_back(new StraightLinePrimitive(x1, y1, x2, y2, p_num, pen));
+	return;
+}
+
+void DrawingArea::appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen)
+{
+	primitives.push_back(new EllipsePrimitive(x0, y0, rx, ry, p_num, pen));
+}
+
 
 // 对外接口结束

@@ -42,8 +42,31 @@ void DrawingArea::runCommand()
 				painter.drawPoint(point.x, point.y);
 			}
 
+			appendStraightLinePrimitive(x1, y1, x2, y2, id, pen);
+
 			this->update();
 		}
+
+		else if (command[0] == "drawEllipse")
+		{
+			const int id(stoi(command[1])), x0(stoi(command[2])), y0(stoi(command[3])), rx(stoi(command[4])), ry(stoi(command[5]));
+
+			vector<MyPoint> points;
+			QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+			painter.setPen(pen);
+
+			points = createEllipse(x0, y0, rx, ry);
+
+			for (const auto& point : points)
+			{
+				painter.drawPoint(point.x, point.y);
+			}
+
+			appendEllipsePrimitive(x0, y0, rx, ry, id, pen);
+
+			this->update();
+		}
+
 	}
 	
 	return;
