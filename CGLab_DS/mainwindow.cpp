@@ -157,3 +157,15 @@ void MainWindow::on_actionSaveFile_triggered()
 
 	return;
 }
+
+void MainWindow::on_actionPalette_triggered()
+{
+	QColorDialog* palette = new QColorDialog(this);
+	palette->setWindowTitle(tr("\xe8\xb0\x83\xe8\x89\xb2\xe6\x9d\xbf"/*调色板*/));
+	palette->setWindowIcon(QIcon(":/MainWindow/Palette"));
+	palette->show(); // 使用非拥塞可以方便操作
+
+	QObject::connect(palette, &QColorDialog::colorSelected, ui->drawingArea, &DrawingArea::setPenColor);
+	
+	return;
+}

@@ -269,6 +269,13 @@ QImage DrawingArea::getPaper() const
 }
 
 
+void DrawingArea::setPenColor(QColor color)
+{
+	pen.setColor(color);
+	return;
+}
+
+
 // 对外接口结束
 
 

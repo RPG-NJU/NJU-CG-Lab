@@ -9,6 +9,8 @@
 #include <QTextStream>
 #include <QTextEdit>
 #include <QImage>
+#include <QColorDialog>
+#include <QIcon>
 
 #include "DrawingArea.h"
 #include "Define.h"
@@ -43,6 +45,9 @@ private slots:
     void on_actionOpenFile_triggered();
 
     void on_actionSaveFile_triggered();
+
+    void on_actionPalette_triggered(); // 用户选择了调色板
+	
 
 private:
     Ui::MainWindow *ui;

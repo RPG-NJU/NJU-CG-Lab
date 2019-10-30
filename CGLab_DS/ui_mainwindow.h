@@ -36,6 +36,7 @@ public:
     QAction *actionStraightLine;
     QAction *actionOpenFile;
     QAction *actionSaveFile;
+    QAction *actionPalette;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -97,6 +98,11 @@ public:
         actionOpenFile->setObjectName(QString::fromUtf8("actionOpenFile"));
         actionSaveFile = new QAction(MainWindow);
         actionSaveFile->setObjectName(QString::fromUtf8("actionSaveFile"));
+        actionPalette = new QAction(MainWindow);
+        actionPalette->setObjectName(QString::fromUtf8("actionPalette"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/MainWindow/Palette"), QSize(), QIcon::Normal, QIcon::Off);
+        actionPalette->setIcon(icon4);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -156,6 +162,7 @@ public:
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
+        toolBar->addAction(actionPalette);
 
         retranslateUi(MainWindow);
 
@@ -204,6 +211,10 @@ public:
 #if QT_CONFIG(shortcut)
         actionSaveFile->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionPalette->setText(QCoreApplication::translate("MainWindow", "\350\260\203\350\211\262\346\235\277", nullptr));
+#if QT_CONFIG(tooltip)
+        actionPalette->setToolTip(QCoreApplication::translate("MainWindow", "\350\260\203\350\211\262\346\235\277", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
