@@ -66,7 +66,8 @@ public:
 	void draw(QImage& thisPaper); // 绘图函数
 	void changePenMode(const DrawMode new_mode); // 用于响应画笔的更改
 	void drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm);
-
+	void drawCircle(QImage& thisPaper, const QPoint begin, const QPoint end);
+	
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
 	vector<MyPoint> createStraightLineByDDA(int x1, int y1, int x2, int y2);
 	vector<MyPoint> createStraightLineByBresenham(int x1, int y1, int x2, int y2);

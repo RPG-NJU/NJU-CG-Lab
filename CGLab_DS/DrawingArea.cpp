@@ -234,6 +234,8 @@ void DrawingArea::draw(QImage& thisPaper)
 #ifdef PRINT_DRAW
 		qDebug() << "[Draw Circle " << begin_point << "to" << end_point << "]" << endl;
 #endif
+		drawCircle(tempPaper, begin_point, end_point);
+		break;
 	}
 	}
 	return;
