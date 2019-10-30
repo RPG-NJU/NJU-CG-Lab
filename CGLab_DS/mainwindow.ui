@@ -139,6 +139,7 @@
    <addaction name="actionChooseNature"/>
    <addaction name="actionStraightLine"/>
    <addaction name="actionCircle"/>
+   <addaction name="actionEllipse"/>
    <addaction name="actionPalette"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -289,6 +290,24 @@
    </property>
    <property name="toolTip">
     <string>圆</string>
+   </property>
+  </action>
+  <action name="actionEllipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Ellipse</normaloff>:/MainWindow/Ellipse</iconset>
+   </property>
+   <property name="text">
+    <string>椭圆</string>
+   </property>
+   <property name="toolTip">
+    <string>椭圆</string>
    </property>
   </action>
  </widget>

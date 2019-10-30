@@ -97,6 +97,14 @@ void MainWindow::on_actionCircle_triggered()
 	return;
 }
 
+void MainWindow::on_actionEllipse_triggered()
+{
+	ui->drawingArea->changePenMode(DrawMode::Ellipse);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionEllipse->setChecked(true);
+	return;
+}
+
 void MainWindow::on_actionOpenFile_triggered()
 {
 #ifdef PRINT_ACTION
@@ -197,6 +205,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		ui->actionChooseNature->setChecked(false);
 		ui->actionStraightLine->setChecked(false);
 		ui->actionCircle->setChecked(false);
+		ui->actionEllipse->setChecked(false);
 		break;
 		}
 	case ClearToolBarCheckedMode::All:
@@ -207,5 +216,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		}
 	}
 }
+
+
 
 

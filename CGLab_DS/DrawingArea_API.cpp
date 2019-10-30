@@ -27,4 +27,20 @@ void DrawingArea::setPaperSize(int x, int y)
 }
 
 
+
+void DrawingArea::changePenMode(const DrawMode new_mode)
+{
+	drawMode = new_mode;
+
+#ifdef PRINT_PEN
+	QString penModeStr = penModeToQString(drawMode);
+	qDebug() << "[Change Pen Mode to" << penModeStr << "]" << endl;
+#endif
+
+
+	return;
+}
+
+
+
 // 对外接口结束

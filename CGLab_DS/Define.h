@@ -15,7 +15,8 @@ enum class DrawMode
 	None, 
 	Nature, 
 	StraightLine,
-	Circle
+	Circle,
+	Ellipse
 };
 
 enum class PrimitiveType
@@ -26,7 +27,7 @@ enum class PrimitiveType
 	None,
 	Nature,
 	StraightLine,
-	Circle
+	Ellipse
 };
 
 

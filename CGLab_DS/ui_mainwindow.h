@@ -38,6 +38,7 @@ public:
     QAction *actionSaveFile;
     QAction *actionPalette;
     QAction *actionCircle;
+    QAction *actionEllipse;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -114,6 +115,13 @@ public:
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/MainWindow/Circle"), QSize(), QIcon::Normal, QIcon::Off);
         actionCircle->setIcon(icon5);
+        actionEllipse = new QAction(MainWindow);
+        actionEllipse->setObjectName(QString::fromUtf8("actionEllipse"));
+        actionEllipse->setCheckable(true);
+        actionEllipse->setChecked(false);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/MainWindow/Ellipse"), QSize(), QIcon::Normal, QIcon::Off);
+        actionEllipse->setIcon(icon6);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -174,6 +182,7 @@ public:
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
         toolBar->addAction(actionCircle);
+        toolBar->addAction(actionEllipse);
         toolBar->addAction(actionPalette);
 
         retranslateUi(MainWindow);
@@ -230,6 +239,10 @@ public:
         actionCircle->setText(QCoreApplication::translate("MainWindow", "\345\234\206", nullptr));
 #if QT_CONFIG(tooltip)
         actionCircle->setToolTip(QCoreApplication::translate("MainWindow", "\345\234\206", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionEllipse->setText(QCoreApplication::translate("MainWindow", "\346\244\255\345\234\206", nullptr));
+#if QT_CONFIG(tooltip)
+        actionEllipse->setToolTip(QCoreApplication::translate("MainWindow", "\346\244\255\345\234\206", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

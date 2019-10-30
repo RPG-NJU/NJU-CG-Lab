@@ -43,7 +43,7 @@ public:
 };
 
 
-class StraightLinePrimtive : public Primitive
+class StraightLinePrimitive : public Primitive
 {
 private:
 	int begin_x;
@@ -52,13 +52,33 @@ private:
 	int end_y;
 
 public:
-	StraightLinePrimtive(int x1, int y1, int x2, int y2, int p_num, QPen pen) :
+	StraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(x1), begin_y(y1), end_x(x2), end_y(y2) { }
-	StraightLinePrimtive() :
+	StraightLinePrimitive() :
 		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0) { }
-	StraightLinePrimtive(QPoint begin, QPoint end, QPen pen, int p_num) :
+	StraightLinePrimitive(QPoint begin, QPoint end, QPen pen, int p_num) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
+	void print() const override;
+	int x1() const { return begin_x; }
+	int x2() const { return end_x; }
+	int y1() const { return begin_y; }
+	int y2() const { return end_y; }
+};
+
+
+class EllipsePrimitive : public Primitive
+{
+private:
+	int x0;
+	int y0;
+	int rx;
+	int ry;
+
+public:
+	EllipsePrimitive(int x0 = 0, int y0 = 0 , int rx = 0, int ry = 0, int p_num = 0, QPen pen = QPen()) :
+		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
+	EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num);
 	void print() const override;
 };
 #endif // PRIMITIVE_H

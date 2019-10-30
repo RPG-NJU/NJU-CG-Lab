@@ -193,21 +193,6 @@ QString DrawingArea::penModeToQString(DrawMode mode)
 }
 
 
-
-void DrawingArea::changePenMode(const DrawMode new_mode)
-{
-	drawMode = new_mode;
-
-#ifdef PRINT_PEN
-	QString penModeStr = penModeToQString(drawMode);
-	qDebug() << "[Change Pen Mode to" << penModeStr << "]" << endl;
-#endif
-
-
-	return;
-}
-
-
 // 关于画笔部分的函数结束
 
 
@@ -227,16 +212,21 @@ void DrawingArea::draw(QImage& thisPaper)
 		//drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::None); // 这里实现的算法是可选的
 		//drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::DDA);
 		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::Bresenham);
-		break;
-	}
+	}break;
 	case DrawMode::Circle:
 	{
 #ifdef PRINT_DRAW
 		qDebug() << "[Draw Circle " << begin_point << "to" << end_point << "]" << endl;
 #endif
 		drawCircle(tempPaper, begin_point, end_point);
-		break;
-	}
+	}break;
+	case DrawMode::Ellipse:
+		{
+#ifdef PRINT_DRAW
+		qDebug() << "[Draw Ellipse " << begin_point << "to" << end_point << "]" << endl;
+#endif
+		drawEllipse(tempPaper, begin_point, end_point);
+		}
 	}
 	return;
 }
@@ -251,10 +241,20 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 	case DrawMode::None: break; // 此时没有需要添加的图元
 	case DrawMode::StraightLine:
 	{
-		primitives.push_back(new StraightLinePrimtive(begin_point, end_point, pen, now_primitive_num));
-		++now_primitive_num;
+		primitives.push_back(new StraightLinePrimitive(begin_point, end_point, pen, now_primitive_num));
+	}break;
+	case DrawMode::Circle:
+	{
+		primitives.push_back(new EllipsePrimitive((begin_point.x() + end_point.x()) / 2, (begin_point.y() + end_point.y()) / 2,
+			abs(begin_point.x() - end_point.x()) / 2, abs(begin_point.x() - end_point.x()) / 2, now_primitive_num, pen));
+	}break;
+	case DrawMode::Ellipse:
+	{
+		primitives.push_back(new EllipsePrimitive(begin_point, end_point, pen, now_primitive_num));
+	}break;
 	}
-	}
+
+	++now_primitive_num;
 
 	for (auto x : primitives)
 	{

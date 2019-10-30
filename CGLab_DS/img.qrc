@@ -6,5 +6,6 @@
         <file alias="StraightLine">img/MainWindow/StraightLine.png</file>
         <file alias="Palette">img/MainWindow/Palette.png</file>
         <file alias="Circle">img/MainWindow/Circle.png</file>
+        <file alias="Ellipse">img/MainWindow/Ellipse.png</file>
     </qresource>
 </RCC>

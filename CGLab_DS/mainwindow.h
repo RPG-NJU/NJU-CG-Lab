@@ -53,6 +53,8 @@ private slots:
 
     void on_actionCircle_triggered(); // 用户选择了圆形绘制
 
+    void on_actionEllipse_triggered();
+
 private:
     Ui::MainWindow *ui;
 

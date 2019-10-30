@@ -23,6 +23,32 @@ void DrawingArea::drawCircle(QImage& thisPaper, const QPoint begin, const QPoint
 	return;
 }
 
+void DrawingArea::drawEllipse(QImage& thisPaper, const QPoint begin, const QPoint end)
+{
+	const int x1 = begin.x(), x2 = end.x();
+	const int y1 = begin.y(), y2 = end.y();
+
+	const int x0 = (x2 + x1) / 2;
+	const int y0 = (y2 + y1) / 2;
+	const int rx = abs(x2 - x1) / 2;
+	const int ry = abs(y2 - y1) / 2;
+
+	vector<MyPoint> points;
+	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
+	painter.setPen(pen);
+
+	points = createEllipse(x0, y0, rx, ry);
+
+	for (int i(0); i < points.size(); ++i)
+	{
+		painter.drawPoint(points[i].x, points[i].y);
+	}
+	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
+
+	return;
+}
+
+
 
 
 vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
