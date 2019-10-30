@@ -22,6 +22,7 @@ SOURCES += \
     AboutSoftwareDialog.cpp \
     DrawingArea.cpp \
     DrawingArea_API.cpp \
+    DrawingArea_Command.cpp \
     DrawingArea_Ellipse.cpp \
     DrawingArea_File.cpp \
     DrawingArea_StraightLine.cpp \

@@ -62,6 +62,7 @@ private slots:
 
     void on_actionSetPaperSize_triggered(); // 用户要设置画布大小
 
+
 private:
     Ui::MainWindow *ui;
 

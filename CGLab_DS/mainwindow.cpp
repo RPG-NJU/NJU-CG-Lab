@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this); // 这个语句是分析代码之后建立UI部分的部分代码
 	QObject::connect(ui->drawingArea, &DrawingArea::newLocationStatus, ui->statusBar, &QStatusBar::showMessage);
 	QObject::connect(ui->drawingArea, &DrawingArea::mouseLeave, ui->statusBar, &QStatusBar::clearMessage);
+	QObject::connect(ui->drawingArea, &DrawingArea::setPaperSizeSignal, ui->scrollAreaWidgetContents, (void (QWidget:: *)(int, int))&QWidget::setMinimumSize);
 	ui->actionStraightLine->setChecked(true);
 }
 
@@ -142,10 +143,11 @@ void MainWindow::on_actionOpenFile_triggered()
 		textEdit->setText(in.readAll());
 		file.close();*/
 		ui->drawingArea->openCommandFile(file_path);
+		ui->drawingArea->runCommand();
 	}
 	else // 此时为图像文件
 	{
-		
+		return; // 当前还无法操作
 	}
 
 	return;
@@ -243,7 +245,9 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	{
 		qDebug() << "set paper size" << set_size->_x() << set_size->_y() << endl;
 		ui->drawingArea->setPaperSize(set_size->_x(), set_size->_y());
-		ui->scrollAreaWidgetContents->setMinimumSize(set_size->_x(), set_size->_y());
+		//ui->scrollAreaWidgetContents->setMinimumSize(set_size->_x(), set_size->_y());
 	}
 	return;
 }
+
+

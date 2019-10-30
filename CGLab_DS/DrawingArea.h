@@ -56,6 +56,7 @@ private:
 	int now_primitive_num = 0;
 
 	//QTextEdit* show_command_text;
+	vector<vector<string> > commands;
 public:
     DrawingArea(QWidget* parent = nullptr);
 	void paintEvent(QPaintEvent* event) override; // 绘图事件函数重写
@@ -93,9 +94,15 @@ public:
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }
+
+
+	// 命令接口
+	void runCommand();
+	
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口
+	void setPaperSizeSignal(int x, int y);
 };
 
 #endif // DRAWINGAERA_H

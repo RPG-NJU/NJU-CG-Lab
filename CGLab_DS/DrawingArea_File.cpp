@@ -16,7 +16,7 @@ bool DrawingArea::openCommandFile(QString file_path)
 	QTextStream command_in(&command_file);
 
 	//vector<string> command_lines;
-	vector<vector<string> > commands;
+	/*vector<vector<string> > commands;*/
 
 	while (!command_in.atEnd())
 	{

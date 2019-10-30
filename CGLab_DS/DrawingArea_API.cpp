@@ -1,4 +1,5 @@
 #include "DrawingArea.h"
+#include "mainwindow.h"
 
 
 // 对外接口
@@ -26,6 +27,8 @@ void DrawingArea::setPaperSize(int x, int y)
 	paper = QImage(x, y, QImage::Format_RGB32);
 	tempPaper = paper;
 
+	emit setPaperSizeSignal(x, y);
+	
 	clearPaper(true);
 	drawAll();
 	
