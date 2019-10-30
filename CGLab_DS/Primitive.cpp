@@ -48,7 +48,7 @@ EllipsePrimitive::EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num
 	int x1(begin.x()), x2(end.x()), y1(begin.y()), y2(end.y());
 
 	x0 = (x1 + x2) / 2;
-	y0 = (y1 + y1) / 2;
+	y0 = (y1 + y2) / 2;
 
 	rx = abs(x2 - x1) / 2;
 	ry = abs(y2 - y1) / 2;

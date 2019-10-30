@@ -43,4 +43,57 @@ void DrawingArea::changePenMode(const DrawMode new_mode)
 
 
 
+void DrawingArea::drawAll()
+{
+
+	QPen now_pen = pen; // 保存当前的pen
+	for (const auto &p : primitives)
+	{
+		vector<MyPoint> points;
+		pen = p->_pen();
+		switch (p->_type())
+		{
+		case PrimitiveType::None: break;
+		case PrimitiveType::Nature: break; // 目前没有解决自然线条的绘制
+		case PrimitiveType::StraightLine:
+		{
+			StraightLinePrimitive* p_straightline = dynamic_cast<StraightLinePrimitive*>(p);
+			points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
+		}break;
+		case PrimitiveType::Ellipse:
+		{
+			EllipsePrimitive* p_ellipse = dynamic_cast<EllipsePrimitive*>(p);
+			points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
+		}break;
+		}
+		QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+		painter.setPen(pen);
+		
+		for (const auto &point : points)
+		{
+			painter.drawPoint(point.x, point.y);
+		}
+	}
+	pen = now_pen;
+	tempPaper = paper;
+	
+	this->update(); // 更新窗体，可以使得QWidget调用paintEvent函数，绘制窗体
+	
+	return;
+}
+
+
+void DrawingArea::clearPaper(bool save_primitives)
+{
+	paper.fill(paperBackground);
+	tempPaper.fill(paperBackground);
+
+	if (!save_primitives)
+		primitives.clear();
+	 
+	this->update();
+	return;
+}
+
+
 // 对外接口结束

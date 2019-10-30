@@ -42,6 +42,8 @@ private:
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
 	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
 
+	QRgb paperBackground;
+
 	QPen pen; // 绘图笔
 
 	QPoint begin_point, end_point; // 鼠标绘图事件中的鼠标起始点和终点
@@ -85,7 +87,9 @@ public:
 	QImage getPaper() const;
 	void setPenColor(QColor color);
 	void setPaperSize(int x, int y);
-	
+
+	void drawAll(); // 用于绘制所有图元
+	void clearPaper(bool save_primitives); // 用于清除所有内容
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口

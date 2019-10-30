@@ -119,6 +119,8 @@
     <property name="title">
      <string>项目</string>
     </property>
+    <addaction name="actionRedrawAll"/>
+    <addaction name="actionClearPaper"/>
     <addaction name="actionProjectView"/>
    </widget>
    <addaction name="menuFile"/>
@@ -308,6 +310,31 @@
    </property>
    <property name="toolTip">
     <string>椭圆</string>
+   </property>
+  </action>
+  <action name="actionRedrawAll">
+   <property name="text">
+    <string>刷新画布</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionClearPaper">
+   <property name="text">
+    <string>清空画布</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
  </widget>

@@ -220,3 +220,15 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 
 
 
+
+void MainWindow::on_actionRedrawAll_triggered()
+{
+	ui->drawingArea->clearPaper(true);
+	ui->drawingArea->drawAll();
+	return;
+}
+
+void MainWindow::on_actionClearPaper_triggered()
+{
+	ui->drawingArea->clearPaper(false);
+}

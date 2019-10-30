@@ -40,6 +40,8 @@ public:
 	//Primitive() :
 	//	type(PrimitiveType::None), p_num(0) { }
 	virtual void print() const;
+	QPen _pen() const { return pen_in_use; }
+	PrimitiveType _type() const { return type; }
 };
 
 
@@ -80,5 +82,10 @@ public:
 		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
 	EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num);
 	void print() const override;
+	int _x0() const { return x0; }
+	int _y0() const { return y0; }
+	int _rx() const { return rx; }
+	int _ry() const { return ry; }
+	
 };
 #endif // PRIMITIVE_H

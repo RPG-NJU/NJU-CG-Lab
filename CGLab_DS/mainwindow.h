@@ -55,6 +55,10 @@ private slots:
 
     void on_actionEllipse_triggered();
 
+    void on_actionRedrawAll_triggered();
+
+    void on_actionClearPaper_triggered();
+
 private:
     Ui::MainWindow *ui;
 

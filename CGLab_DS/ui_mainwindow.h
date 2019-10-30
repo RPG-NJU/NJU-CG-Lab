@@ -39,6 +39,8 @@ public:
     QAction *actionPalette;
     QAction *actionCircle;
     QAction *actionEllipse;
+    QAction *actionRedrawAll;
+    QAction *actionClearPaper;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -122,6 +124,15 @@ public:
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/MainWindow/Ellipse"), QSize(), QIcon::Normal, QIcon::Off);
         actionEllipse->setIcon(icon6);
+        actionRedrawAll = new QAction(MainWindow);
+        actionRedrawAll->setObjectName(QString::fromUtf8("actionRedrawAll"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
+        font3.setPointSize(11);
+        actionRedrawAll->setFont(font3);
+        actionClearPaper = new QAction(MainWindow);
+        actionClearPaper->setObjectName(QString::fromUtf8("actionClearPaper"));
+        actionClearPaper->setFont(font3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -145,9 +156,6 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 874, 26));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("\345\215\216\346\226\207\344\270\255\345\256\213"));
-        font3.setPointSize(11);
         menubar->setFont(font3);
         menuAbout = new QMenu(menubar);
         menuAbout->setObjectName(QString::fromUtf8("menuAbout"));
@@ -178,6 +186,8 @@ public:
         menuAbout->addAction(actionUpgrade);
         menuFile->addAction(actionOpenFile);
         menuFile->addAction(actionSaveFile);
+        menuProject->addAction(actionRedrawAll);
+        menuProject->addAction(actionClearPaper);
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
@@ -244,6 +254,11 @@ public:
 #if QT_CONFIG(tooltip)
         actionEllipse->setToolTip(QCoreApplication::translate("MainWindow", "\346\244\255\345\234\206", nullptr));
 #endif // QT_CONFIG(tooltip)
+        actionRedrawAll->setText(QCoreApplication::translate("MainWindow", "\345\210\267\346\226\260\347\224\273\345\270\203", nullptr));
+#if QT_CONFIG(shortcut)
+        actionRedrawAll->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionClearPaper->setText(QCoreApplication::translate("MainWindow", "\346\270\205\347\251\272\347\224\273\345\270\203", nullptr));
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
