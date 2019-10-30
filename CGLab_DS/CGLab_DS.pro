@@ -21,6 +21,7 @@ SOURCES += \
     AboutAuthorDialog.cpp \
     AboutSoftwareDialog.cpp \
     DrawingArea.cpp \
+    DrawingArea_API.cpp \
     DrawingArea_File.cpp \
     DrawingArea_StraightLine.cpp \
     Primitive.cpp \
