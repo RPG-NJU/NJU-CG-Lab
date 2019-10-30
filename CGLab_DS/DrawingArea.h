@@ -36,7 +36,7 @@ private:
 	// 所需要的数据成员
 	bool isDrawing = false; // 用于表示是否正在作图
 	
-	DrawMode drawMode = DrawMode::None; // 用于表示当前画笔的状态
+	DrawMode drawMode = DrawMode::StraightLine; // 用于表示当前画笔的状态
 	
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
@@ -70,6 +70,7 @@ public:
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
 	vector<MyPoint> createStraightLineByDDA(int x1, int y1, int x2, int y2);
 	vector<MyPoint> createStraightLineByBresenham(int x1, int y1, int x2, int y2);
+	vector<MyPoint> createEllipse(int x0, int y0, int rx, int ry); // 绘制椭圆的算法（有可能可以整合了绘制圆的算法）
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 

@@ -218,6 +218,7 @@ void DrawingArea::draw(QImage& thisPaper)
 	switch (drawMode)
 	{
 	case DrawMode::None: break; // 此时不做任何操作
+	case DrawMode::Nature: break; // 目前没有实现这种方法
 	case DrawMode::StraightLine:
 	{
 #ifdef PRINT_DRAW
@@ -227,6 +228,12 @@ void DrawingArea::draw(QImage& thisPaper)
 		//drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::DDA);
 		drawStraightLine(tempPaper, begin_point, end_point, StraightLineAlgorithm::Bresenham);
 		break;
+	}
+	case DrawMode::Circle:
+	{
+#ifdef PRINT_DRAW
+		qDebug() << "[Draw Circle " << begin_point << "to" << end_point << "]" << endl;
+#endif
 	}
 	}
 	return;

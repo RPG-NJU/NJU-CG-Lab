@@ -14,7 +14,8 @@ enum class DrawMode
 {
 	None, 
 	Nature, 
-	StraightLine
+	StraightLine,
+	Circle
 };
 
 enum class PrimitiveType
@@ -24,7 +25,8 @@ enum class PrimitiveType
 	 */
 	None,
 	Nature,
-	StraightLine
+	StraightLine,
+	Circle
 };
 
 

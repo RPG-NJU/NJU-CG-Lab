@@ -51,6 +51,8 @@ private slots:
 	void clearToolBarChecked(ClearToolBarCheckedMode mode); // 用于清除
 
 
+    void on_actionCircle_triggered(); // 用户选择了圆形绘制
+
 private:
     Ui::MainWindow *ui;
 

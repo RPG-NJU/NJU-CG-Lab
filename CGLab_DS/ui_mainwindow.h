@@ -37,6 +37,7 @@ public:
     QAction *actionOpenFile;
     QAction *actionSaveFile;
     QAction *actionPalette;
+    QAction *actionCircle;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -87,6 +88,7 @@ public:
         actionChooseNature = new QAction(MainWindow);
         actionChooseNature->setObjectName(QString::fromUtf8("actionChooseNature"));
         actionChooseNature->setCheckable(true);
+        actionChooseNature->setEnabled(false);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/MainWindow/Nature"), QSize(), QIcon::Normal, QIcon::Off);
         actionChooseNature->setIcon(icon2);
@@ -106,6 +108,12 @@ public:
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/MainWindow/Palette"), QSize(), QIcon::Normal, QIcon::Off);
         actionPalette->setIcon(icon4);
+        actionCircle = new QAction(MainWindow);
+        actionCircle->setObjectName(QString::fromUtf8("actionCircle"));
+        actionCircle->setCheckable(true);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/MainWindow/Circle"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCircle->setIcon(icon5);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -165,6 +173,7 @@ public:
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
+        toolBar->addAction(actionCircle);
         toolBar->addAction(actionPalette);
 
         retranslateUi(MainWindow);
@@ -217,6 +226,10 @@ public:
         actionPalette->setText(QCoreApplication::translate("MainWindow", "\350\260\203\350\211\262\346\235\277", nullptr));
 #if QT_CONFIG(tooltip)
         actionPalette->setToolTip(QCoreApplication::translate("MainWindow", "\350\260\203\350\211\262\346\235\277", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionCircle->setText(QCoreApplication::translate("MainWindow", "\345\234\206", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCircle->setToolTip(QCoreApplication::translate("MainWindow", "\345\234\206", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

@@ -5,5 +5,6 @@
         <file alias="Nature">img/MainWindow/Nature.png</file>
         <file alias="StraightLine">img/MainWindow/StraightLine.png</file>
         <file alias="Palette">img/MainWindow/Palette.png</file>
+        <file alias="Circle">img/MainWindow/Circle.png</file>
     </qresource>
 </RCC>

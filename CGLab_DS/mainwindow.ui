@@ -138,6 +138,7 @@
    </attribute>
    <addaction name="actionChooseNature"/>
    <addaction name="actionStraightLine"/>
+   <addaction name="actionCircle"/>
    <addaction name="actionPalette"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -212,6 +213,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/Nature</normaloff>:/MainWindow/Nature</iconset>
@@ -270,6 +274,21 @@
    </property>
    <property name="toolTip">
     <string>调色板</string>
+   </property>
+  </action>
+  <action name="actionCircle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Circle</normaloff>:/MainWindow/Circle</iconset>
+   </property>
+   <property name="text">
+    <string>圆</string>
+   </property>
+   <property name="toolTip">
+    <string>圆</string>
    </property>
   </action>
  </widget>

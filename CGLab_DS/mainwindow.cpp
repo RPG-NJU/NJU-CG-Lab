@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this); // 这个语句是分析代码之后建立UI部分的部分代码
 	QObject::connect(ui->drawingArea, &DrawingArea::newLocationStatus, ui->statusBar, &QStatusBar::showMessage);
 	QObject::connect(ui->drawingArea, &DrawingArea::mouseLeave, ui->statusBar, &QStatusBar::clearMessage);
+	ui->actionStraightLine->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +69,8 @@ void MainWindow::on_actionUpgrade_triggered()
     return;
 }
 
+
+
 void MainWindow::on_actionChooseNature_triggered()
 {
 	ui->drawingArea->changePenMode(DrawMode::Nature);
@@ -84,6 +87,14 @@ void MainWindow::on_actionStraightLine_triggered()
 	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
 	ui->actionStraightLine->setChecked(true);
     return;
+}
+
+void MainWindow::on_actionCircle_triggered()
+{
+	ui->drawingArea->changePenMode(DrawMode::Circle);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionCircle->setChecked(true);
+	return;
 }
 
 void MainWindow::on_actionOpenFile_triggered()
@@ -185,6 +196,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		{
 		ui->actionChooseNature->setChecked(false);
 		ui->actionStraightLine->setChecked(false);
+		ui->actionCircle->setChecked(false);
 		break;
 		}
 	case ClearToolBarCheckedMode::All:
@@ -195,3 +207,5 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		}
 	}
 }
+
+
