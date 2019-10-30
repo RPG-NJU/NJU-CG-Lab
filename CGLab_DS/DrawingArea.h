@@ -81,6 +81,7 @@ public:
 	// 对外接口
 	QImage getPaper() const;
 	void setPenColor(QColor color);
+	void setPaperSize(int x, int y);
 	
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟

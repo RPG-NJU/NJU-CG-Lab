@@ -73,6 +73,8 @@ void MainWindow::on_actionChooseNature_triggered()
 	ui->drawingArea->changePenMode(DrawMode::Nature);
 	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
 	ui->actionChooseNature->setChecked(true);
+	//ui->drawingArea->setPaperSize(1000, 1000);
+	//ui->scrollAreaWidgetContents->setMinimumSize(1000, 1000);
 	return;
 }
 
