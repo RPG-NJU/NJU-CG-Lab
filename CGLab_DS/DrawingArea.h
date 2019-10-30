@@ -90,6 +90,9 @@ public:
 
 	void drawAll(); // 用于绘制所有图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
+
+	int getXsize() const { return this->geometry().width(); }
+	int getYsize() const { return this->geometry().height(); }
 signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口

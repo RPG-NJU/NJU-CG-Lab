@@ -14,6 +14,7 @@
 
 #include "DrawingArea.h"
 #include "Define.h"
+#include "SetPaperSizeDialog.h"
 //#include <QStatusBar>
 
 QT_BEGIN_NAMESPACE
@@ -58,6 +59,8 @@ private slots:
     void on_actionRedrawAll_triggered();
 
     void on_actionClearPaper_triggered();
+
+    void on_actionSetPaperSize_triggered(); // 用户要设置画布大小
 
 private:
     Ui::MainWindow *ui;

@@ -232,3 +232,18 @@ void MainWindow::on_actionClearPaper_triggered()
 {
 	ui->drawingArea->clearPaper(false);
 }
+
+void MainWindow::on_actionSetPaperSize_triggered()
+{
+	SetPaperSizeDialog* set_size = new SetPaperSizeDialog(this);
+	set_size->setXinput(ui->drawingArea->getXsize());
+	set_size->setYinput(ui->drawingArea->getYsize());
+	//set_size->exec();
+	if (set_size->exec() == QDialog::Accepted)
+	{
+		qDebug() << "set paper size" << set_size->_x() << set_size->_y() << endl;
+		ui->drawingArea->setPaperSize(set_size->_x(), set_size->_y());
+		ui->scrollAreaWidgetContents->setMinimumSize(set_size->_x(), set_size->_y());
+	}
+	return;
+}

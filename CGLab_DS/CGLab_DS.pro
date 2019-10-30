@@ -26,6 +26,7 @@ SOURCES += \
     DrawingArea_File.cpp \
     DrawingArea_StraightLine.cpp \
     Primitive.cpp \
+    SetPaperSizeDialog.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -35,11 +36,13 @@ HEADERS += \
     Define.h \
     DrawingArea.h \
     Primitive.h \
+    SetPaperSizeDialog.h \
     mainwindow.h
 
 FORMS += \
     AboutAuthorDialog.ui \
     AboutSoftwareDialog.ui \
+    SetPaperSizeDialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

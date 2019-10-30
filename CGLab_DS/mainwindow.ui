@@ -121,6 +121,7 @@
     </property>
     <addaction name="actionRedrawAll"/>
     <addaction name="actionClearPaper"/>
+    <addaction name="actionSetPaperSize"/>
     <addaction name="actionProjectView"/>
    </widget>
    <addaction name="menuFile"/>
@@ -329,6 +330,17 @@
   <action name="actionClearPaper">
    <property name="text">
     <string>清空画布</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionSetPaperSize">
+   <property name="text">
+    <string>画布大小</string>
    </property>
    <property name="font">
     <font>

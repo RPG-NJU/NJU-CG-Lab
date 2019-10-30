@@ -41,6 +41,7 @@ public:
     QAction *actionEllipse;
     QAction *actionRedrawAll;
     QAction *actionClearPaper;
+    QAction *actionSetPaperSize;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -133,6 +134,9 @@ public:
         actionClearPaper = new QAction(MainWindow);
         actionClearPaper->setObjectName(QString::fromUtf8("actionClearPaper"));
         actionClearPaper->setFont(font3);
+        actionSetPaperSize = new QAction(MainWindow);
+        actionSetPaperSize->setObjectName(QString::fromUtf8("actionSetPaperSize"));
+        actionSetPaperSize->setFont(font3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -188,6 +192,7 @@ public:
         menuFile->addAction(actionSaveFile);
         menuProject->addAction(actionRedrawAll);
         menuProject->addAction(actionClearPaper);
+        menuProject->addAction(actionSetPaperSize);
         menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
@@ -259,6 +264,7 @@ public:
         actionRedrawAll->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+R", nullptr));
 #endif // QT_CONFIG(shortcut)
         actionClearPaper->setText(QCoreApplication::translate("MainWindow", "\346\270\205\347\251\272\347\224\273\345\270\203", nullptr));
+        actionSetPaperSize->setText(QCoreApplication::translate("MainWindow", "\347\224\273\345\270\203\345\244\247\345\260\217", nullptr));
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
