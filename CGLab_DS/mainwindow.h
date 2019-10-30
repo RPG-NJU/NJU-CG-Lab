@@ -47,7 +47,9 @@ private slots:
     void on_actionSaveFile_triggered();
 
     void on_actionPalette_triggered(); // 用户选择了调色板
-	
+
+	void clearToolBarChecked(ClearToolBarCheckedMode mode); // 用于清除
+
 
 private:
     Ui::MainWindow *ui;

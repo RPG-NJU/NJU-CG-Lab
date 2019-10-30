@@ -86,11 +86,13 @@ public:
         actionUpgrade->setObjectName(QString::fromUtf8("actionUpgrade"));
         actionChooseNature = new QAction(MainWindow);
         actionChooseNature->setObjectName(QString::fromUtf8("actionChooseNature"));
+        actionChooseNature->setCheckable(true);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/MainWindow/Nature"), QSize(), QIcon::Normal, QIcon::Off);
         actionChooseNature->setIcon(icon2);
         actionStraightLine = new QAction(MainWindow);
         actionStraightLine->setObjectName(QString::fromUtf8("actionStraightLine"));
+        actionStraightLine->setCheckable(true);
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/MainWindow/StraightLine"), QSize(), QIcon::Normal, QIcon::Off);
         actionStraightLine->setIcon(icon3);
@@ -100,6 +102,7 @@ public:
         actionSaveFile->setObjectName(QString::fromUtf8("actionSaveFile"));
         actionPalette = new QAction(MainWindow);
         actionPalette->setObjectName(QString::fromUtf8("actionPalette"));
+        actionPalette->setCheckable(false);
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/MainWindow/Palette"), QSize(), QIcon::Normal, QIcon::Off);
         actionPalette->setIcon(icon4);

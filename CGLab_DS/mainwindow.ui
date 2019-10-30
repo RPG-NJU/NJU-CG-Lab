@@ -209,6 +209,9 @@
    </property>
   </action>
   <action name="actionChooseNature">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/Nature</normaloff>:/MainWindow/Nature</iconset>
@@ -221,6 +224,9 @@
    </property>
   </action>
   <action name="actionStraightLine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/StraightLine</normaloff>:/MainWindow/StraightLine</iconset>
@@ -252,6 +258,9 @@
    </property>
   </action>
   <action name="actionPalette">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/Palette</normaloff>:/MainWindow/Palette</iconset>

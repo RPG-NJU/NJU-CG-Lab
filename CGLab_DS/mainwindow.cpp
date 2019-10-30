@@ -71,12 +71,16 @@ void MainWindow::on_actionUpgrade_triggered()
 void MainWindow::on_actionChooseNature_triggered()
 {
 	ui->drawingArea->changePenMode(DrawMode::Nature);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionChooseNature->setChecked(true);
 	return;
 }
 
 void MainWindow::on_actionStraightLine_triggered()
 {
     ui->drawingArea->changePenMode(DrawMode::StraightLine);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionStraightLine->setChecked(true);
     return;
 }
 
@@ -168,4 +172,24 @@ void MainWindow::on_actionPalette_triggered()
 	QObject::connect(palette, &QColorDialog::colorSelected, ui->drawingArea, &DrawingArea::setPenColor);
 	
 	return;
+}
+
+
+void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
+{
+	switch (mode)
+	{
+	case ClearToolBarCheckedMode::DrawMode:
+		{
+		ui->actionChooseNature->setChecked(false);
+		ui->actionStraightLine->setChecked(false);
+		break;
+		}
+	case ClearToolBarCheckedMode::All:
+		{
+		clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+		ui->actionPalette->setChecked(false);
+		break;
+		}
+	}
 }
