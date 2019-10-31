@@ -1,38 +1,38 @@
-#include "DrawingArea.h"
+ï»¿#include "DrawingArea.h"
 
 using std::atoi;
 
 void DrawingArea::runCommand()
 {
-	for (const auto &command : commands) // ¶ÔÃ¿Ò»ÌõÖ¸Áî½øĞĞ½âÎö
+	for (const auto &command : commands) // å¯¹æ¯ä¸€æ¡æŒ‡ä»¤è¿›è¡Œè§£æ
 	{
 		if (command.size() < 1)
 			continue;
-		if (command[0] == "resetCanvas") // ÉèÖÃ»­²¼´óĞ¡
+		if (command[0] == "resetCanvas") // è®¾ç½®ç”»å¸ƒå¤§å°
 		{
 			const int width(std::stoi(command[1])), height(std::stoi(command[2]));
 			setPaperSize(width, height);
 		}
 
-		else if (command[0] == "saveCanvas") // ±£´æ»­²¼
+		else if (command[0] == "saveCanvas") // ä¿å­˜ç”»å¸ƒ
 		{
 			string file_name(command[1] + ".bmp");
 			paper.save(QString::fromStdString(file_name));
 		}
 
-		else if (command[0] == "setColor") // ÉèÖÃ»­±ÊÑÕÉ«
+		else if (command[0] == "setColor") // è®¾ç½®ç”»ç¬”é¢œè‰²
 		{
 			QRgb c = qRgb(std::stoi(command[1]), std::stoi(command[2]), std::stoi(command[3]));
 			QColor color(c);
 			setPenColor(color);
 		}
 
-		else if (command[0] == "drawLine") // »­Ö±Ïß
+		else if (command[0] == "drawLine") // ç”»ç›´çº¿
 		{
 			const int id(stoi(command[1])), x1(stoi(command[2])), y1(stoi(command[3])), x2(stoi(command[4])), y2(stoi(command[5]));
 			
 			vector<MyPoint> points;
-			QPainter painter(&paper); // Ê¹ÓÃQImage³õÊ¼»¯QPainter£¬ĞèÒªÊ¹ÓÃÖ¸Õë
+			QPainter painter(&paper); // ä½¿ç”¨QImageåˆå§‹åŒ–QPainterï¼Œéœ€è¦ä½¿ç”¨æŒ‡é’ˆ
 			painter.setPen(pen);
 			
 			points = command[6] == "DDA" ? createStraightLineByDDA(x1, y1, x2, y2) : createStraightLineByBresenham(x1, y1, x2, y2);
@@ -52,7 +52,7 @@ void DrawingArea::runCommand()
 			const int id(stoi(command[1])), x0(stoi(command[2])), y0(stoi(command[3])), rx(stoi(command[4])), ry(stoi(command[5]));
 
 			vector<MyPoint> points;
-			QPainter painter(&paper); // Ê¹ÓÃQImage³õÊ¼»¯QPainter£¬ĞèÒªÊ¹ÓÃÖ¸Õë
+			QPainter painter(&paper); // ä½¿ç”¨QImageåˆå§‹åŒ–QPainterï¼Œéœ€è¦ä½¿ç”¨æŒ‡é’ˆ
 			painter.setPen(pen);
 
 			points = createEllipse(x0, y0, rx, ry);
@@ -67,6 +67,11 @@ void DrawingArea::runCommand()
 			this->update();
 		}
 
+
+		else // undefined command
+		{
+			// è¿™ä¸ªæ—¶å€™æ—¶æ²¡æœ‰å®šä¹‰çš„æŒ‡ä»¤ï¼Œæ— æ³•è¢«è§£æ
+		}
 	}
 	
 	return;
