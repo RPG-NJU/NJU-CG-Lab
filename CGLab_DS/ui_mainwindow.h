@@ -193,7 +193,6 @@ public:
         menuProject->addAction(actionRedrawAll);
         menuProject->addAction(actionClearPaper);
         menuProject->addAction(actionSetPaperSize);
-        menuProject->addAction(actionProjectView);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
         toolBar->addAction(actionCircle);
@@ -277,7 +276,7 @@ public:
         menuAbout->setTitle(QCoreApplication::translate("MainWindow", "\345\205\263\344\272\216", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
-        menuProject->setTitle(QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256", nullptr));
+        menuProject->setTitle(QCoreApplication::translate("MainWindow", "\347\224\273\345\270\203", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

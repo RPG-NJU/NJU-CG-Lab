@@ -24,7 +24,7 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	painter.drawImage(0, 0, paper);*/
 	// 需要重写绘图函数paintEvent来完成
 
-	pen.setWidth(2);
+	pen.setWidth(1);
 	pen.setColor(qRgb(0, 0, 0));
 
 	this->setMouseTracking(true);
@@ -118,8 +118,8 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 #endif
 
 	QString location = "(" + x + "," + y + ")" +
-		"    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(INIT_WIDTH) +
-		"\xc3\x97"/*×*/ + QString::number(INIT_HEIGHT);
+		"    \xe7\x94\xbb\xe6\x9d\xbf\xe5\xa4\xa7\xe5\xb0\x8f = "/*画板大小*/ + QString::number(this->getXsize()) +
+		"\xc3\x97"/*×*/ + QString::number(this->getYsize());
 	// 两串UTF-8编码分别为：画板大小 ×
 	// 使用了python来完成编码的转化，str.encode("utf-8")即可
 

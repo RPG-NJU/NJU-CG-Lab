@@ -53,8 +53,8 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 {
 	vector<MyPoint> points;
 
-	double k(static_cast<double>(y2 - y1) / static_cast<double>(x2 - x1));
-	//qDebug() << "k=" << k << endl;
+	double k(static_cast<double>(static_cast<double>(y2) - static_cast<double>(y1)) / 
+		static_cast<double>(static_cast<double>(x2) - static_cast<double>(x1)));
 
 	if (abs(k) < 1)
 	{
@@ -62,13 +62,8 @@ vector<MyPoint> DrawingArea::createStraightLineByNone(int x1, int x2, int y1, in
 		{
 			swap(x1, x2);
 			swap(y1, y2);
-			//k = -k;
 		}
-		//const double d(y2 - y1);
-		const double s(x2 - x1);
-		//qDebug() << d << "," << static_cast<int>(round(d * k)) << endl;
-		//qDebug() << "now k=" << k << endl;
-		//qDebug() << "x, y = " << x1 << y1 << x2 << y2 << endl;
+		const double s(static_cast<double>(x2) - static_cast<double>(x1));
 		for (int i(0); i <= x2 - x1; ++i)
 		{
 			points.push_back({ x1 + i, y1 + static_cast<int>(round(k * i)) });
@@ -127,7 +122,7 @@ vector<MyPoint> DrawingArea::createStraightLineByDDA(int x1, int y1, int x2, int
 		for (int x(x1); x <= x2; ++x)
 		{
 			y += m;
-			points.push_back({ x, static_cast<int>(round(y))});
+			points.push_back({ x, static_cast<int>(floor(y))});
 		}
 	}
 	else
@@ -142,7 +137,7 @@ vector<MyPoint> DrawingArea::createStraightLineByDDA(int x1, int y1, int x2, int
 		for (int y(y1); y <= y2; ++y)
 		{
 			x += m;
-			points.push_back({ static_cast<int>(round(x)), y});
+			points.push_back({ static_cast<int>(floor(x)), y});
 		}
 	}
 
@@ -169,7 +164,7 @@ vector<MyPoint> DrawingArea::createStraightLineByBresenham(int x1, int y1, int x
 	}
 
 	// 下面是斜率存在的直线
-	double k(static_cast<double>(static_cast<double>(y2) - static_cast<double>(y1)) /
+	const double k(static_cast<double>(static_cast<double>(y2) - static_cast<double>(y1)) /
 		static_cast<double>(static_cast<double>(x2) - static_cast<double>(x1))); // 计算斜率
 
 	const int dx(abs(x2 - x1)), dy(abs(y2 - y1));

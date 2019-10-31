@@ -66,15 +66,15 @@ public:
         textBrowser->setHtml(QCoreApplication::translate("AboutSoftwareDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">\347\256\200\346\230\223\347\232\204\347\273\230\345\233\276\346\235\277\350\275\257\344\273\266</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">\350\277\220\350\241\214\345\234\250Windows\346\223\215\344\275\234\347\263\273\347\273\237\344\270\213"
-                        "</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">\344\275\277\347\224\250Qt 5.13.1\350\277\233\350\241\214\347\274\226\345\206\231</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213';\">CTO\357\274\232GRP</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270"
-                        "\255\345\256\213';\">CDO\357\274\232YMY</span></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:10.8pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\">\347\256\200\346\230\223\347\232\204\347\273\230\345\233\276\346\235\277\350\275\257\344\273\266</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\">\350\277\220\350\241\214\345\234\250Windows\346\223\215\344\275\234"
+                        "\347\263\273\347\273\237\344\270\213</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\">\344\275\277\347\224\250Qt 5.13.1\350\277\233\350\241\214\347\274\226\345\206\231</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\">CTO\357\274\232GRP</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0"
+                        "; text-indent:0px;\"><span style=\" font-family:'\345\215\216\346\226\207\344\270\255\345\256\213'; font-size:9pt;\">CDO\357\274\232YMY</span></p></body></html>", nullptr));
         buttonUserMenu->setText(QCoreApplication::translate("AboutSoftwareDialog", "\344\275\277\347\224\250\350\257\264\346\230\216", nullptr));
         buttonProjectPage->setText(QCoreApplication::translate("AboutSoftwareDialog", "\351\241\271\347\233\256\344\270\273\351\241\265", nullptr));
     } // retranslateUi

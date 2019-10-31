@@ -117,12 +117,11 @@
    </widget>
    <widget class="QMenu" name="menuProject">
     <property name="title">
-     <string>项目</string>
+     <string>画布</string>
     </property>
     <addaction name="actionRedrawAll"/>
     <addaction name="actionClearPaper"/>
     <addaction name="actionSetPaperSize"/>
-    <addaction name="actionProjectView"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProject"/>

@@ -7,6 +7,9 @@ void DrawingArea::drawCircle(QImage& thisPaper, const QPoint begin, const QPoint
 	int x0 = (x2 + x1) / 2;
 	int y0 = (y2 + y1) / 2;
 	int rx = abs(x2 - x1) / 2;
+	int ry = abs(y2 - y1) / 2;
+
+	ry > rx ? rx = ry : rx = rx;
 
 	vector<MyPoint> points;
 	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
