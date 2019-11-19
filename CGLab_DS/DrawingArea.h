@@ -84,7 +84,9 @@ public:
 
 	// 文件系统
 	bool openCommandFile(QString file_path);
-	bool dirExist(const string dir_path);
+	bool dirExist(const string dir_path); // 判断给出的路径是否是存在的
+	//bool newDir(const string dir_path);
+	string formatDirPath(string dir_path); // 集成了判断和新建给定路径的文件夹的操作 // 当前没有新建文件夹的功能
 
 
 	// 对外接口
@@ -98,7 +100,7 @@ public:
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }
 
-
+	void setOutputPath(string dir_path);
 	// 命令接口
 	void runCommand();
 	

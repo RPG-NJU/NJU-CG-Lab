@@ -66,3 +66,27 @@ bool DrawingArea::dirExist(const string dir_path)
 	else
 		return false; // 文件夹不存在
 }
+
+//bool DrawingArea::newDir(const string dir_path)
+//{
+//	string command;
+//	command = "mkdir -p " + dir_path;
+//	system(command.c_str());
+//	return true;
+//}
+
+
+string DrawingArea::formatDirPath(string dir_path)
+{
+	if (!dirExist(dir_path)) // 此时应该是判断不存在的情况做出相应的处理，现在的处理只是简单的更改为当前目录
+	{
+		return "./";
+	}
+
+	if (dir_path[dir_path.length() - 1] != '\\' && dir_path[dir_path.length() - 1] != '/')
+	{
+		dir_path += "/";
+	}
+
+	return dir_path;
+}

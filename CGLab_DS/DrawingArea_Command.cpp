@@ -4,9 +4,13 @@ using std::atoi;
 
 void DrawingArea::runCommand()
 {
-	bool flag = dirExist("./");
+	/*bool flag = dirExist("./x64/");
 	if (flag == true)
 		qDebug() << "Yes" << endl;
+	else
+		qDebug() << "No" << endl;*/
+	// 上面这段代码用来测试
+	/*newDir("Data/data");*/
 	for (const auto &command : commands) // 对每一条指令进行解析
 	{
 		if (command.size() < 1)

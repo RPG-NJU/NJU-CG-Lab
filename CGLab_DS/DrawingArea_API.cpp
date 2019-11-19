@@ -147,4 +147,10 @@ void DrawingArea::appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_n
 }
 
 
+void DrawingArea::setOutputPath(string dir_path)
+{
+	output_path = dir_path;
+	return;
+}
+
 // 对外接口结束
