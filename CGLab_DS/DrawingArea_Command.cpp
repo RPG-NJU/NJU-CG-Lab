@@ -4,6 +4,9 @@ using std::atoi;
 
 void DrawingArea::runCommand()
 {
+	bool flag = dirExist("./");
+	if (flag == true)
+		qDebug() << "Yes" << endl;
 	for (const auto &command : commands) // 对每一条指令进行解析
 	{
 		if (command.size() < 1)
@@ -17,7 +20,7 @@ void DrawingArea::runCommand()
 		else if (command[0] == "saveCanvas") // 保存画布
 		{
 			string file_name(command[1] + ".bmp");
-			paper.save(QString::fromStdString(file_name));
+			paper.save(QString::fromStdString(output_path + file_name));
 		}
 
 		else if (command[0] == "setColor") // 设置画笔颜色

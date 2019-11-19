@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
 		///*
 		// * https://blog.csdn.net/lwwl12/article/details/79816739
 		// */
-		cout << "[命令行模式启动] 参数列表为" << endl;
+		/*cout << "[命令行模式启动] 参数列表为" << endl;
 		cout << argv[1] << endl;
-		cout << argv[2] << endl;
-		DrawingArea drawingArea;
+		cout << argv[2] << endl;*/ // 这段代码是无法输出的，因为没有控制台的存在
+		DrawingArea drawingArea(nullptr); // 其实可以不必要传参数，因为默认参数就是nullptr，这里只是为了规范体现
 	}
 	else
 	{

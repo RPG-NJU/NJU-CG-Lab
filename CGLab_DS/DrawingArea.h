@@ -20,6 +20,7 @@
 #include <cmath>
 #include <algorithm>
 #include <sstream>
+#include <io.h>
 
 using std::vector;
 using std::swap;
@@ -41,13 +42,12 @@ private:
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
 	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
-
 	QRgb paperBackground;
-
 	QPen pen; // 绘图笔
-
 	QPoint begin_point, end_point; // 鼠标绘图事件中的鼠标起始点和终点
-	
+
+
+	string output_path = "";
 	// END of DATA
 
 	QString penModeToQString(DrawMode mode);
@@ -84,6 +84,7 @@ public:
 
 	// 文件系统
 	bool openCommandFile(QString file_path);
+	bool dirExist(const string dir_path);
 
 
 	// 对外接口

@@ -57,3 +57,12 @@ bool DrawingArea::openCommandFile(QString file_path)
 
 	return true;
 }
+
+bool DrawingArea::dirExist(const string dir_path)
+{
+	int ftyp = _access(dir_path.c_str(), 0);
+	if (ftyp == 0)
+		return true; // 文件夹存在
+	else
+		return false; // 文件夹不存在
+}
