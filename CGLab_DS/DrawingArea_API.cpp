@@ -135,9 +135,9 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 }
 
 
-void DrawingArea::appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen)
+void DrawingArea::appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm)
 {
-	primitives.push_back(new StraightLinePrimitive(x1, y1, x2, y2, p_num, pen));
+	primitives.push_back(new StraightLinePrimitive(x1, y1, x2, y2, p_num, pen, algorithm));
 	return;
 }
 

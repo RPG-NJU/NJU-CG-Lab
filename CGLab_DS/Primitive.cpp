@@ -11,6 +11,7 @@ void StraightLinePrimitive::print() const
 	qDebug() << "[图元 #" << p_num << "    直线]" << endl;
 	qDebug() << "起点：" << begin_x << "," << begin_y << endl;
 	qDebug() << "终点：" << end_x << "," << end_y << endl;
+	qDebug() << "算法：" << (algorithm == StraightLineAlgorithm::DDA ? "DDA" : "Bresenham") << endl;
 	qDebug() << endl;
 
 	return;

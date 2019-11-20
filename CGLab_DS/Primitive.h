@@ -52,14 +52,15 @@ private:
 	int begin_y;
 	int end_x;
 	int end_y;
+	StraightLineAlgorithm algorithm;
 
 public:
-	StraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen) :
-		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(x1), begin_y(y1), end_x(x2), end_y(y2) { }
+	StraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm) :
+		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(x1), begin_y(y1), end_x(x2), end_y(y2), algorithm(algorithm) { }
 	StraightLinePrimitive() :
-		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0) { }
-	StraightLinePrimitive(QPoint begin, QPoint end, QPen pen, int p_num) :
-		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()) { }
+		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0), algorithm(StraightLineAlgorithm::Bresenham) { }
+	StraightLinePrimitive(QPoint begin, QPoint end, QPen pen, int p_num, StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
+		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), algorithm(algorithm) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
 	void print() const override;
 	int x1() const { return begin_x; }

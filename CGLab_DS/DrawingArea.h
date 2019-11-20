@@ -76,11 +76,15 @@ public:
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
 	vector<MyPoint> createStraightLineByDDA(int x1, int y1, int x2, int y2);
 	vector<MyPoint> createStraightLineByBresenham(int x1, int y1, int x2, int y2);
-	vector<MyPoint> createEllipse(int x0, int y0, int rx, int ry); // 绘制椭圆的算法（有可能可以整合了绘制圆的算法）
+	vector<MyPoint> createEllipse(int x0, int y0, int rx, int ry); // 绘制椭圆的算法（整合了绘制圆的算法）
+	vector<MyPoint> createPolygon(const vector<MyPoint> &vertices, StraightLineAlgorithm algorithm);
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
-	void appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen);
+
+	// 下面是所有的图元构造函数
+	void appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm);
 	void appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen);
+	
 
 
 	// 文件系统

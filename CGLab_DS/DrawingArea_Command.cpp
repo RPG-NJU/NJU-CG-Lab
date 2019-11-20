@@ -49,7 +49,7 @@ void DrawingArea::runCommand()
 				painter.drawPoint(point.x, point.y);
 			}
 
-			appendStraightLinePrimitive(x1, y1, x2, y2, id, pen);
+			appendStraightLinePrimitive(x1, y1, x2, y2, id, pen, command[6] == "DDA" ? StraightLineAlgorithm::DDA : StraightLineAlgorithm::Bresenham);
 
 			this->update();
 		}
@@ -80,6 +80,10 @@ void DrawingArea::runCommand()
 			// 这个时候时没有定义的指令，无法被解析
 		}
 	}
-	
+
+	for (auto x : primitives)
+	{
+		x->print();
+	}
 	return;
 }
