@@ -61,6 +61,9 @@ void DrawingArea::runCommand()
 
 			appendStraightLinePrimitive(x1, y1, x2, y2, id, pen, command[6] == "DDA" ? StraightLineAlgorithm::DDA : StraightLineAlgorithm::Bresenham);
 
+			qDebug() << "绘制了:";
+			primitives[primitives.size() - 1]->print();
+			
 			this->update();
 		}
 
@@ -81,6 +84,9 @@ void DrawingArea::runCommand()
 
 			appendEllipsePrimitive(x0, y0, rx, ry, id, pen);
 
+			qDebug() << "绘制了:";
+			primitives[primitives.size() - 1]->print();
+			
 			this->update();
 		}
 
@@ -92,9 +98,9 @@ void DrawingArea::runCommand()
 		}
 	}
 
-	for (auto x : primitives)
+	/*for (auto x : primitives)
 	{
 		x->print();
-	}
+	}*/
 	return;
 }

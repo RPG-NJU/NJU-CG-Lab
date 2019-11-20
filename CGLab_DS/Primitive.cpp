@@ -8,10 +8,10 @@ void Primitive::print() const
 
 void StraightLinePrimitive::print() const
 {
-	qDebug() << "[图元 #" << p_num << "    直线]" << endl;
-	qDebug() << "起点：" << begin_x << "," << begin_y << endl;
-	qDebug() << "终点：" << end_x << "," << end_y << endl;
-	qDebug() << "算法：" << (algorithm == StraightLineAlgorithm::DDA ? "DDA" : "Bresenham") << endl;
+	qDebug() << "[图元 #" << p_num << "    直线]";
+	qDebug() << "起点：" << begin_x << "," << begin_y;
+	qDebug() << "终点：" << end_x << "," << end_y;
+	qDebug() << "算法：" << (algorithm == StraightLineAlgorithm::DDA ? "DDA" : "Bresenham");
 	qDebug() << endl;
 
 	return;
@@ -19,9 +19,9 @@ void StraightLinePrimitive::print() const
 
 void EllipsePrimitive::print() const
 {
-	qDebug() << "[图元 #" << p_num << "    椭圆]" << endl;
-	qDebug() << "圆心：" << x0 << "," << y0 << endl;
-	qDebug() << "半径    rx=" << rx << " ry=" << ry << endl;
+	qDebug() << "[图元 #" << p_num << "    椭圆]";
+	qDebug() << "圆心：" << x0 << "," << y0;
+	qDebug() << "半径    rx=" << rx << " ry=" << ry;
 	qDebug() << endl;
 
 	return;
