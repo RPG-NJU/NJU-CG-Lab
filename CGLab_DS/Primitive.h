@@ -67,6 +67,7 @@ public:
 	int x2() const { return end_x; }
 	int y1() const { return begin_y; }
 	int y2() const { return end_y; }
+	StraightLineAlgorithm _algorithm() const { return algorithm; }
 };
 
 

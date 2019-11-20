@@ -67,7 +67,16 @@ void DrawingArea::drawAll()
 		case PrimitiveType::StraightLine:
 		{
 			StraightLinePrimitive* p_straightline = dynamic_cast<StraightLinePrimitive*>(p);
-			points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
+			// 这里需要讨论使用的算法的区别
+			StraightLineAlgorithm algorithm = p_straightline->_algorithm();
+			//qDebug() << (algorithm == StraightLineAlgorithm::DDA ? "-DDA" : "-Bresenham") << endl;
+			switch (algorithm)
+			{
+			case StraightLineAlgorithm::Bresenham: points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			case StraightLineAlgorithm::DDA: points = createStraightLineByDDA(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			case StraightLineAlgorithm::None: points = createStraightLineByNone(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			}
+			//points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
 		}break;
 		case PrimitiveType::Ellipse:
 		{
