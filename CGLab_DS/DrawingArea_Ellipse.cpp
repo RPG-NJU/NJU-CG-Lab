@@ -58,7 +58,7 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 {
 	vector<MyPoint> points;
 
-	qDebug() << "output" << rx << ry << endl;
+	//qDebug() << "output" << rx << ry << endl;
 	// 首先依照圆心在原点，进行计算
 	//points.push_back({ 0, ry }); // 第一个点
 	int p1(ry * ry - rx * rx * ry + (rx * rx) / 4);

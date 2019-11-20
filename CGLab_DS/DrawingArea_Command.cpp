@@ -13,8 +13,18 @@ void DrawingArea::runCommand()
 	/*newDir("Data/data");*/
 	for (const auto &command : commands) // 对每一条指令进行解析
 	{
+
+		
 		if (command.size() < 1)
 			continue;
+
+		QString output_info("");
+		for (const auto &word : command)
+		{
+			output_info = output_info + " " + QString::fromStdString(word);
+		}
+		qDebug() << "run command: " << output_info;
+		
 		if (command[0] == "resetCanvas") // 设置画布大小
 		{
 			const int width(std::stoi(command[1])), height(std::stoi(command[2]));
@@ -78,6 +88,7 @@ void DrawingArea::runCommand()
 		else // undefined command
 		{
 			// 这个时候时没有定义的指令，无法被解析
+			qDebug() << "WARNING：该条指令格式未定义" << endl;
 		}
 	}
 

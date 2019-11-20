@@ -1,5 +1,17 @@
 ﻿#include "DrawingArea.h"
 
+vector<MyPoint> DrawingArea::createStraightLine(int x1, int y1, int x2, int y2, StraightLineAlgorithm algorithm)
+{
+	switch (algorithm)
+	{
+	case StraightLineAlgorithm::None: return createStraightLineByNone(x1, x2, y1, y2);
+	case StraightLineAlgorithm::DDA: return createStraightLineByDDA(x1, y1, x2, y2);
+	case StraightLineAlgorithm::Bresenham: return createStraightLineByBresenham(x1, y1, x2, y2);
+	default: return createStraightLineByBresenham(x1, y1, x2, y2);
+	}
+}
+
+
 void DrawingArea::drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm)
 {
 	int x1 = line_begin.x(), x2 = line_end.x();
