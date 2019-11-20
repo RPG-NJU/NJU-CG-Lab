@@ -78,7 +78,7 @@ bool DrawingArea::dirExist(const string dir_path)
 
 string DrawingArea::formatDirPath(string dir_path)
 {
-	if (!dirExist(dir_path)) // 此时应该是判断不存在的情况做出相应的处理，现在的处理只是简单的更改为当前目录
+	if (!OpFile::dirExist(dir_path)) // 此时应该是判断不存在的情况做出相应的处理，现在的处理只是简单的更改为当前目录
 	{
 		return "./";
 	}

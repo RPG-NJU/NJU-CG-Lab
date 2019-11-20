@@ -29,6 +29,7 @@ using std::stringstream;
 
 #include "Define.h"
 #include "Primitive.h"
+#include "OpFile.h"
 
 class DrawingArea : public QWidget
 {

@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		drawingArea.update();
 
 		string dir_path = argv[2];
-		dir_path = drawingArea.formatDirPath(dir_path);
+		dir_path = OpFile::formatDirPath(dir_path);
 		drawingArea.setOutputPath(dir_path);
 		drawingArea.openCommandFile(argv[1]);
 

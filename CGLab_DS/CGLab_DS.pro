@@ -26,6 +26,7 @@ SOURCES += \
     DrawingArea_Ellipse.cpp \
     DrawingArea_File.cpp \
     DrawingArea_StraightLine.cpp \
+    OpFile.cpp \
     Primitive.cpp \
     SetPaperSizeDialog.cpp \
     main.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     AboutSoftwareDialog.h \
     Define.h \
     DrawingArea.h \
+    OpFile.h \
     Primitive.h \
     SetPaperSizeDialog.h \
     mainwindow.h
