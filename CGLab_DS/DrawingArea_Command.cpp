@@ -1,6 +1,7 @@
 ﻿#include "DrawingArea.h"
 
 using std::atoi;
+using std::stoi;
 
 void DrawingArea::runCommand()
 {
@@ -11,9 +12,10 @@ void DrawingArea::runCommand()
 		qDebug() << "No" << endl;*/
 	// 上面这段代码用来测试
 	/*newDir("Data/data");*/
-	for (const auto &command : commands) // 对每一条指令进行解析
+	//for (const auto &command : commands) // 对每一条指令进行解析
+	for (int line_i(0); line_i < commands.size(); ++line_i)
 	{
-
+		vector<string> command = commands[line_i];
 		
 		if (command.size() < 1)
 			continue;
@@ -67,7 +69,7 @@ void DrawingArea::runCommand()
 			this->update();
 		}
 
-		else if (command[0] == "drawEllipse")
+		else if (command[0] == "drawEllipse") // 画椭圆
 		{
 			const int id(stoi(command[1])), x0(stoi(command[2])), y0(stoi(command[3])), rx(stoi(command[4])), ry(stoi(command[5]));
 
@@ -90,6 +92,49 @@ void DrawingArea::runCommand()
 			this->update();
 		}
 
+		else if (command[0] == "drawPolygon") // 画多边形
+		{
+			/*
+			 * drawPolygon id n algorithm
+			 * x1 y1 x2 y2 … xn yn
+			 */
+			vector<MyPoint> points;
+			QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+			painter.setPen(pen);
+			
+			const int id(stoi(command[1])), n(stoi(command[2]));
+			StraightLineAlgorithm algorithm_in_use(command[3] == "DDA" ? StraightLineAlgorithm::DDA : StraightLineAlgorithm::Bresenham);
+			vector<MyPoint> vertices_in_command;
+
+			++line_i; // 多边形的特殊之处，需要遍历下一行的数据！
+			command = commands[line_i];
+			QString output_info("");
+			for (const auto& word : command)
+			{
+				output_info = output_info + " " + QString::fromStdString(word);
+			}
+			qDebug() << "polygon data: " << output_info;
+			
+			for (int i(0); i < command.size(); i = i + 2)
+			{
+				int x(stoi(command[i])), y(stoi(command[i + 1]));
+				vertices_in_command.push_back({ x, y });
+			}
+	
+			points = createPolygon(vertices_in_command, algorithm_in_use);
+			for (const auto& point : points)
+			{
+				//qDebug() << point.x << point.y;
+				painter.drawPoint(point.x, point.y);
+			}
+
+			appendPolygonPrimitive(vertices_in_command, id, pen, algorithm_in_use);
+
+			qDebug() << "绘制了:";
+			primitives[primitives.size() - 1]->print();
+
+			this->update();
+		}
 
 		else // undefined command
 		{
@@ -102,5 +147,6 @@ void DrawingArea::runCommand()
 	{
 		x->print();
 	}*/
+	this->update();
 	return;
 }

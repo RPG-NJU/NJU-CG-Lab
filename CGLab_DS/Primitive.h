@@ -5,6 +5,9 @@
 #include <QPoint>
 #include <QDebug>
 
+#include <vector>
+using std::vector;
+
 #include "Define.h"
 
 /*
@@ -89,5 +92,20 @@ public:
 	int _rx() const { return rx; }
 	int _ry() const { return ry; }
 	
+};
+
+class Polygon : public Primitive
+{
+private:
+	vector<MyPoint> vertices; // 用于记录所有的顶点信息，有多少个顶点就有多少个项，其中终点和起点进行连接，得到全部图形
+	StraightLineAlgorithm algorithm;
+	
+public:
+	Polygon(vector<MyPoint> vertices, int p_num, QPen pen = QPen(), StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
+		Primitive(p_num, pen, PrimitiveType::Polygon), vertices(vertices), algorithm(algorithm) { }
+
+	void print() const override;
+	vector<MyPoint> _vertices() const { return vertices; }
+	StraightLineAlgorithm _algorithm() const { return algorithm; }
 };
 #endif // PRIMITIVE_H

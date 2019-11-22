@@ -85,6 +85,7 @@ public:
 	// 下面是所有的图元构造函数
 	void appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm);
 	void appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen);
+	void appendPolygonPrimitive(vector<MyPoint> vertices, int p_num, QPen pen, StraightLineAlgorithm algorithm);
 	
 
 

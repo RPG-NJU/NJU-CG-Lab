@@ -25,6 +25,7 @@ SOURCES += \
     DrawingArea_Command.cpp \
     DrawingArea_Ellipse.cpp \
     DrawingArea_File.cpp \
+    DrawingArea_Polygon.cpp \
     DrawingArea_StraightLine.cpp \
     OpFile.cpp \
     Primitive.cpp \

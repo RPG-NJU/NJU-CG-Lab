@@ -27,6 +27,15 @@ void EllipsePrimitive::print() const
 	return;
 }
 
+void Polygon::print() const
+{
+	qDebug() << "[图元 #" << p_num << "    "<< vertices.size() << "多边形]";
+	
+	qDebug() << "算法：" << (algorithm == StraightLineAlgorithm::DDA ? "DDA" : "Bresenham"); // 之所以只进行二元判断，是因为我们在实验中确实只使用了两种算法，DDA和Bresenham
+	
+	return;
+}
+
 bool StraightLinePrimitive::setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy)
 {
 	if (type != PrimitiveType::None) // 此时不可以设定数据
@@ -54,6 +63,7 @@ EllipsePrimitive::EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num
 	rx = abs(x2 - x1) / 2;
 	ry = abs(y2 - y1) / 2;
 }
+
 
 
 

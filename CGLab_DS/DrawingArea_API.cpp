@@ -83,6 +83,11 @@ void DrawingArea::drawAll()
 			EllipsePrimitive* p_ellipse = dynamic_cast<EllipsePrimitive*>(p);
 			points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
 		}break;
+		case PrimitiveType::Polygon:
+		{
+			Polygon* p_polygon = dynamic_cast<Polygon*>(p);
+			points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
+		}break;
 		}
 		QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
 		painter.setPen(pen);
@@ -153,7 +158,15 @@ void DrawingArea::appendStraightLinePrimitive(int x1, int y1, int x2, int y2, in
 void DrawingArea::appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen)
 {
 	primitives.push_back(new EllipsePrimitive(x0, y0, rx, ry, p_num, pen));
+	return;
 }
+
+void DrawingArea::appendPolygonPrimitive(vector<MyPoint> vertices, int p_num, QPen pen, StraightLineAlgorithm algorithm)
+{
+	primitives.push_back(new Polygon(vertices, p_num, pen, algorithm));
+	return;
+}
+
 
 
 void DrawingArea::setOutputPath(string dir_path)

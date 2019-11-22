@@ -27,7 +27,8 @@ enum class PrimitiveType
 	None,
 	Nature,
 	StraightLine,
-	Ellipse
+	Ellipse,
+	Polygon
 };
 
 
