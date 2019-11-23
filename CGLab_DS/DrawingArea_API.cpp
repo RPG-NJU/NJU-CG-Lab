@@ -70,13 +70,14 @@ void DrawingArea::drawAll()
 			// 这里需要讨论使用的算法的区别
 			StraightLineAlgorithm algorithm = p_straightline->_algorithm();
 			//qDebug() << (algorithm == StraightLineAlgorithm::DDA ? "-DDA" : "-Bresenham") << endl;
-			switch (algorithm)
-			{
-			case StraightLineAlgorithm::Bresenham: points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			case StraightLineAlgorithm::DDA: points = createStraightLineByDDA(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			case StraightLineAlgorithm::None: points = createStraightLineByNone(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			}
-			//points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
+			//switch (algorithm)
+			//{
+			//case StraightLineAlgorithm::Bresenham: points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			//case StraightLineAlgorithm::DDA: points = createStraightLineByDDA(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			//case StraightLineAlgorithm::None: points = createStraightLineByNone(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+			//}
+			////points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
+			points = createStraightLine(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2(), p_straightline->_algorithm());
 		}break;
 		case PrimitiveType::Ellipse:
 		{
