@@ -141,7 +141,18 @@ void DrawingArea::runCommand()
 			/*
 			 * translate id dx dy
 			 */
-			 const int id(stoi(command[1])), dx(stoi(command[2])), dy(stoi(command[3]));
+			const int id(stoi(command[1])), dx(stoi(command[2])), dy(stoi(command[3]));
+			for (auto &primitive : primitives)
+			{
+				if (primitive->id() == id) // 如果当前图元的id等于所输入的id
+				{
+					primitive->translate(dx, dy);
+					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				}
+			}
+
+			clearPaper(true);
+			drawAll();
 		}
 
 		else // undefined command

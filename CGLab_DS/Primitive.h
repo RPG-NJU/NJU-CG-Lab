@@ -35,6 +35,8 @@ public:
 	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用 
 	QPen _pen() const { return pen_in_use; }
 	PrimitiveType _type() const { return type; }
+
+	int id() const { return p_num; } // 返回图元的ID
 };
 
 
