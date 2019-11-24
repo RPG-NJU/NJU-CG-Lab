@@ -124,7 +124,6 @@ void DrawingArea::runCommand()
 			points = createPolygon(vertices_in_command, algorithm_in_use);
 			for (const auto& point : points)
 			{
-				//qDebug() << point.x << point.y;
 				painter.drawPoint(point.x, point.y);
 			}
 
@@ -134,6 +133,14 @@ void DrawingArea::runCommand()
 			primitives[primitives.size() - 1]->print();
 
 			this->update();
+		}
+
+		else if (command[0] == "translate") // 图元的平行变换
+		{
+			/*
+			 * translate id dx dy
+			 */
+			 const int id(stoi(command[1])), dx(stoi(command[2])), dy(stoi(command[3]));
 		}
 
 		else // undefined command

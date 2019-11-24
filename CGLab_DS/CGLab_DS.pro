@@ -29,6 +29,7 @@ SOURCES += \
     DrawingArea_StraightLine.cpp \
     OpFile.cpp \
     Primitive.cpp \
+    Primitive_Translate.cpp \
     SetPaperSizeDialog.cpp \
     main.cpp \
     mainwindow.cpp
