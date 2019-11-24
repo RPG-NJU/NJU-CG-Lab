@@ -16,7 +16,7 @@ using std::vector;
  * 这样子可以把图像进行一定的模块化管理，而不是一成不变
  */
 
- //struct StraightLinePrimitive
+ //struct StraightLine
  //{
  //	int begin_x;
  //	int begin_y;
@@ -49,7 +49,7 @@ public:
 };
 
 
-class StraightLinePrimitive : public Primitive
+class StraightLine : public Primitive
 {
 private:
 	int begin_x;
@@ -59,11 +59,11 @@ private:
 	StraightLineAlgorithm algorithm;
 
 public:
-	StraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm) :
+	StraightLine(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(x1), begin_y(y1), end_x(x2), end_y(y2), algorithm(algorithm) { }
-	StraightLinePrimitive() :
+	StraightLine() :
 		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0), algorithm(StraightLineAlgorithm::Bresenham) { }
-	StraightLinePrimitive(QPoint begin, QPoint end, QPen pen, int p_num, StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
+	StraightLine(QPoint begin, QPoint end, QPen pen, int p_num, StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), algorithm(algorithm) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
 	void print() const override;
@@ -76,7 +76,7 @@ public:
 };
 
 
-class EllipsePrimitive : public Primitive
+class Ellipse : public Primitive
 {
 private:
 	int x0;
@@ -85,9 +85,9 @@ private:
 	int ry;
 
 public:
-	EllipsePrimitive(int x0 = 0, int y0 = 0 , int rx = 0, int ry = 0, int p_num = 0, QPen pen = QPen()) :
+	Ellipse(int x0 = 0, int y0 = 0 , int rx = 0, int ry = 0, int p_num = 0, QPen pen = QPen()) :
 		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
-	EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num);
+	Ellipse(QPoint begin, QPoint end, QPen pen, int p_num);
 	void print() const override;
 	void translate() override;
 	int _x0() const { return x0; }

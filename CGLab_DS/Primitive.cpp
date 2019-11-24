@@ -6,7 +6,7 @@ void Primitive::print() const
 	qDebug() << "[图元 #" << p_num << "]" << endl;
 }
 
-void StraightLinePrimitive::print() const
+void StraightLine::print() const
 {
 	qDebug() << "[图元 #" << p_num << "    直线]";
 	qDebug() << "起点：" << begin_x << "," << begin_y;
@@ -17,7 +17,7 @@ void StraightLinePrimitive::print() const
 	return;
 }
 
-void EllipsePrimitive::print() const
+void Ellipse::print() const
 {
 	qDebug() << "[图元 #" << p_num << "    椭圆]";
 	qDebug() << "圆心：" << x0 << "," << y0;
@@ -36,7 +36,7 @@ void Polygon::print() const
 	return;
 }
 
-bool StraightLinePrimitive::setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy)
+bool StraightLine::setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy)
 {
 	if (type != PrimitiveType::None) // 此时不可以设定数据
 		return false;
@@ -53,7 +53,7 @@ bool StraightLinePrimitive::setDataByMouseEvent(int p_num, QPen pen, QPoint begi
 	return true;
 }
 
-EllipsePrimitive::EllipsePrimitive(QPoint begin, QPoint end, QPen pen, int p_num) : Primitive(p_num, pen, PrimitiveType::Ellipse)
+Ellipse::Ellipse(QPoint begin, QPoint end, QPen pen, int p_num) : Primitive(p_num, pen, PrimitiveType::Ellipse)
 {
 	int x1(begin.x()), x2(end.x()), y1(begin.y()), y2(end.y());
 
