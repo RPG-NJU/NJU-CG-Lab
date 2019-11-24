@@ -16,17 +16,6 @@ using std::vector;
  * 这样子可以把图像进行一定的模块化管理，而不是一成不变
  */
 
- //struct StraightLine
- //{
- //	int begin_x;
- //	int begin_y;
- //	int end_x;
- //	int end_y;
- //
- //	void setData(int x1, int y1, int x2, int y2);
- //};
-
-
 class Primitive
 {
 
