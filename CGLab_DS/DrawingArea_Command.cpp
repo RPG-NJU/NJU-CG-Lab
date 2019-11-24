@@ -161,6 +161,17 @@ void DrawingArea::runCommand()
 			 * rotate id x y r
 			 */
 			 const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3])), r(stoi(command[4]));
+			 for (auto& primitive : primitives)
+			 {
+				 if (primitive->id() == id) // 如果当前图元的id等于所输入的id
+				 {
+					 primitive->rotate(x, y, r);
+					 break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				 }
+			 }
+
+			 clearPaper(true);
+			 drawAll();
 		}
 
 		else // undefined command

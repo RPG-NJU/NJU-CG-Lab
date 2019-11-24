@@ -9,6 +9,8 @@
 #define PRINT_FILE_OP // 如果定义，则调试输出文件读写的过程
 
 
+#define PI 3.141592653
+
 
 enum class DrawMode
 {
