@@ -27,9 +27,10 @@ void DrawingArea::runCommand()
 		}
 		qDebug() << "run command: " << output_info;
 		
-		if (command[0] == "resetCanvas") // 设置画布大小
+		if (command[0] == "resetCanvas") // 重置画布，需要清空画布并且设置大小
 		{
 			const int width(std::stoi(command[1])), height(std::stoi(command[2]));
+			clearPaper(false);
 			setPaperSize(width, height);
 		}
 

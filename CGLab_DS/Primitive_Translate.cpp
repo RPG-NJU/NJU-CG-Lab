@@ -1,17 +1,17 @@
 #include "Primitive.h"
 
-void StraightLine::translate()
+void StraightLine::translate(const int dx, const int dy)
 {
 	
 }
 
 
-void Ellipse::translate()
+void Ellipse::translate(const int dx, const int dy)
 {
 	
 }
 
-void Polygon::translate()
+void Polygon::translate(const int dx, const int dy)
 {
 	
 }

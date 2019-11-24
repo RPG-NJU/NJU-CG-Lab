@@ -43,7 +43,7 @@ public:
 	//Primitive() :
 	//	type(PrimitiveType::None), p_num(0) { }
 	virtual void print() const; // 在调试输出中输出当前图元信息
-	virtual void translate() = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用 
+	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用 
 	QPen _pen() const { return pen_in_use; }
 	PrimitiveType _type() const { return type; }
 };
@@ -67,7 +67,7 @@ public:
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), algorithm(algorithm) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
 	void print() const override;
-	void translate() override;
+	void translate(const int dx, const int dy) override;
 	int x1() const { return begin_x; }
 	int x2() const { return end_x; }
 	int y1() const { return begin_y; }
@@ -89,7 +89,7 @@ public:
 		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
 	Ellipse(QPoint begin, QPoint end, QPen pen, int p_num);
 	void print() const override;
-	void translate() override;
+	void translate(const int dx, const int dy) override;
 	int _x0() const { return x0; }
 	int _y0() const { return y0; }
 	int _rx() const { return rx; }
@@ -108,7 +108,7 @@ public:
 		Primitive(p_num, pen, PrimitiveType::Polygon), vertices(vertices), algorithm(algorithm) { }
 
 	void print() const override;
-	void translate() override;
+	void translate(const int dx, const int dy) override;
 	vector<MyPoint> _vertices() const { return vertices; }
 	StraightLineAlgorithm _algorithm() const { return algorithm; }
 };
