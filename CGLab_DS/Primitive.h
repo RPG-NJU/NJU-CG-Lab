@@ -32,7 +32,10 @@ public:
 	//Primitive() :
 	//	type(PrimitiveType::None), p_num(0) { }
 	virtual void print() const; // 在调试输出中输出当前图元信息
-	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用 
+	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用
+	virtual void rotate(const int x, const int y, const int r) = 0; // 旋转函数，在这里是一个纯虚函数，不可以被调用
+
+	
 	QPen _pen() const { return pen_in_use; }
 	PrimitiveType _type() const { return type; }
 
@@ -59,6 +62,9 @@ public:
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
 	void print() const override;
 	void translate(const int dx, const int dy) override;
+	void rotate(const int x, const int y, const int r) override;
+
+	
 	int x1() const { return begin_x; }
 	int x2() const { return end_x; }
 	int y1() const { return begin_y; }
@@ -81,6 +87,9 @@ public:
 	Ellipse(QPoint begin, QPoint end, QPen pen, int p_num);
 	void print() const override;
 	void translate(const int dx, const int dy) override;
+	void rotate(const int x, const int y, const int r) override;
+
+	
 	int _x0() const { return x0; }
 	int _y0() const { return y0; }
 	int _rx() const { return rx; }
@@ -100,6 +109,9 @@ public:
 
 	void print() const override;
 	void translate(const int dx, const int dy) override;
+	void rotate(const int x, const int y, const int r) override;
+
+	
 	vector<MyPoint> _vertices() const { return vertices; }
 	StraightLineAlgorithm _algorithm() const { return algorithm; }
 };

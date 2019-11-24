@@ -155,6 +155,14 @@ void DrawingArea::runCommand()
 			drawAll();
 		}
 
+		else if (command[0] == "rotate") // 图元的旋转
+		{
+			/*
+			 * rotate id x y r
+			 */
+			 const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3])), r(stoi(command[4]));
+		}
+
 		else // undefined command
 		{
 			// 这个时候时没有定义的指令，无法被解析
