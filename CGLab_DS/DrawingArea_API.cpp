@@ -1,8 +1,8 @@
-#include "DrawingArea.h"
+ï»¿#include "DrawingArea.h"
 #include "mainwindow.h"
 
 
-// ¶ÔÍâ½Ó¿Ú
+// å¯¹å¤–æ¥å£
 
 QImage DrawingArea::getPaper() const
 {
@@ -55,7 +55,7 @@ void DrawingArea::changePenMode(const DrawMode new_mode)
 void DrawingArea::drawAll()
 {
 
-	QPen now_pen = pen; // ±£´æµ±Ç°µÄpen
+	QPen now_pen = pen; // ä¿å­˜å½“å‰çš„pen
 	for (const auto &p : primitives)
 	{
 		vector<MyPoint> points;
@@ -63,11 +63,11 @@ void DrawingArea::drawAll()
 		switch (p->_type())
 		{
 		case PrimitiveType::None: break;
-		case PrimitiveType::Nature: break; // Ä¿Ç°Ã»ÓĞ½â¾ö×ÔÈ»ÏßÌõµÄ»æÖÆ
+		case PrimitiveType::Nature: break; // ç›®å‰æ²¡æœ‰è§£å†³è‡ªç„¶çº¿æ¡çš„ç»˜åˆ¶
 		case PrimitiveType::StraightLine:
 		{
 			StraightLine* p_straightline = dynamic_cast<StraightLine*>(p);
-			// ÕâÀïĞèÒªÌÖÂÛÊ¹ÓÃµÄËã·¨µÄÇø±ğ
+			// è¿™é‡Œéœ€è¦è®¨è®ºä½¿ç”¨çš„ç®—æ³•çš„åŒºåˆ«
 			StraightLineAlgorithm algorithm = p_straightline->_algorithm();
 			//qDebug() << (algorithm == StraightLineAlgorithm::DDA ? "-DDA" : "-Bresenham") << endl;
 			//switch (algorithm)
@@ -90,7 +90,7 @@ void DrawingArea::drawAll()
 			points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
 		}break;
 		}
-		QPainter painter(&paper); // Ê¹ÓÃQImage³õÊ¼»¯QPainter£¬ĞèÒªÊ¹ÓÃÖ¸Õë
+		QPainter painter(&paper); // ä½¿ç”¨QImageåˆå§‹åŒ–QPainterï¼Œéœ€è¦ä½¿ç”¨æŒ‡é’ˆ
 		painter.setPen(pen);
 		
 		for (const auto &point : points)
@@ -101,7 +101,7 @@ void DrawingArea::drawAll()
 	pen = now_pen;
 	tempPaper = paper;
 	
-	this->update(); // ¸üĞÂ´°Ìå£¬¿ÉÒÔÊ¹µÃQWidgetµ÷ÓÃpaintEventº¯Êı£¬»æÖÆ´°Ìå
+	this->update(); // æ›´æ–°çª—ä½“ï¼Œå¯ä»¥ä½¿å¾—QWidgetè°ƒç”¨paintEventå‡½æ•°ï¼Œç»˜åˆ¶çª—ä½“
 	
 	return;
 }
@@ -123,7 +123,7 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 {
 	switch (drawMode)
 	{
-	case DrawMode::None: break; // ´ËÊ±Ã»ÓĞĞèÒªÌí¼ÓµÄÍ¼Ôª
+	case DrawMode::None: break; // æ­¤æ—¶æ²¡æœ‰éœ€è¦æ·»åŠ çš„å›¾å…ƒ
 	case DrawMode::StraightLine:
 	{
 		primitives.push_back(new StraightLine(begin_point, end_point, pen, now_primitive_num));
@@ -178,4 +178,4 @@ void DrawingArea::setOutputPath(string dir_path)
 	return;
 }
 
-// ¶ÔÍâ½Ó¿Ú½áÊø
+// å¯¹å¤–æ¥å£ç»“æŸ
