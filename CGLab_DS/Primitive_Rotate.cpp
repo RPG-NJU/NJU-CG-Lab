@@ -47,9 +47,10 @@ void StraightLine::rotate(const int x, const int y, const int r)
 
 void Ellipse::rotate(const int x, const int y, const int r)
 {
-	const int temp_x0(x0), temp_y0(y0);
+	/*const int temp_x0(x0), temp_y0(y0);
 	x0 = Primitive::rotate_x(temp_x0, x, temp_y0, y, r);
 	y0 = Primitive::rotate_y(temp_y0, y, temp_x0, x, r);
+	return;*/
 	return;
 }
 
