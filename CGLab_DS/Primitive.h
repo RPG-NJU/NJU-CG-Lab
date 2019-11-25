@@ -33,8 +33,12 @@ public:
 	virtual void print() const; // 在调试输出中输出当前图元信息
 	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用
 	virtual void rotate(const int x, const int y, const int r) = 0; // 旋转函数，在这里是一个纯虚函数，不可以被调用
+	virtual void scale(const int x, const int y, const double s) = 0; // 缩放函数，同上
+	
 	static int rotate_x(int x, int x0, int y, int y0, int r); // 其中，x为要求的旋转点，x0为旋转中心
 	static int rotate_y(int y, int y0, int x, int x0, int r); // 其中，同上
+
+	static int scale_t(int t, int t0, double s);
 	
 	QPen _pen() const { return pen_in_use; }
 	PrimitiveType _type() const { return type; }
@@ -63,6 +67,7 @@ public:
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
+	void scale(const int x, const int y, const double s) override;
 
 	
 	int x1() const { return begin_x; }
@@ -88,6 +93,7 @@ public:
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
+	void scale(const int x, const int y, const double s) override;
 
 	
 	int _x0() const { return x0; }
@@ -110,6 +116,7 @@ public:
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
+	void scale(const int x, const int y, const double s) override;
 
 	
 	vector<MyPoint> _vertices() const { return vertices; }

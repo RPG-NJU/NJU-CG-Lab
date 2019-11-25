@@ -2,6 +2,7 @@
 
 using std::atoi;
 using std::stoi;
+using std::stod;
 
 void DrawingArea::runCommand()
 {
@@ -109,12 +110,12 @@ void DrawingArea::runCommand()
 
 			++line_i; // 多边形的特殊之处，需要遍历下一行的数据！
 			command = commands[line_i];
-			QString output_info("");
+			/*QString output_info("");
 			for (const auto& word : command)
 			{
 				output_info = output_info + " " + QString::fromStdString(word);
 			}
-			qDebug() << "polygon data: " << output_info;
+			qDebug() << "polygon data: " << output_info;*/
 			
 			for (int i(0); i < command.size(); i = i + 2)
 			{
@@ -147,6 +148,8 @@ void DrawingArea::runCommand()
 				if (primitive->id() == id) // 如果当前图元的id等于所输入的id
 				{
 					primitive->translate(dx, dy);
+					primitive->print();
+					qDebug() << "平移: x,y =" << dx << "," << dy;
 					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
 				}
 			}
@@ -160,18 +163,44 @@ void DrawingArea::runCommand()
 			/*
 			 * rotate id x y r
 			 */
-			 const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3])), r(stoi(command[4]));
-			 for (auto& primitive : primitives)
-			 {
-				 if (primitive->id() == id) // 如果当前图元的id等于所输入的id
-				 {
-					 primitive->rotate(x, y, r);
-					 break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
-				 }
-			 }
+			const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3])), r(stoi(command[4]));
+			for (auto& primitive : primitives)
+			{
+				if (primitive->id() == id) // 如果当前图元的id等于所输入的id
+				{
+					primitive->rotate(x, y, r);
+					primitive->print();
+					qDebug() << "旋转: x,y =" << x << "," << y << "  角度 r =" << r;
+					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				}
+			}
 
-			 clearPaper(true);
-			 drawAll();
+			clearPaper(true);
+			drawAll();
+		}
+
+		else if (command[0] == "scale") // 此时是缩放操作
+		{
+			/*
+			 * scale id x y s
+			 */
+			// 在我们的参数中只有一个s，所以是一致缩放
+			const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3]));
+			const double s(stod(command[4])); // 缩放倍数为浮点数
+
+			for (auto& primitive : primitives)
+			{
+				if (primitive->id() == id) // 如果当前图元的id等于所输入的id
+				{
+					primitive->scale(x, y, s);
+					primitive->print();
+					qDebug() << "缩放: x,y =" << x << "," << y << "  倍数 s =" << s;
+					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				}
+			}
+
+			clearPaper(true);
+			drawAll();
 		}
 
 		else // undefined command

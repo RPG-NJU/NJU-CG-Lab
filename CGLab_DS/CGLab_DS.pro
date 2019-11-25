@@ -30,6 +30,7 @@ SOURCES += \
     OpFile.cpp \
     Primitive.cpp \
     Primitive_Rotate.cpp \
+    Primitive_Scale.cpp \
     Primitive_Translate.cpp \
     SetPaperSizeDialog.cpp \
     main.cpp \
