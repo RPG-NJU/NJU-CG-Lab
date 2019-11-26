@@ -203,6 +203,33 @@ void DrawingArea::runCommand()
 			drawAll();
 		}
 
+		else if (command[0] == "clip") // 此时是裁剪操作
+		{
+			/*
+			 * clip id x1 y1 x2 y2 algorithm
+			 */
+			const int id(stoi(command[1])), x1(stoi(command[2])), y1(stoi(command[3])), x2(stoi(command[4])), y2(stoi(command[5]));
+			const ClipAlgorithm algorithm_in_use(command[6] == "Cohen-Sutherland" ? ClipAlgorithm::Cohen_Sutherland : ClipAlgorithm::Liang_Barsky);
+
+			for (auto primitive = primitives.begin(); primitive < primitives.end(); ++primitive)
+			{
+				if ((*primitive)->id() == id) // 这里不同于之前使用的范围遍历，使用的是迭代器的方法遍历
+				{
+					bool flag = (*primitive)->clip(x1, y1, x2, y2, algorithm_in_use);
+					(*primitive)->print();
+					qDebug() << "裁剪: x1, y1 =" << x1 << "," << y1 << "  x2, y2 =" << x2 << "," << y2;
+					if (!flag) // 此时需要删除图元
+					{
+						primitives.erase(primitive); // 删除
+					}
+					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				}
+			}
+
+			clearPaper(true);
+			drawAll();
+		}
+
 		else // undefined command
 		{
 			// 这个时候时没有定义的指令，无法被解析

@@ -34,6 +34,10 @@ public:
 	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用
 	virtual void rotate(const int x, const int y, const int r) = 0; // 旋转函数，在这里是一个纯虚函数，不可以被调用
 	virtual void scale(const int x, const int y, const double s) = 0; // 缩放函数，同上
+	virtual bool clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm) = 0; // 裁剪函数，同上，其中返回值为false的时候，删除该图元
+	virtual bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) = 0;
+	virtual bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) = 0;
+	// 以上分别为两种裁剪的算法虚函数
 	
 	static int rotate_x(int x, int x0, int y, int y0, int r); // 其中，x为要求的旋转点，x0为旋转中心
 	static int rotate_y(int y, int y0, int x, int x0, int r); // 其中，同上
@@ -64,10 +68,15 @@ public:
 	StraightLine(QPoint begin, QPoint end, QPen pen, int p_num, StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), algorithm(algorithm) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
+	
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
 	void scale(const int x, const int y, const double s) override;
+	bool clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm) override;
+	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
+	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
+	// 当前只有直线有裁剪算法的实现
 
 	
 	int x1() const { return begin_x; }
@@ -90,10 +99,14 @@ public:
 	Ellipse(int x0 = 0, int y0 = 0 , int rx = 0, int ry = 0, int p_num = 0, QPen pen = QPen()) :
 		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
 	Ellipse(QPoint begin, QPoint end, QPen pen, int p_num);
+	
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
 	void scale(const int x, const int y, const double s) override;
+	bool clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm) override;
+	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
+	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
 
 	
 	int _x0() const { return x0; }
@@ -117,6 +130,9 @@ public:
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
 	void scale(const int x, const int y, const double s) override;
+	bool clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm) override;
+	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
+	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
 
 	
 	vector<MyPoint> _vertices() const { return vertices; }

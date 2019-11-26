@@ -29,6 +29,7 @@ SOURCES += \
     DrawingArea_StraightLine.cpp \
     OpFile.cpp \
     Primitive.cpp \
+    Primitive_Clip.cpp \
     Primitive_Rotate.cpp \
     Primitive_Scale.cpp \
     Primitive_Translate.cpp \
