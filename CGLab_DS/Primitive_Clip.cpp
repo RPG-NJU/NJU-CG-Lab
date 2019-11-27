@@ -1,5 +1,10 @@
 ﻿#include "DrawingArea.h"
 
+//#include <cmath>
+
+using std::max;
+using std::min;
+
 bool StraightLine::clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm)
 {
 	switch (algorithm)
@@ -140,6 +145,62 @@ bool StraightLine::clipByCohen_Sutherland(const int x1, const int y1, const int 
 
 bool StraightLine::clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2)
 {
+	/*
+	 * 同样的，k=1，2，3，4分别对应于左，右，下，上
+	 */
+	int p[4], q[4]; // 用于记录p/q数组
+	const int dx(end_x - begin_x), dy(end_y - begin_y);
+	const int left(x1 < x2 ? x1 : x2), right(x1 > x2 ? x1 : x2), up(y1 > y2 ? y1 : y2), down(y1 < y2 ? y1 : y2); // 规定了四个方向的边界
+	
+	p[0] = -dx;
+	p[1] = dx;
+	p[2] = -dy;
+	p[3] = dy;
+
+	q[0] = begin_x - left;
+	q[1] = right - begin_x;
+	q[2] = begin_y - down;
+	q[3] = up - begin_y;
+	// 初始化
+
+	double r(0.0), u1(0.0), u2(1.0);
+
+	for (int i(0); i < 4; ++i)
+	{
+		if (p[i] == 0)
+		{
+			if (q[i] < 0)
+				return false;
+			else
+				continue;
+		}
+
+		// 下面是P不等于0的情况
+
+		r = static_cast<double>(q[i]) / static_cast<double>(p[i]);
+
+		if (p[i] < 0) // 用于更新u1
+		{
+			u1 = max(u1, r);
+			if (u1 > u2)
+				return false;
+		}
+
+		else // 用于更新u2
+		{
+			u2 = min(u2, r);
+			if (u1 > u2)
+				return false;
+		}
+
+	}
+
+	const int temp_begin_x(begin_x), temp_begin_y(begin_y), temp_end_x(end_x), temp_end_y(end_y);
+	begin_x = static_cast<int>(temp_begin_x + u1 * dx);
+	begin_y = static_cast<int>(temp_begin_y + u1 * dy);
+	end_x = static_cast<int>(temp_begin_x + u2 * dx);
+	end_y = static_cast<int>(temp_begin_y + u2 * dy);
+	
 	return true;
 }
 
