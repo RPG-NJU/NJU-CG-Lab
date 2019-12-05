@@ -27,9 +27,7 @@ protected:
 public:
 	Primitive(int p_num = 0, QPen pen = QPen(), PrimitiveType type = PrimitiveType::None) :
 		pen_in_use(pen), p_num(p_num), type(type) { }
-	//Primitive(QPen pen) : pen_in_use(pen) { }
-	//Primitive() :
-	//	type(PrimitiveType::None), p_num(0) { }
+	~Primitive() { }
 	virtual void print() const; // 在调试输出中输出当前图元信息
 	virtual void translate(const int dx, const int dy) = 0; // 平移函数，在这里是一个纯虚函数，不可以被调用
 	virtual void rotate(const int x, const int y, const int r) = 0; // 旋转函数，在这里是一个纯虚函数，不可以被调用

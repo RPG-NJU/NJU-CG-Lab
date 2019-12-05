@@ -55,7 +55,7 @@ private:
 
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
-	Primitive* temp_primitive; // 临时图元，用于进行鼠标绘制的时候操作
+	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
 
 	//QTextEdit* show_command_text;
 	vector<vector<string> > commands;
@@ -116,7 +116,7 @@ public:
 	void setPaperSize(int x, int y);
 
 	void drawAll(); // 用于绘制所有图元
-	void drawPrimitive(Primitive* primitive); // 用于绘制某个特定的图元
+	void drawPrimitive(Primitive* primitive, QImage &thisPaper); // 用于绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 
 	int getXsize() const { return this->geometry().width(); }

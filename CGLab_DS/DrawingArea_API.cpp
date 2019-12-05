@@ -97,7 +97,7 @@ void DrawingArea::drawAll()
 		//{
 		//	painter.drawPoint(point.x, point.y);
 		//}
-		drawPrimitive(p);
+		drawPrimitive(p, paper);
 	}
 	pen = now_pen;
 	tempPaper = paper;
@@ -107,8 +107,12 @@ void DrawingArea::drawAll()
 	return;
 }
 
-void DrawingArea::drawPrimitive(Primitive* primitive)
+void DrawingArea::drawPrimitive(Primitive* primitive, QImage &thisPaper)
 {
+	if (!primitive)
+		return;
+
+	
 	vector<MyPoint> points;
 	pen = primitive->_pen();
 	switch (primitive->_type())
@@ -132,7 +136,7 @@ void DrawingArea::drawPrimitive(Primitive* primitive)
 		points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
 	}break;
 	}
-	QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
 	painter.setPen(pen);
 
 	for (const auto& point : points)
@@ -140,6 +144,13 @@ void DrawingArea::drawPrimitive(Primitive* primitive)
 		painter.drawPoint(point.x, point.y);
 	}
 
+	if (!isDrawing)
+	{
+		qDebug() << "绘制图元：";
+		primitive->print();
+	}
+
+	
 	return;
 }
 

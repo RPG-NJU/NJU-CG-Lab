@@ -47,9 +47,35 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 }
 
 
+//void DrawingArea::mousePressEvent(QMouseEvent* event)
+//{
+//
+//	if (event->button() == Qt::LeftButton) // 识别左键
+//	{
+//#ifdef PRINT_MOUSE_EVENT
+//		qDebug() << "[Press Mouse Left Button]" << endl;
+//#endif
+//		if (!isDrawing)
+//		{
+//			isDrawing = true;
+//			begin_point = event->pos(); // 获得当前鼠标的位置
+//			end_point = event->pos(); // 增加这行代码为了防止在点击和释放中间没有移动鼠标而导致的错误图元问题
+//		}
+//	}
+//
+//	else if (event->button() == Qt::RightButton) // 识别右键
+//	{
+//#ifdef PRINT_MOUSE_EVENT
+//		qDebug() << "[Press Mouse Right Button]" << endl;
+//#endif
+//	}
+//
+//	this->update();
+//	return;
+//}
+
 void DrawingArea::mousePressEvent(QMouseEvent* event)
 {
-
 	if (event->button() == Qt::LeftButton) // 识别左键
 	{
 #ifdef PRINT_MOUSE_EVENT
@@ -60,6 +86,18 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 			isDrawing = true;
 			begin_point = event->pos(); // 获得当前鼠标的位置
 			end_point = event->pos(); // 增加这行代码为了防止在点击和释放中间没有移动鼠标而导致的错误图元问题
+		}
+
+		else if (isDrawing) // 此时的逻辑是终止绘图
+		{
+			isDrawing = false;
+			if (temp_primitive != nullptr) // 当前图元不为空，为空则跳过
+			{
+				primitives.push_back(temp_primitive);
+				now_primitive_num++;
+				paper = tempPaper;
+				temp_primitive = nullptr;
+			}
 		}
 	}
 
@@ -75,6 +113,38 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 }
 
 
+
+//void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
+//{
+//	if (event->button() == Qt::LeftButton) // 识别左键
+//	{
+//#ifdef PRINT_MOUSE_EVENT
+//		qDebug() << "[Release Mouse Left Button]" << endl;
+//#endif
+//
+//		if (isDrawing)
+//		{
+//			isDrawing = false;
+//
+//			// 此时应该将缓存的直线刷新进入真实图片
+//			paper = tempPaper;
+//			this->update();
+//
+//			// 同时还需要，存储图元信息
+//			appendPrimitiveByMouseEvent();
+//		}
+//	}
+//
+//	else if (event->button() == Qt::RightButton) // 识别右键
+//	{
+//#ifdef PRINT_MOUSE_EVENT
+//		qDebug() << "[Release Mouse Right Button]" << endl;
+//#endif
+//	}
+//
+//	return;
+//}
+
 void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton) // 识别左键
@@ -82,27 +152,13 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Release Mouse Left Button]" << endl;
 #endif
-
-		if (isDrawing)
-		{
-			isDrawing = false;
-
-			// 此时应该将缓存的直线刷新进入真实图片
-			paper = tempPaper;
-			this->update();
-
-			// 同时还需要，存储图元信息
-			appendPrimitiveByMouseEvent();
-		}
 	}
-
 	else if (event->button() == Qt::RightButton) // 识别右键
 	{
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Release Mouse Right Button]" << endl;
 #endif
 	}
-
 	return;
 }
 
@@ -132,22 +188,13 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 	if (isDrawing) // 此时正在绘图
 	{
 		end_point = event->pos(); // 获取移动时的鼠标位置
-		/*switch (drawMode)
-		{
-		case None: break;
-		case StraightLine:
-			{
-			qDebug() << "[Draw Line " << begin_point << "|" << end_point << "]" << endl;
-			}
-		}*/
-		/*
-		 * 没有必要在这里就进行分类讨论
-		 *
-		 */
 		tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
 		// 之后进行draw操作
-		draw(tempPaper); //进行绘图操作
+		//draw(tempPaper); //进行绘图操作
+		mouseDraw(tempPaper);
 	}
+
+	this->update();
 	// END of Drawing Works
 	return;
 }
@@ -224,12 +271,12 @@ void DrawingArea::draw(QImage& thisPaper)
 		drawCircle(tempPaper, begin_point, end_point);
 	}break;
 	case DrawMode::Ellipse:
-		{
+	{
 #ifdef PRINT_DRAW
 		qDebug() << "[Draw Ellipse " << begin_point << "to" << end_point << "]" << endl;
 #endif
 		drawEllipse(tempPaper, begin_point, end_point);
-		}
+	}
 	}
 	return;
 }
