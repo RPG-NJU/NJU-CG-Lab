@@ -76,6 +76,16 @@ public:
 
 	// 2019.12.5 打算重新构建整体的鼠标绘图逻辑
 	// 更改为从图元出发，设置一个临时图元，对此进行操作就可以了
+	// 本次新增的部分都使用mouse作为前缀，类似于，mouseDraw函数，用于与之前的draw函数进行区分，以此规定为命名规则
+	void mouseDraw(QImage& thisPaper); // 鼠标调用的绘图函数
+	void mouseDrawStraightLine(QImage& thisPaper, const StraightLineAlgorithm algorithm);
+	void mouseDrawCircle(QImage& thisPaper);
+	void mouseDrawEllipse(QImage& thisPaper);
+	void mouseDrawPolygon(QImage& thisPaper, const StraightLineAlgorithm algorithm);
+	
+	
+
+	// 重构框架部分结束 2019.12.5
 
 	vector<MyPoint> createStraightLine(int x1, int y1, int x2, int y2, StraightLineAlgorithm algorithm);
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
@@ -106,6 +116,7 @@ public:
 	void setPaperSize(int x, int y);
 
 	void drawAll(); // 用于绘制所有图元
+	void drawPrimitive(Primitive* primitive); // 用于绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 
 	int getXsize() const { return this->geometry().width(); }

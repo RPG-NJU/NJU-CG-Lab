@@ -58,45 +58,46 @@ void DrawingArea::drawAll()
 	QPen now_pen = pen; // 保存当前的pen
 	for (const auto &p : primitives)
 	{
-		vector<MyPoint> points;
-		pen = p->_pen();
-		switch (p->_type())
-		{
-		case PrimitiveType::None: break;
-		case PrimitiveType::Nature: break; // 目前没有解决自然线条的绘制
-		case PrimitiveType::StraightLine:
-		{
-			StraightLine* p_straightline = dynamic_cast<StraightLine*>(p);
-			// 这里需要讨论使用的算法的区别
-			StraightLineAlgorithm algorithm = p_straightline->_algorithm();
-			//qDebug() << (algorithm == StraightLineAlgorithm::DDA ? "-DDA" : "-Bresenham") << endl;
-			//switch (algorithm)
-			//{
-			//case StraightLineAlgorithm::Bresenham: points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			//case StraightLineAlgorithm::DDA: points = createStraightLineByDDA(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			//case StraightLineAlgorithm::None: points = createStraightLineByNone(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
-			//}
-			////points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
-			points = createStraightLine(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2(), p_straightline->_algorithm());
-		}break;
-		case PrimitiveType::Ellipse:
-		{
-			Ellipse* p_ellipse = dynamic_cast<Ellipse*>(p);
-			points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
-		}break;
-		case PrimitiveType::Polygon:
-		{
-			Polygon* p_polygon = dynamic_cast<Polygon*>(p);
-			points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
-		}break;
-		}
-		QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
-		painter.setPen(pen);
-		
-		for (const auto &point : points)
-		{
-			painter.drawPoint(point.x, point.y);
-		}
+		//vector<MyPoint> points;
+		//pen = p->_pen();
+		//switch (p->_type())
+		//{
+		//case PrimitiveType::None: break;
+		//case PrimitiveType::Nature: break; // 目前没有解决自然线条的绘制
+		//case PrimitiveType::StraightLine:
+		//{
+		//	StraightLine* p_straightline = dynamic_cast<StraightLine*>(p);
+		//	// 这里需要讨论使用的算法的区别
+		//	StraightLineAlgorithm algorithm = p_straightline->_algorithm();
+		//	//qDebug() << (algorithm == StraightLineAlgorithm::DDA ? "-DDA" : "-Bresenham") << endl;
+		//	//switch (algorithm)
+		//	//{
+		//	//case StraightLineAlgorithm::Bresenham: points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+		//	//case StraightLineAlgorithm::DDA: points = createStraightLineByDDA(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+		//	//case StraightLineAlgorithm::None: points = createStraightLineByNone(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2()); break;
+		//	//}
+		//	////points = createStraightLineByBresenham(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2());
+		//	points = createStraightLine(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2(), p_straightline->_algorithm());
+		//}break;
+		//case PrimitiveType::Ellipse:
+		//{
+		//	Ellipse* p_ellipse = dynamic_cast<Ellipse*>(p);
+		//	points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
+		//}break;
+		//case PrimitiveType::Polygon:
+		//{
+		//	Polygon* p_polygon = dynamic_cast<Polygon*>(p);
+		//	points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
+		//}break;
+		//}
+		//QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+		//painter.setPen(pen);
+		//
+		//for (const auto &point : points)
+		//{
+		//	painter.drawPoint(point.x, point.y);
+		//}
+		drawPrimitive(p);
 	}
 	pen = now_pen;
 	tempPaper = paper;
@@ -105,6 +106,43 @@ void DrawingArea::drawAll()
 	
 	return;
 }
+
+void DrawingArea::drawPrimitive(Primitive* primitive)
+{
+	vector<MyPoint> points;
+	pen = primitive->_pen();
+	switch (primitive->_type())
+	{
+	case PrimitiveType::None: break;
+	case PrimitiveType::Nature: break; // 目前没有解决自然线条的绘制
+	case PrimitiveType::StraightLine:
+	{
+		StraightLine* p_straightline = dynamic_cast<StraightLine*>(primitive);
+		StraightLineAlgorithm algorithm = p_straightline->_algorithm();
+		points = createStraightLine(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2(), p_straightline->_algorithm());
+	}break;
+	case PrimitiveType::Ellipse:
+	{
+		Ellipse* p_ellipse = dynamic_cast<Ellipse*>(primitive);
+		points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
+	}break;
+	case PrimitiveType::Polygon:
+	{
+		Polygon* p_polygon = dynamic_cast<Polygon*>(primitive);
+		points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
+	}break;
+	}
+	QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
+	painter.setPen(pen);
+
+	for (const auto& point : points)
+	{
+		painter.drawPoint(point.x, point.y);
+	}
+
+	return;
+}
+
 
 
 void DrawingArea::clearPaper(bool save_primitives)

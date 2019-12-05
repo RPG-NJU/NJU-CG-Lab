@@ -41,7 +41,7 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 
 	//painter.drawImage(0, 0, paper);
-	isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);
+	isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);	// 当处于画图阶段的时候，输出的是临时图像，否则则为真实图像
 
 	return;
 }
