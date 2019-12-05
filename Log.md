@@ -11,3 +11,5 @@
 背景色设置为透明，可以在CSS中增加语句：background-color:transparent </br>
 取消边框，在Qt Designer中选择`QFrame`下的`frameShape`为**NoFrame**，就可以消除边框 </br>
 
+## 2019.12.5
+打算重写关于鼠标绘图的框架部分，以此来完善整体设计。

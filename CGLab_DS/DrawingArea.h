@@ -55,6 +55,7 @@ private:
 
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
+	Primitive* temp_primitive; // 临时图元，用于进行鼠标绘制的时候操作
 
 	//QTextEdit* show_command_text;
 	vector<vector<string> > commands;
@@ -72,6 +73,9 @@ public:
 	void drawStraightLine(QImage& thisPaper, const QPoint line_begin, const QPoint line_end, const StraightLineAlgorithm algorithm);
 	void drawCircle(QImage& thisPaper, const QPoint begin, const QPoint end);
 	void drawEllipse(QImage& thisPaper, const QPoint begin, const QPoint end);
+
+	// 2019.12.5 打算重新构建整体的鼠标绘图逻辑
+	// 更改为从图元出发，设置一个临时图元，对此进行操作就可以了
 
 	vector<MyPoint> createStraightLine(int x1, int y1, int x2, int y2, StraightLineAlgorithm algorithm);
 	vector<MyPoint> createStraightLineByNone(int x1, int x2, int y1, int y2);
