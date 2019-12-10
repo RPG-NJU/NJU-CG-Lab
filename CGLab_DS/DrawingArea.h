@@ -78,10 +78,13 @@ public:
 	// 更改为从图元出发，设置一个临时图元，对此进行操作就可以了
 	// 本次新增的部分都使用mouse作为前缀，类似于，mouseDraw函数，用于与之前的draw函数进行区分，以此规定为命名规则
 	void mouseDraw(QImage& thisPaper); // 鼠标调用的绘图函数
+	void mouseDrawAdd(QImage& thisPaper); // 鼠标调用的增加信息函数
 	void mouseDrawStraightLine(QImage& thisPaper, const StraightLineAlgorithm algorithm);
 	void mouseDrawCircle(QImage& thisPaper);
 	void mouseDrawEllipse(QImage& thisPaper);
 	void mouseDrawPolygon(QImage& thisPaper, const StraightLineAlgorithm algorithm);
+	void mouseDrawPolygonAddPoint(QImage& thisPaper);
+	
 	
 	
 

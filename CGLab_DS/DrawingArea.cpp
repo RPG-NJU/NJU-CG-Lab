@@ -101,11 +101,15 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 		}
 	}
 
-	else if (event->button() == Qt::RightButton) // 识别右键
+	else if (event->button() == Qt::RightButton) // 识别右键，用于如多边形，曲线的增加信息点
 	{
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Right Button]" << endl;
 #endif
+		if (isDrawing)
+		{
+			mouseDrawAdd(tempPaper);
+		}
 	}
 
 	this->update();

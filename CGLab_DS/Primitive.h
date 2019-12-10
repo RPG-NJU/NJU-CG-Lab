@@ -132,6 +132,9 @@ public:
 	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
 	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
 
+	void setTail(const int x, const int y) { vertices[vertices.size() - 1].x = x; vertices[vertices.size() - 1].y = y; return; } // 用于设置末尾点的坐标
+	void addPoint();
+
 	
 	vector<MyPoint> _vertices() const { return vertices; }
 	StraightLineAlgorithm _algorithm() const { return algorithm; }

@@ -65,5 +65,12 @@ Ellipse::Ellipse(QPoint begin, QPoint end, QPen pen, int p_num) : Primitive(p_nu
 }
 
 
+void Polygon::addPoint()
+{
+	MyPoint point = vertices[vertices.size() - 1];
+	vertices.push_back(point);
+
+	return;
+}
 
 
