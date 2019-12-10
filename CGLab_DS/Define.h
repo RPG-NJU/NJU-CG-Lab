@@ -18,7 +18,8 @@ enum class DrawMode
 	Nature, 
 	StraightLine,
 	Circle,
-	Ellipse
+	Ellipse,
+	Polygon
 };
 
 enum class PrimitiveType

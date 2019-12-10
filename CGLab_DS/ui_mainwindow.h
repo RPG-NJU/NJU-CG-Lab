@@ -42,6 +42,7 @@ public:
     QAction *actionRedrawAll;
     QAction *actionClearPaper;
     QAction *actionSetPaperSize;
+    QAction *actionPolygon;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -137,6 +138,12 @@ public:
         actionSetPaperSize = new QAction(MainWindow);
         actionSetPaperSize->setObjectName(QString::fromUtf8("actionSetPaperSize"));
         actionSetPaperSize->setFont(font3);
+        actionPolygon = new QAction(MainWindow);
+        actionPolygon->setObjectName(QString::fromUtf8("actionPolygon"));
+        actionPolygon->setCheckable(true);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/MainWindow/Ploygon"), QSize(), QIcon::Normal, QIcon::Off);
+        actionPolygon->setIcon(icon7);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -197,6 +204,7 @@ public:
         toolBar->addAction(actionStraightLine);
         toolBar->addAction(actionCircle);
         toolBar->addAction(actionEllipse);
+        toolBar->addAction(actionPolygon);
         toolBar->addAction(actionPalette);
 
         retranslateUi(MainWindow);
@@ -264,6 +272,10 @@ public:
 #endif // QT_CONFIG(shortcut)
         actionClearPaper->setText(QCoreApplication::translate("MainWindow", "\346\270\205\347\251\272\347\224\273\345\270\203", nullptr));
         actionSetPaperSize->setText(QCoreApplication::translate("MainWindow", "\347\224\273\345\270\203\345\244\247\345\260\217", nullptr));
+        actionPolygon->setText(QCoreApplication::translate("MainWindow", "\345\244\232\350\276\271\345\275\242", nullptr));
+#if QT_CONFIG(tooltip)
+        actionPolygon->setToolTip(QCoreApplication::translate("MainWindow", "\345\244\232\350\276\271\345\275\242", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)

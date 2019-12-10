@@ -106,6 +106,13 @@ void MainWindow::on_actionEllipse_triggered()
 	return;
 }
 
+void MainWindow::on_actionPolygon_triggered()
+{
+	ui->drawingArea->changePenMode(DrawMode::Polygon);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionPolygon->setChecked(true);
+}
+
 void MainWindow::on_actionOpenFile_triggered()
 {
 #ifdef PRINT_ACTION
@@ -208,6 +215,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		ui->actionStraightLine->setChecked(false);
 		ui->actionCircle->setChecked(false);
 		ui->actionEllipse->setChecked(false);
+		ui->actionPolygon->setChecked(false);
 		break;
 		}
 	case ClearToolBarCheckedMode::All:
@@ -249,5 +257,4 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	}
 	return;
 }
-
 

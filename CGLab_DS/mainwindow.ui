@@ -142,6 +142,7 @@
    <addaction name="actionStraightLine"/>
    <addaction name="actionCircle"/>
    <addaction name="actionEllipse"/>
+   <addaction name="actionPolygon"/>
    <addaction name="actionPalette"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -346,6 +347,21 @@
      <family>华文中宋</family>
      <pointsize>11</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionPolygon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Ploygon</normaloff>:/MainWindow/Ploygon</iconset>
+   </property>
+   <property name="text">
+    <string>多边形</string>
+   </property>
+   <property name="toolTip">
+    <string>多边形</string>
    </property>
   </action>
  </widget>
