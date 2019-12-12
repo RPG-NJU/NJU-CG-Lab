@@ -20,9 +20,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AboutAuthorDialog.cpp \
     AboutSoftwareDialog.cpp \
+    Define.cpp \
     DrawingArea.cpp \
     DrawingArea_API.cpp \
     DrawingArea_Command.cpp \
+    DrawingArea_Curve.cpp \
     DrawingArea_Ellipse.cpp \
     DrawingArea_File.cpp \
     DrawingArea_Mouse.cpp \

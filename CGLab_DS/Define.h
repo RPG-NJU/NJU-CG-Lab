@@ -11,6 +11,8 @@
 
 #define PI 3.141592653
 
+#define BEZIER_DELTA 0.001
+
 
 enum class DrawMode
 {
@@ -31,7 +33,8 @@ enum class PrimitiveType
 	Nature,
 	StraightLine,
 	Ellipse,
-	Polygon
+	Polygon,
+	Curve
 };
 
 
@@ -40,6 +43,12 @@ enum class StraightLineAlgorithm
 	DDA,
 	Bresenham,
 	None
+};
+
+enum class CurveAlgorithm
+{
+	Bezier,
+	B_spline
 };
 
 
@@ -63,5 +72,14 @@ struct MyPoint
 	int y;
 };
 
+struct MyPoint_double
+{
+	double x;
+	double y;
+};
+
+MyPoint_double operator+(const MyPoint_double left, const MyPoint_double right);
+MyPoint_double operator*(const MyPoint_double left, const MyPoint_double right);
+MyPoint_double operator*(const double left, const MyPoint_double right);
 
 #endif // DEFINE_H

@@ -74,3 +74,12 @@ void Polygon::addPoint()
 }
 
 
+void Curve::print() const
+{
+	qDebug() << "[图元 #" << p_num << "    " << fixed_points.size() << "点曲线]";
+	qDebug() << "算法：" << (algorithm == CurveAlgorithm::B_spline ? "B_spline" : "Bezier");
+	return;
+}
+
+
+

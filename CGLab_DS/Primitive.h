@@ -139,4 +139,24 @@ public:
 	vector<MyPoint> _vertices() const { return vertices; }
 	StraightLineAlgorithm _algorithm() const { return algorithm; }
 };
+
+
+
+class Curve : public Primitive
+{
+private:
+	vector<MyPoint> fixed_points; // 用于记录所有的定点坐标信息
+	CurveAlgorithm algorithm;
+	
+public:
+	Curve(vector<MyPoint> fixed_points, int p_num, QPen pen, CurveAlgorithm algorithm) :
+		Primitive(p_num, pen, PrimitiveType::Curve), fixed_points(fixed_points), algorithm(algorithm) { }
+
+	void print() const override;
+
+	CurveAlgorithm _algorithm() const { return algorithm; }
+	
+};
+
+
 #endif // PRIMITIVE_H

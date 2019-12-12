@@ -96,6 +96,11 @@ public:
 	vector<MyPoint> createStraightLineByBresenham(int x1, int y1, int x2, int y2);
 	vector<MyPoint> createEllipse(int x0, int y0, int rx, int ry); // 绘制椭圆的算法（整合了绘制圆的算法）
 	vector<MyPoint> createPolygon(const vector<MyPoint> &vertices, StraightLineAlgorithm algorithm);
+	vector<MyPoint> createCurve(const vector<MyPoint>& fixed_points, CurveAlgorithm algorithm);
+	vector<MyPoint> createCurveByBezier(const vector<MyPoint>& fixed_points);
+
+	MyPoint_double Bezier_P(const vector<MyPoint>& fixed_points, int i, int r, double u); // 用于迭代计算贝塞尔曲线
+	
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 

@@ -11,23 +11,23 @@ void DrawingArea::runCommand()
 		qDebug() << "Yes" << endl;
 	else
 		qDebug() << "No" << endl;*/
-	// 上面这段代码用来测试
-	/*newDir("Data/data");*/
-	//for (const auto &command : commands) // 对每一条指令进行解析
+		// 上面这段代码用来测试
+		/*newDir("Data/data");*/
+		//for (const auto &command : commands) // 对每一条指令进行解析
 	for (int line_i(0); line_i < commands.size(); ++line_i)
 	{
 		vector<string> command = commands[line_i];
-		
+
 		if (command.size() < 1)
 			continue;
 
 		QString output_info("");
-		for (const auto &word : command)
+		for (const auto& word : command)
 		{
 			output_info = output_info + " " + QString::fromStdString(word);
 		}
 		qDebug() << "run command: " << output_info;
-		
+
 		if (command[0] == "resetCanvas") // 重置画布，需要清空画布并且设置大小
 		{
 			const int width(std::stoi(command[1])), height(std::stoi(command[2]));
@@ -51,14 +51,14 @@ void DrawingArea::runCommand()
 		else if (command[0] == "drawLine") // 画直线
 		{
 			const int id(stoi(command[1])), x1(stoi(command[2])), y1(stoi(command[3])), x2(stoi(command[4])), y2(stoi(command[5]));
-			
+
 			vector<MyPoint> points;
 			QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
 			painter.setPen(pen);
-			
+
 			points = command[6] == "DDA" ? createStraightLineByDDA(x1, y1, x2, y2) : createStraightLineByBresenham(x1, y1, x2, y2);
 
-			for (const auto &point : points)
+			for (const auto& point : points)
 			{
 				painter.drawPoint(point.x, point.y);
 			}
@@ -67,7 +67,7 @@ void DrawingArea::runCommand()
 
 			qDebug() << "绘制了:";
 			primitives[primitives.size() - 1]->print();
-			
+
 			this->update();
 		}
 
@@ -90,7 +90,7 @@ void DrawingArea::runCommand()
 
 			qDebug() << "绘制了:";
 			primitives[primitives.size() - 1]->print();
-			
+
 			this->update();
 		}
 
@@ -103,26 +103,20 @@ void DrawingArea::runCommand()
 			vector<MyPoint> points;
 			QPainter painter(&paper); // 使用QImage初始化QPainter，需要使用指针
 			painter.setPen(pen);
-			
+
 			const int id(stoi(command[1])), n(stoi(command[2]));
 			StraightLineAlgorithm algorithm_in_use(command[3] == "DDA" ? StraightLineAlgorithm::DDA : StraightLineAlgorithm::Bresenham);
 			vector<MyPoint> vertices_in_command;
 
 			++line_i; // 多边形的特殊之处，需要遍历下一行的数据！
 			command = commands[line_i];
-			/*QString output_info("");
-			for (const auto& word : command)
-			{
-				output_info = output_info + " " + QString::fromStdString(word);
-			}
-			qDebug() << "polygon data: " << output_info;*/
-			
+
 			for (int i(0); i < command.size(); i = i + 2)
 			{
 				int x(stoi(command[i])), y(stoi(command[i + 1]));
 				vertices_in_command.push_back({ x, y });
 			}
-	
+
 			points = createPolygon(vertices_in_command, algorithm_in_use);
 			for (const auto& point : points)
 			{
@@ -137,13 +131,44 @@ void DrawingArea::runCommand()
 			this->update();
 		}
 
+		else if (command[0] == "drawCurve")
+		{
+			vector<MyPoint> points;
+			QPainter painter(&paper); // 用于初始化
+			painter.setPen(pen); // 设置画笔
+
+			const int id(stoi(command[1])), n(stoi(command[2]));
+			CurveAlgorithm algorithm_in_use(command[3] == "Bezier" ? CurveAlgorithm::Bezier : CurveAlgorithm::B_spline);
+			vector<MyPoint> fixed_points_in_command; // 用于存储，所有的指令中的锚点
+
+			++line_i; // 曲线和多边形一样的地方，需要遍历下一行的数据
+			command = commands[line_i];
+
+			for (int i(0); i < command.size(); i = i + 2)
+			{
+				int x(stoi(command[i])), y(stoi(command[i + 1]));
+				fixed_points_in_command.push_back({ x, y });
+			}
+
+			points = createCurve(fixed_points_in_command, algorithm_in_use);
+			for (const auto& point : points)
+			{
+				painter.drawPoint(point.x, point.y);
+			}
+
+			// 缺少了一个图元的压入
+			qDebug() << "here" << endl;
+
+			this->update();
+		}
+
 		else if (command[0] == "translate") // 图元的平行变换
 		{
 			/*
 			 * translate id dx dy
 			 */
 			const int id(stoi(command[1])), dx(stoi(command[2])), dy(stoi(command[3]));
-			for (auto &primitive : primitives)
+			for (auto& primitive : primitives)
 			{
 				if (primitive->id() == id) // 如果当前图元的id等于所输入的id
 				{
@@ -184,7 +209,7 @@ void DrawingArea::runCommand()
 			/*
 			 * scale id x y s
 			 */
-			// 在我们的参数中只有一个s，所以是一致缩放
+			 // 在我们的参数中只有一个s，所以是一致缩放
 			const int id(stoi(command[1])), x(stoi(command[2])), y(stoi(command[3]));
 			const double s(stod(command[4])); // 缩放倍数为浮点数
 
