@@ -239,3 +239,20 @@ bool Polygon::clipByLiang_Barsky(const int x1, const int y1, const int x2, const
 {
 	return true;
 }
+
+bool Curve::clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm)
+{
+	return true;
+}
+
+bool Curve::clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2)
+{
+	return true;
+}
+
+bool Curve::clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2)
+{
+	return true;
+}
+
+

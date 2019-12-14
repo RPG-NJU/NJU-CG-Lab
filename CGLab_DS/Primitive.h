@@ -153,8 +153,15 @@ public:
 		Primitive(p_num, pen, PrimitiveType::Curve), fixed_points(fixed_points), algorithm(algorithm) { }
 
 	void print() const override;
+	void translate(const int dx, const int dy) override;
+	void rotate(const int x, const int y, const int r) override;
+	void scale(const int x, const int y, const double s) override;
+	bool clip(const int x1, const int y1, const int x2, const int y2, ClipAlgorithm algorithm) override;
+	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
+	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
 
 	CurveAlgorithm _algorithm() const { return algorithm; }
+	vector<MyPoint> _fixed_points() const { return fixed_points; }
 	
 };
 

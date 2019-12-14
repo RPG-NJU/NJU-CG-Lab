@@ -1,8 +1,8 @@
-#include "Primitive.h"
+ï»¿#include "Primitive.h"
 
 int Primitive::scale_t(int t, int t0, double s)
 {
-	// ÔÚÕâ¸öº¯ÊıÖĞ£¬t×÷ÎªÒ»¸ö²ÎÊı£¬¼È¿ÉÒÔ³ĞÔØx£¬Ò²¿ÉÒÔ³ĞÔØy£¬ËùÒÔÓÃt×÷ÎªÒ»¸öÍ¨ÓÃµÄ²ÎÊı
+	// åœ¨è¿™ä¸ªå‡½æ•°ä¸­ï¼Œtä½œä¸ºä¸€ä¸ªå‚æ•°ï¼Œæ—¢å¯ä»¥æ‰¿è½½xï¼Œä¹Ÿå¯ä»¥æ‰¿è½½yï¼Œæ‰€ä»¥ç”¨tä½œä¸ºä¸€ä¸ªé€šç”¨çš„å‚æ•°
 	double t_double(static_cast<double>(t)), t0_double(static_cast<double>(t0)), t_ret(0.0);
 	t_ret = t_double * s + t0_double * (1.0 - s);
 	return t_ret;
@@ -21,9 +21,9 @@ void StraightLine::scale(const int x, const int y, const double s)
 void Ellipse::scale(const int x, const int y, const double s)
 {
 	/*
-	 * ÍÖÔ²µÄËõ·ÅËã·¨Ã»ÓĞÔÚPPTÖĞÌáµ½
-	 * ÕâÀïÖ»ÊÇĞ´³ö×Ô¼ºµÄÏë·¨£º
-	 * ¶¥µãÒÀÕÕÖ±ÏßµÄËõ·ÅÔ­Ôò½øĞĞµãµÄ±ä»»£¬Í¬Ê±±¶Êı±ä»»rxºÍry
+	 * æ¤­åœ†çš„ç¼©æ”¾ç®—æ³•æ²¡æœ‰åœ¨PPTä¸­æåˆ°
+	 * è¿™é‡Œåªæ˜¯å†™å‡ºè‡ªå·±çš„æƒ³æ³•ï¼š
+	 * é¡¶ç‚¹ä¾ç…§ç›´çº¿çš„ç¼©æ”¾åŸåˆ™è¿›è¡Œç‚¹çš„å˜æ¢ï¼ŒåŒæ—¶å€æ•°å˜æ¢rxå’Œry
 	 */
 	x0 = Primitive::scale_t(x0, x, s);
 	y0 = Primitive::scale_t(y0, y, s);
@@ -38,6 +38,16 @@ void Polygon::scale(const int x, const int y, const double s)
 	{
 		vertex.x = Primitive::scale_t(vertex.x, x, s);
 		vertex.y = Primitive::scale_t(vertex.y, y, s);
+	}
+	return;
+}
+
+void Curve::scale(const int x, const int y, const double s)
+{
+	for (auto &fixed_point : fixed_points)
+	{
+		fixed_point.x = Primitive::scale_t(fixed_point.x, x, s);
+		fixed_point.y = Primitive::scale_t(fixed_point.y, y, s);
 	}
 	return;
 }

@@ -65,3 +65,15 @@ void Polygon::rotate(const int x, const int y, const int r)
 	return;
 }
 
+void Curve::rotate(const int x, const int y, const int r)
+{
+	for (auto &fixed_point : fixed_points)
+	{
+		const int temp_x(fixed_point.x), temp_y(fixed_point.y);
+		fixed_point.x = Primitive::rotate_x(temp_x, x, temp_y, y, r);
+		fixed_point.y = Primitive::rotate_y(temp_y, y, temp_x, x, r);
+	}
+	return;
+}
+
+

@@ -104,11 +104,11 @@ public:
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 
-	// 下面是所有的图元构造函数
+	// 下面是所有的图元压入队列的调用函数
 	void appendStraightLinePrimitive(int x1, int y1, int x2, int y2, int p_num, QPen pen, StraightLineAlgorithm algorithm);
 	void appendEllipsePrimitive(int x0, int y0, int rx, int ry, int p_num, QPen pen);
 	void appendPolygonPrimitive(vector<MyPoint> vertices, int p_num, QPen pen, StraightLineAlgorithm algorithm);
-	
+	void appendCurvePrimitive(vector<MyPoint> fixed_points, int p_num, QPen pen, CurveAlgorithm algorithm);
 
 
 	// 文件系统

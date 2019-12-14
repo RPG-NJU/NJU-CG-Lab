@@ -1,4 +1,4 @@
-#include "Primitive.h"
+﻿#include "Primitive.h"
 
 void StraightLine::translate(const int dx, const int dy)
 {
@@ -26,3 +26,14 @@ void Polygon::translate(const int dx, const int dy)
 	}
 	return;
 }
+
+void Curve::translate(const int dx, const int dy)
+{
+	for (auto &fixed_point : fixed_points)
+	{
+		fixed_point.x += dx;
+		fixed_point.y += dy;
+	}
+	return;
+}
+

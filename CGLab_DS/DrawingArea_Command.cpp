@@ -156,8 +156,11 @@ void DrawingArea::runCommand()
 				painter.drawPoint(point.x, point.y);
 			}
 
-			// 缺少了一个图元的压入
-			qDebug() << "here" << endl;
+			/*qDebug() << "here" << endl;*/
+			appendCurvePrimitive(fixed_points_in_command, id, pen, algorithm_in_use);
+			
+			qDebug() << "绘制了:";
+			primitives[primitives.size() - 1]->print();
 
 			this->update();
 		}

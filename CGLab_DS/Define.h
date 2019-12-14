@@ -78,8 +78,8 @@ struct MyPoint_double
 	double y;
 };
 
-MyPoint_double operator+(const MyPoint_double left, const MyPoint_double right);
-MyPoint_double operator*(const MyPoint_double left, const MyPoint_double right);
+MyPoint_double operator+(const MyPoint_double left, const MyPoint_double right); // 用于两个浮点数坐标的相加
+MyPoint_double operator*(const MyPoint_double left, const MyPoint_double right); // 
 MyPoint_double operator*(const double left, const MyPoint_double right);
 
 #endif // DEFINE_H

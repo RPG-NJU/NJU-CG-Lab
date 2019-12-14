@@ -135,6 +135,12 @@ void DrawingArea::drawPrimitive(Primitive* primitive, QImage &thisPaper)
 		Polygon* p_polygon = dynamic_cast<Polygon*>(primitive);
 		points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
 	}break;
+	case PrimitiveType::Curve:
+	{
+		Curve* p_curve = dynamic_cast<Curve*>(primitive);
+		points = createCurve(p_curve->_fixed_points(), p_curve->_algorithm());
+	}break;
+	default: break; // 此时无法进行任何的操作
 	}
 	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
 	painter.setPen(pen);
@@ -218,6 +224,13 @@ void DrawingArea::appendPolygonPrimitive(vector<MyPoint> vertices, int p_num, QP
 	primitives.push_back(new Polygon(vertices, p_num, pen, algorithm));
 	return;
 }
+
+void DrawingArea::appendCurvePrimitive(vector<MyPoint> fixed_points, int p_num, QPen pen, CurveAlgorithm algorithm)
+{
+	primitives.push_back(new Curve(fixed_points, p_num, pen, algorithm));
+	return;
+}
+
 
 
 
