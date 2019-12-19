@@ -21,7 +21,8 @@ vector<MyPoint> DrawingArea::createCurveByBezier(const vector<MyPoint>& fixed_po
 	for (double u(0); u <= 1; u = u + BEZIER_DELTA)
 	{
 		MyPoint_double point = Bezier_P(fixed_points, 0, r, u);
-		points.push_back({ (int)point.x, (int)point.y });
+		//points.push_back({ (int)point.x, (int)point.y });
+		points.push_back({ round(point.x), round(point.y) });
 	}
 
 	return points;
