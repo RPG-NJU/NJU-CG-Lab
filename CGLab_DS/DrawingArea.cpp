@@ -86,6 +86,9 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 			isDrawing = true;
 			begin_point = event->pos(); // 获得当前鼠标的位置
 			end_point = event->pos(); // 增加这行代码为了防止在点击和释放中间没有移动鼠标而导致的错误图元问题
+			
+			tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
+			mouseDraw(tempPaper);
 		}
 
 		else if (isDrawing) // 此时的逻辑是终止绘图
@@ -109,6 +112,8 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 		if (isDrawing)
 		{
 			mouseDrawAdd(tempPaper);
+			tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
+			mouseDraw(tempPaper);
 		}
 	}
 
