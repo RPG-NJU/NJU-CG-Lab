@@ -12,6 +12,8 @@
 #define PI 3.141592653
 
 #define BEZIER_DELTA 0.001
+#define B_SPLINE_DELTA 0.001
+#define B_SPLINE_K 3 // 代表三次B样条曲线
 
 
 enum class DrawMode
@@ -82,5 +84,7 @@ struct MyPoint_double
 MyPoint_double operator+(const MyPoint_double left, const MyPoint_double right); // 用于两个浮点数坐标的相加
 MyPoint_double operator*(const MyPoint_double left, const MyPoint_double right); // 
 MyPoint_double operator*(const double left, const MyPoint_double right);
+MyPoint_double operator*(const MyPoint left, const MyPoint_double right);
+MyPoint_double operator*(const MyPoint left, const double right);
 
 #endif // DEFINE_H

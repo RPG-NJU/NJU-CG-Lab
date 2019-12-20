@@ -100,8 +100,10 @@ public:
 	vector<MyPoint> createPolygon(const vector<MyPoint> &vertices, StraightLineAlgorithm algorithm);
 	vector<MyPoint> createCurve(const vector<MyPoint>& fixed_points, CurveAlgorithm algorithm);
 	vector<MyPoint> createCurveByBezier(const vector<MyPoint>& fixed_points);
+	vector<MyPoint> createCurveByB_spline(const vector<MyPoint>& fixed_points);
 
 	MyPoint_double Bezier_P(const vector<MyPoint>& fixed_points, int i, int r, double u); // 用于迭代计算贝塞尔曲线
+	MyPoint_double B_spline_3(const vector<MyPoint> p_points, double u); // 用于计算三次B样条曲线
 	
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息

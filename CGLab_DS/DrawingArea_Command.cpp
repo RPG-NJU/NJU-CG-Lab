@@ -269,6 +269,8 @@ void DrawingArea::runCommand()
 	{
 		x->print();
 	}*/
+
+	commands.clear(); // 用于清空缓冲的命令
 	this->update();
 	return;
 }

@@ -6,6 +6,7 @@ vector<MyPoint> DrawingArea::createCurve(const vector<MyPoint>& fixed_points, Cu
 	switch (algorithm)
 	{
 	case CurveAlgorithm::Bezier: return createCurveByBezier(fixed_points);
+	case CurveAlgorithm::B_spline: return createCurveByB_spline(fixed_points);
 
 	default: vector<MyPoint> points; return points; // 作为默认情况
 	}
@@ -42,4 +43,45 @@ MyPoint_double DrawingArea::Bezier_P(const vector<MyPoint>& fixed_points, int i,
 	return (1 - u) * p_i + u * p_iplus1;
 }
 
+
+vector<MyPoint> DrawingArea::createCurveByB_spline(const vector<MyPoint>& fixed_points)
+{
+	// 在我们的实验中，只考虑三次均匀B样条曲线
+	vector<MyPoint> points; // 用于存储所有需要画图的点
+
+	if (fixed_points.size() > B_SPLINE_K) // 对于三次曲线，如果小于四个点，则不能进行运算，所以就不返回有效点
+	{
+		for (int i(0); i + B_SPLINE_K < fixed_points.size(); ++i) // 每四个点作为一组
+		{
+			vector<MyPoint> p_points;
+			p_points.push_back(fixed_points[i]);
+			p_points.push_back(fixed_points[i + 1]);
+			p_points.push_back(fixed_points[i + 2]);
+			p_points.push_back(fixed_points[i + 3]);
+			for (double u(0.0); u <= 1; u = u + B_SPLINE_DELTA)
+			{
+				const MyPoint_double point = B_spline_3(p_points, u);
+				points.push_back({ round(point.x), round(point.y) });
+			}
+		}
+	}
+
+
+	return points;
+}
+
+MyPoint_double DrawingArea::B_spline_3(const vector<MyPoint> p_points, double u)
+{
+	if (p_points.size() != 4)
+		return { 0, 0 };
+	double b0, b1, b2, b3;
+	b0 = 1.0 / 6.0 * (1 - u) * (1 - u) * (1 - u);
+	b1 = 1.0 / 6.0 * (3 * u * u * u - 6 * u * u + 4);
+	b2 = 1.0 / 6.0 * (-3 * u * u * u + 3 * u * u + 3 * u + 1);
+	b3 = 1.0 / 6.0 * u * u * u;
+
+	MyPoint_double point({0.0, 0.0});
+	point = p_points[0] * b0 + p_points[1] * b1 + p_points[2] * b2 + p_points[3] * b3;
+	return point;
+}
 
