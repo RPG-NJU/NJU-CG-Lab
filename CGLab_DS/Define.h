@@ -24,7 +24,8 @@ enum class DrawMode
 	Circle,
 	Ellipse,
 	Polygon,
-	Curve_Bezier
+	Curve_Bezier,
+	Curve_B_spline
 };
 
 enum class PrimitiveType

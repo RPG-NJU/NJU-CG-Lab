@@ -111,6 +111,7 @@ void MainWindow::on_actionPolygon_triggered()
 	ui->drawingArea->changePenMode(DrawMode::Polygon);
 	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
 	ui->actionPolygon->setChecked(true);
+	return;
 }
 
 void MainWindow::on_actionCurveBezier_triggered()
@@ -118,6 +119,14 @@ void MainWindow::on_actionCurveBezier_triggered()
 	ui->drawingArea->changePenMode(DrawMode::Curve_Bezier);
 	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
 	ui->actionCurveBezier->setChecked(true);
+	return;
+}
+
+void MainWindow::on_actionCurveB_spline_triggered()
+{
+	ui->drawingArea->changePenMode(DrawMode::Curve_B_spline);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionCurveB_spline->setChecked(true);
 	return;
 }
 
@@ -225,6 +234,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		ui->actionEllipse->setChecked(false);
 		ui->actionPolygon->setChecked(false);
 		ui->actionCurveBezier->setChecked(false);
+		ui->actionCurveB_spline->setChecked(false);
 		break;
 		}
 	case ClearToolBarCheckedMode::All:

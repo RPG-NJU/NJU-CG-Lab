@@ -84,6 +84,7 @@ public:
 	void mouseDrawEllipse(QImage& thisPaper);
 	void mouseDrawPolygon(QImage& thisPaper, const StraightLineAlgorithm algorithm);
 	void mouseDrawCurve_Bezier(QImage& thisPaper);
+	void mouseDrawCurve_B_spline(QImage& thisPaper);
 	void mouseDrawPolygonAddPoint(QImage& thisPaper);
 	void mouseDrawCurveAddPoint(QImage& thisPaper);
 	

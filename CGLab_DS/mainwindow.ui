@@ -144,6 +144,7 @@
    <addaction name="actionEllipse"/>
    <addaction name="actionPolygon"/>
    <addaction name="actionCurveBezier"/>
+   <addaction name="actionCurveB_spline"/>
    <addaction name="actionPalette"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -378,6 +379,21 @@
    </property>
    <property name="toolTip">
     <string>贝塞尔曲线</string>
+   </property>
+  </action>
+  <action name="actionCurveB_spline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Curve_B_spline</normaloff>:/MainWindow/Curve_B_spline</iconset>
+   </property>
+   <property name="text">
+    <string>B样条曲线</string>
+   </property>
+   <property name="toolTip">
+    <string>B样条曲线</string>
    </property>
   </action>
  </widget>

@@ -18,6 +18,7 @@ void DrawingArea::mouseDraw(QImage& thisPaper)
 	case DrawMode::Ellipse: mouseDrawEllipse(thisPaper); break;
 	case DrawMode::Polygon: mouseDrawPolygon(thisPaper, StraightLineAlgorithm::Bresenham); break;
 	case DrawMode::Curve_Bezier: mouseDrawCurve_Bezier(thisPaper); break;
+	case DrawMode::Curve_B_spline: mouseDrawCurve_B_spline(thisPaper); break;
 	default: break; // 如果找不到对应的，就不做任何处理
 	}
 
@@ -31,6 +32,7 @@ void DrawingArea::mouseDrawAdd(QImage& thisPaper)
 	{
 	case DrawMode::Polygon: mouseDrawPolygonAddPoint(thisPaper);
 	case DrawMode::Curve_Bezier: mouseDrawCurveAddPoint(thisPaper);
+	case DrawMode::Curve_B_spline: mouseDrawCurveAddPoint(thisPaper);
 	default: break;
 	}
 
@@ -120,6 +122,30 @@ void DrawingArea::mouseDrawCurve_Bezier(QImage& thisPaper)
 
 	return;
 }
+
+void DrawingArea::mouseDrawCurve_B_spline(QImage& thisPaper)
+{
+	if (temp_primitive && temp_primitive->_type() == PrimitiveType::Curve) // 此时如果已经是曲线的话
+	{
+		Curve* curve = dynamic_cast<Curve*>(temp_primitive);
+		curve->setTail(end_point.x(), end_point.y());
+	}
+
+	else // 此时就增加一个对应的曲线图元
+	{
+		if (!temp_primitive)
+			delete temp_primitive;
+
+		vector<MyPoint> fixed_points;
+		fixed_points.push_back({ begin_point.x(), begin_point.y() });
+		fixed_points.push_back({ end_point.x(), end_point.y() });
+
+		temp_primitive = new Curve(fixed_points, now_primitive_num, pen, CurveAlgorithm::B_spline);
+	}
+
+	return;
+}
+
 
 
 void DrawingArea::mouseDrawPolygonAddPoint(QImage& thisPaper)

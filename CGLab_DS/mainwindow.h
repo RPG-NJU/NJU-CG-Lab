@@ -67,6 +67,8 @@ private slots:
 
     void on_actionCurveBezier_triggered();
 
+    void on_actionCurveB_spline_triggered();
+
 private:
     Ui::MainWindow *ui;
 
