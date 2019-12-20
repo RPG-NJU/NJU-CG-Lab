@@ -160,6 +160,9 @@ public:
 	bool clipByCohen_Sutherland(const int x1, const int y1, const int x2, const int y2) override;
 	bool clipByLiang_Barsky(const int x1, const int y1, const int x2, const int y2) override;
 
+	void setTail(const int x, const int y) { fixed_points[fixed_points.size() - 1].x = x; fixed_points[fixed_points.size() - 1].y = y; return; } // 用于设置末尾点的坐标
+	void addPoint();
+
 	CurveAlgorithm _algorithm() const { return algorithm; }
 	vector<MyPoint> _fixed_points() const { return fixed_points; }
 	

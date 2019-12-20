@@ -8,5 +8,6 @@
         <file alias="Circle">img/MainWindow/Circle.png</file>
         <file alias="Ellipse">img/MainWindow/Ellipse.png</file>
         <file alias="Ploygon">img/MainWindow/Polygon.png</file>
+        <file alias="Curve_Bezier">img/MainWindow/Curve_Bezier.png</file>
     </qresource>
 </RCC>

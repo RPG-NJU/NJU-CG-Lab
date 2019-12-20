@@ -73,6 +73,15 @@ void Polygon::addPoint()
 	return;
 }
 
+void Curve::addPoint()
+{
+	MyPoint point = fixed_points[fixed_points.size() - 1];
+	fixed_points.push_back(point);
+
+	return;
+}
+
+
 
 void Curve::print() const
 {

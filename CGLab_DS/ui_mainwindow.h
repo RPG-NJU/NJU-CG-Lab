@@ -43,6 +43,7 @@ public:
     QAction *actionClearPaper;
     QAction *actionSetPaperSize;
     QAction *actionPolygon;
+    QAction *actionCurveBezier;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -144,6 +145,12 @@ public:
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/MainWindow/Ploygon"), QSize(), QIcon::Normal, QIcon::Off);
         actionPolygon->setIcon(icon7);
+        actionCurveBezier = new QAction(MainWindow);
+        actionCurveBezier->setObjectName(QString::fromUtf8("actionCurveBezier"));
+        actionCurveBezier->setCheckable(true);
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/MainWindow/Curve_Bezier"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCurveBezier->setIcon(icon8);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -205,6 +212,7 @@ public:
         toolBar->addAction(actionCircle);
         toolBar->addAction(actionEllipse);
         toolBar->addAction(actionPolygon);
+        toolBar->addAction(actionCurveBezier);
         toolBar->addAction(actionPalette);
 
         retranslateUi(MainWindow);
@@ -275,6 +283,10 @@ public:
         actionPolygon->setText(QCoreApplication::translate("MainWindow", "\345\244\232\350\276\271\345\275\242", nullptr));
 #if QT_CONFIG(tooltip)
         actionPolygon->setToolTip(QCoreApplication::translate("MainWindow", "\345\244\232\350\276\271\345\275\242", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionCurveBezier->setText(QCoreApplication::translate("MainWindow", "\350\264\235\345\241\236\345\260\224\346\233\262\347\272\277", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCurveBezier->setToolTip(QCoreApplication::translate("MainWindow", "\350\264\235\345\241\236\345\260\224\346\233\262\347\272\277", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

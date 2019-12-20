@@ -17,6 +17,7 @@ void DrawingArea::mouseDraw(QImage& thisPaper)
 	case DrawMode::Circle: mouseDrawCircle(thisPaper); break;
 	case DrawMode::Ellipse: mouseDrawEllipse(thisPaper); break;
 	case DrawMode::Polygon: mouseDrawPolygon(thisPaper, StraightLineAlgorithm::Bresenham); break;
+	case DrawMode::Curve_Bezier: mouseDrawCurve_Bezier(thisPaper); break;
 	default: break; // 如果找不到对应的，就不做任何处理
 	}
 
@@ -29,7 +30,11 @@ void DrawingArea::mouseDrawAdd(QImage& thisPaper)
 	switch (drawMode)
 	{
 	case DrawMode::Polygon: mouseDrawPolygonAddPoint(thisPaper);
+	case DrawMode::Curve_Bezier: mouseDrawCurveAddPoint(thisPaper);
+	default: break;
 	}
+
+	return;
 }
 
 
@@ -93,6 +98,30 @@ void DrawingArea::mouseDrawPolygon(QImage& thisPaper, const StraightLineAlgorith
 	return;
 }
 
+void DrawingArea::mouseDrawCurve_Bezier(QImage& thisPaper)
+{
+	if (temp_primitive && temp_primitive->_type() == PrimitiveType::Curve) // 此时如果已经是曲线的话
+	{
+		Curve* curve = dynamic_cast<Curve*>(temp_primitive);
+		curve->setTail(end_point.x(), end_point.y());
+	}
+
+	else
+	{
+		if (!temp_primitive)
+			delete temp_primitive;
+
+		vector<MyPoint> fixed_points;
+		fixed_points.push_back({ begin_point.x(), begin_point.y() });
+		fixed_points.push_back({ end_point.x(), end_point.y() });
+
+		temp_primitive = new Curve(fixed_points, now_primitive_num, pen, CurveAlgorithm::Bezier);
+	}
+
+	return;
+}
+
+
 void DrawingArea::mouseDrawPolygonAddPoint(QImage& thisPaper)
 {
 	if (temp_primitive && temp_primitive->_type() == PrimitiveType::Polygon) // 此时，如果已经是多边形
@@ -102,6 +131,16 @@ void DrawingArea::mouseDrawPolygonAddPoint(QImage& thisPaper)
 	}
 	return;
 }
+
+void DrawingArea::mouseDrawCurveAddPoint(QImage& thisPaper)
+{
+	if (temp_primitive && temp_primitive->_type() == PrimitiveType::Curve)
+	{
+		Curve* curve = dynamic_cast<Curve*>(temp_primitive);
+		curve->addPoint();
+	}
+}
+
 
 
 void DrawingArea::mouseDrawStraightLine(QImage& thisPaper, const StraightLineAlgorithm algorithm)

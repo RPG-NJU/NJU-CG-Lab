@@ -143,6 +143,7 @@
    <addaction name="actionCircle"/>
    <addaction name="actionEllipse"/>
    <addaction name="actionPolygon"/>
+   <addaction name="actionCurveBezier"/>
    <addaction name="actionPalette"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -362,6 +363,21 @@
    </property>
    <property name="toolTip">
     <string>多边形</string>
+   </property>
+  </action>
+  <action name="actionCurveBezier">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Curve_Bezier</normaloff>:/MainWindow/Curve_Bezier</iconset>
+   </property>
+   <property name="text">
+    <string>贝塞尔曲线</string>
+   </property>
+   <property name="toolTip">
+    <string>贝塞尔曲线</string>
    </property>
   </action>
  </widget>

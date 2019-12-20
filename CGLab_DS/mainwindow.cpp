@@ -113,6 +113,14 @@ void MainWindow::on_actionPolygon_triggered()
 	ui->actionPolygon->setChecked(true);
 }
 
+void MainWindow::on_actionCurveBezier_triggered()
+{
+	ui->drawingArea->changePenMode(DrawMode::Curve_Bezier);
+	clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+	ui->actionCurveBezier->setChecked(true);
+	return;
+}
+
 void MainWindow::on_actionOpenFile_triggered()
 {
 #ifdef PRINT_ACTION
@@ -216,6 +224,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		ui->actionCircle->setChecked(false);
 		ui->actionEllipse->setChecked(false);
 		ui->actionPolygon->setChecked(false);
+		ui->actionCurveBezier->setChecked(false);
 		break;
 		}
 	case ClearToolBarCheckedMode::All:
@@ -257,4 +266,3 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	}
 	return;
 }
-

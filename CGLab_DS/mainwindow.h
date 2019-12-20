@@ -65,6 +65,8 @@ private slots:
 
     void on_actionPolygon_triggered();
 
+    void on_actionCurveBezier_triggered();
+
 private:
     Ui::MainWindow *ui;
 
