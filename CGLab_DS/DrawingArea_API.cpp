@@ -197,7 +197,7 @@ void DrawingArea::appendPrimitiveByMouseEvent()
 	{
 		primitives.push_back(new Ellipse(begin_point, end_point, pen, now_primitive_num));
 	}break;
-	default: return;
+	default: return; // 如果当前没有匹配的DrawMode，则推出
 	}
 
 	++now_primitive_num;
