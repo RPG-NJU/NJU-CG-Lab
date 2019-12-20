@@ -167,8 +167,11 @@ void DrawingArea::clearPaper(bool save_primitives)
 	paper.fill(paperBackground);
 	tempPaper.fill(paperBackground);
 
-	if (!save_primitives)
+	if (!save_primitives) // 此时代表了不保留图元信息
+	{
 		primitives.clear();
+		now_primitive_num = 0; // 将当前图元的编号重新置为0
+	}
 	 
 	this->update();
 	return;
