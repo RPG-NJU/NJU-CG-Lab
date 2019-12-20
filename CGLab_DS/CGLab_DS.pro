@@ -26,6 +26,7 @@ SOURCES += \
     DrawingArea_Command.cpp \
     DrawingArea_Curve.cpp \
     DrawingArea_Ellipse.cpp \
+    DrawingArea_Event.cpp \
     DrawingArea_File.cpp \
     DrawingArea_Mouse.cpp \
     DrawingArea_Polygon.cpp \
