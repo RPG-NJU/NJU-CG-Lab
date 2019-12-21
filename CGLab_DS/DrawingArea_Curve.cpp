@@ -19,7 +19,7 @@ vector<MyPoint> DrawingArea::createCurveByBezier(const vector<MyPoint>& fixed_po
 
 	int r(fixed_points.size() - 1); // 用于表示需要迭代的次数，也是贝塞尔曲线的次数
 
-	for (double u(0); u <= 1; u = u + BEZIER_DELTA)
+	for (double u(0); u <= 1; u = u + BEZIER_DELTA / fixed_points.size())
 	{
 		MyPoint_double point = Bezier_P(fixed_points, 0, r, u);
 		//points.push_back({ (int)point.x, (int)point.y });
