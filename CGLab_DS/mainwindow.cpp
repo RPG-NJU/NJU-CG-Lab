@@ -278,3 +278,14 @@ void MainWindow::on_actionSetPaperSize_triggered()
 }
 
 
+
+void MainWindow::on_actionSelect_triggered()
+{
+	QRubberBand *qrb = new QRubberBand(QRubberBand::Line, this);
+	qrb->resize(100, 100);
+	qrb->move(100, 100);
+	qrb->setBackgroundRole(QPalette::Light);
+	qrb->setAutoFillBackground(false);
+	qrb->show();
+	return;
+}

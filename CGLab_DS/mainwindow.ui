@@ -132,6 +132,7 @@
     <addaction name="actionInputScale"/>
     <addaction name="actionInputClip"/>
     <addaction name="separator"/>
+    <addaction name="actionSelect"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProject"/>
@@ -473,6 +474,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P, Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="text">
+    <string>选择</string>
+   </property>
+   <property name="toolTip">
+    <string>选择区域</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </action>
  </widget>

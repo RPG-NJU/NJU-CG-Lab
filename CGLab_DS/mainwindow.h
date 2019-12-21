@@ -77,6 +77,8 @@ private slots:
 
     void on_actionInputClip_triggered();
 
+    void on_actionSelect_triggered();
+
 private:
     Ui::MainWindow *ui;
 

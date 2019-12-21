@@ -14,6 +14,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QColor>
+#include <QRubberBand> // 用于实现矩形选择框
 
 #include <vector>
 #include <string>
