@@ -23,7 +23,12 @@ vector<MyPoint> DrawingArea::createCurveByBezier(const vector<MyPoint>& fixed_po
 	{
 		MyPoint_double point = Bezier_P(fixed_points, 0, r, u);
 		//points.push_back({ (int)point.x, (int)point.y });
-		points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
+		if (points.empty()) // 如果当时点位为空，则必须需要压入一个点位
+		{
+			points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
+		} // 否则
+		else if (point != points[points.size() - 1]) // 只有当这个点和之前的结尾点不一样的时候，才考虑压入
+			points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
 	}
 
 	return points;
@@ -61,7 +66,12 @@ vector<MyPoint> DrawingArea::createCurveByB_spline(const vector<MyPoint>& fixed_
 			for (double u(0.0); u <= 1; u = u + B_SPLINE_DELTA)
 			{
 				const MyPoint_double point = B_spline_3(p_points, u);
-				points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
+				if (points.empty()) // 如果当前点的列表为空，则必须需要压入一个点
+				{
+					points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
+				} // 否则
+				else if (point != points[points.size() - 1]) // 只有与上一个点不重复的时候才会压入一个点
+					points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
 			}
 		}
 	}

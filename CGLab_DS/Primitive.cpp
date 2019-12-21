@@ -91,4 +91,12 @@ void Curve::print() const
 }
 
 
+Curve::Curve(const Curve& curve)
+{
+	this->type = curve.type;
+	this->p_num = curve.p_num;
+	this->pen_in_use = curve.pen_in_use;
+	this->fixed_points.assign(curve.fixed_points.begin(), curve.fixed_points.end());
+	this->algorithm = curve.algorithm;
+}
 

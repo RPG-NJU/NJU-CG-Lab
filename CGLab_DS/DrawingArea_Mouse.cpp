@@ -23,6 +23,12 @@ void DrawingArea::mouseDraw(QImage& thisPaper)
 	}
 
 	drawPrimitive(temp_primitive, thisPaper);
+
+	if (drawMode == DrawMode::Curve_B_spline || drawMode == DrawMode::Curve_Bezier)
+	{
+		temptempPaper = thisPaper;
+		drawVirtualPrimitive(temptemp_primitive, temptempPaper);
+	}
 	return;
 }
 
@@ -120,6 +126,14 @@ void DrawingArea::mouseDrawCurve_Bezier(QImage& thisPaper)
 		temp_primitive = new Curve(fixed_points, now_primitive_num, pen, CurveAlgorithm::Bezier);
 	}
 
+	// 下面是对临时的临时图元的操作
+	if (temptemp_primitive != nullptr)
+	{
+		delete temptemp_primitive;
+	}
+	temptemp_primitive = new Curve(*dynamic_cast<Curve*>(temp_primitive));
+	dynamic_cast<Curve*>(temptemp_primitive)->addPoint();
+
 	return;
 }
 
@@ -142,6 +156,14 @@ void DrawingArea::mouseDrawCurve_B_spline(QImage& thisPaper)
 
 		temp_primitive = new Curve(fixed_points, now_primitive_num, pen, CurveAlgorithm::B_spline);
 	}
+
+	// 下面是对临时的临时图元的操作
+	if (temptemp_primitive != nullptr)
+	{
+		delete temptemp_primitive;
+	}
+	temptemp_primitive = new Curve(*dynamic_cast<Curve*>(temp_primitive));
+	dynamic_cast<Curve*>(temptemp_primitive)->addPoint();
 
 	return;
 }

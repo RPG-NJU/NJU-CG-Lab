@@ -151,7 +151,7 @@ private:
 public:
 	Curve(vector<MyPoint> fixed_points, int p_num, QPen pen, CurveAlgorithm algorithm) :
 		Primitive(p_num, pen, PrimitiveType::Curve), fixed_points(fixed_points), algorithm(algorithm) { }
-
+	Curve(const Curve& curve);
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;

@@ -87,5 +87,8 @@ MyPoint_double operator*(const MyPoint_double left, const MyPoint_double right);
 MyPoint_double operator*(const double left, const MyPoint_double right);
 MyPoint_double operator*(const MyPoint left, const MyPoint_double right);
 MyPoint_double operator*(const MyPoint left, const double right);
-
+bool operator==(const MyPoint &left, const MyPoint &right);
+bool operator!=(const MyPoint& left, const MyPoint& right);
+bool operator==(const MyPoint_double& left, const MyPoint& right);
+bool operator!=(const MyPoint_double& left, const MyPoint& right);
 #endif // DEFINE_H

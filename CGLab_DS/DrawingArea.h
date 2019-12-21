@@ -45,6 +45,7 @@ private:
 	
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
 	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
+	QImage temptempPaper; // 只用于曲线的绘制中的多缓冲
 	QRgb paperBackground;
 	QPen pen; // 绘图笔
 	QPoint begin_point, end_point; // 鼠标绘图事件中的鼠标起始点和终点
@@ -58,6 +59,8 @@ private:
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
 	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
+	Primitive* temptemp_primitive = nullptr; // 临时的临时图元
+	
 
 	//QTextEdit* show_command_text;
 	vector<vector<string> > commands;
@@ -137,6 +140,7 @@ public:
 
 	void drawAll(); // 用于绘制所有图元
 	void drawPrimitive(Primitive* primitive, QImage &thisPaper); // 用于绘制某个特定的图元
+	void drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper); // 用于虚线绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 	void refresh(); // 用于刷新整个画布
 

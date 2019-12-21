@@ -120,7 +120,6 @@ void DrawingArea::drawPrimitive(Primitive* primitive, QImage &thisPaper)
 	if (!primitive)
 		return;
 
-	
 	vector<MyPoint> points;
 	pen = primitive->_pen();
 	switch (primitive->_type())
@@ -167,6 +166,64 @@ void DrawingArea::drawPrimitive(Primitive* primitive, QImage &thisPaper)
 	
 	return;
 }
+
+void DrawingArea::drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper)
+{
+	if (!primitive)
+		return;
+
+	vector<MyPoint> points;
+	pen = primitive->_pen();
+	switch (primitive->_type())
+	{
+	case PrimitiveType::None: break;
+	case PrimitiveType::Nature: break; // 目前没有解决自然线条的绘制
+	case PrimitiveType::StraightLine:
+	{
+		StraightLine* p_straightline = dynamic_cast<StraightLine*>(primitive);
+		StraightLineAlgorithm algorithm = p_straightline->_algorithm();
+		points = createStraightLine(p_straightline->x1(), p_straightline->y1(), p_straightline->x2(), p_straightline->y2(), p_straightline->_algorithm());
+	}break;
+	case PrimitiveType::Ellipse:
+	{
+		Ellipse* p_ellipse = dynamic_cast<Ellipse*>(primitive);
+		points = createEllipse(p_ellipse->_x0(), p_ellipse->_y0(), p_ellipse->_rx(), p_ellipse->_ry());
+	}break;
+	case PrimitiveType::Polygon:
+	{
+		Polygon* p_polygon = dynamic_cast<Polygon*>(primitive);
+		points = createPolygon(p_polygon->_vertices(), p_polygon->_algorithm());
+	}break;
+	case PrimitiveType::Curve:
+	{
+		Curve* p_curve = dynamic_cast<Curve*>(primitive);
+		points = createCurve(p_curve->_fixed_points(), p_curve->_algorithm());
+	}break;
+	default: break; // 此时无法进行任何的操作
+	}
+	QPainter painter(&thisPaper); // 使用QImage初始化QPainter，需要使用指针
+	painter.setPen(pen);
+
+	/*for (const auto& point : points)
+	{
+		painter.drawPoint(point.x, point.y);
+	}*/
+	for (int i(0); i < points.size(); )
+	{
+		painter.drawPoint(points[i].x, points[i].y);
+		i += 5;
+	}
+
+	if (!isDrawing)
+	{
+		qDebug() << "绘制Virtual图元：";
+		primitive->print();
+	}
+
+
+	return;
+}
+
 
 
 
