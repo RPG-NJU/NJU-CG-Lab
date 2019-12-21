@@ -46,3 +46,40 @@ void DrawingArea::inputScale(const int id, const int x0, const int y0, const dou
 	
 	return;
 }
+
+void DrawingArea::inputClip(const int id, const int x1, const int y1, const int x2, const int y2, const time_t uid)
+{
+	for (auto& primitive : primitives)
+	{
+		if (primitive->id() == id)
+		{
+			primitive->clip(x1, y1, x2, y2, ClipAlgorithm::Liang_Barsky); // 这里默认使用Liang-Barsky算法进行裁剪
+			refresh();
+			emit dialogStatus(uid, true);
+			return;
+		}
+	}
+
+	GeneralMessageBox::NoSuchPrimitive(id, this);
+
+	return;
+}
+
+void DrawingArea::inputRotate(const int id, const int x0, const int y0, const int r, const time_t uid)
+{
+	for (auto& primitive : primitives)
+	{
+		if (primitive->id() == id)
+		{
+			primitive->rotate(x0, y0, r);
+			refresh();
+			emit dialogStatus(uid, true);
+			return;
+		}
+	}
+
+	GeneralMessageBox::NoSuchPrimitive(id, this);
+
+	return;
+}
+
