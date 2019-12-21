@@ -25,5 +25,6 @@ void TranslateDialog::receive(const time_t uid, bool flag)
 {
 	if (uid == this->uid && flag == true)
 		this->close();
+	return;
 }
 

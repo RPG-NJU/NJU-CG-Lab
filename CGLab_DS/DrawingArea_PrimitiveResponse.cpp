@@ -25,3 +25,21 @@ void DrawingArea::inputTranslate(const int id, const int dx, const int dy, const
 
 	return;
 }
+
+void DrawingArea::inputScale(const int id, const int x0, const int y0, const double s, const time_t uid)
+{
+	for (auto &primitive : primitives)
+	{
+		if (primitive->id() == id)
+		{
+			primitive->scale(x0, y0, s);
+			refresh();
+			emit dialogStatus(uid, true);
+			return;
+		}
+	}
+
+	QMessageBox::warning(this, tr("警告"), tr(("没有找到" + std::to_string(id) + "号图元").c_str()));
+
+	return;
+}

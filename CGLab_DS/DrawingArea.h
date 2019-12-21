@@ -92,7 +92,7 @@ public:
 
 	// 通过输入框来进行图元平移的响应函数
 	void inputTranslate(const int id, const int dx, const int dy, const time_t uid);
-	
+	void inputScale(const int id, const int x0, const int y0, const double s, const time_t uid);
 	
 
 	// 重构框架部分结束 2019.12.5

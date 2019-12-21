@@ -46,6 +46,9 @@ public:
     QAction *actionCurveBezier;
     QAction *actionCurveB_spline;
     QAction *actionInputTranslate;
+    QAction *actionInputRotate;
+    QAction *actionInputScale;
+    QAction *actionInputClip;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -163,6 +166,15 @@ public:
         actionInputTranslate = new QAction(MainWindow);
         actionInputTranslate->setObjectName(QString::fromUtf8("actionInputTranslate"));
         actionInputTranslate->setFont(font3);
+        actionInputRotate = new QAction(MainWindow);
+        actionInputRotate->setObjectName(QString::fromUtf8("actionInputRotate"));
+        actionInputRotate->setFont(font3);
+        actionInputScale = new QAction(MainWindow);
+        actionInputScale->setObjectName(QString::fromUtf8("actionInputScale"));
+        actionInputScale->setFont(font3);
+        actionInputClip = new QAction(MainWindow);
+        actionInputClip->setObjectName(QString::fromUtf8("actionInputClip"));
+        actionInputClip->setFont(font3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -223,6 +235,10 @@ public:
         menuProject->addAction(actionClearPaper);
         menuProject->addAction(actionSetPaperSize);
         menu->addAction(actionInputTranslate);
+        menu->addAction(actionInputRotate);
+        menu->addAction(actionInputScale);
+        menu->addAction(actionInputClip);
+        menu->addSeparator();
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
         toolBar->addAction(actionCircle);
@@ -313,6 +329,30 @@ public:
 #if QT_CONFIG(tooltip)
         actionInputTranslate->setToolTip(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273\345\233\276\345\205\203", nullptr));
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionInputTranslate->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P, Ctrl+T", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionInputRotate->setText(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254", nullptr));
+#if QT_CONFIG(tooltip)
+        actionInputRotate->setToolTip(QCoreApplication::translate("MainWindow", "\345\233\276\345\205\203\346\227\213\350\275\254", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionInputRotate->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P, Ctrl+R", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionInputScale->setText(QCoreApplication::translate("MainWindow", "\347\274\251\346\224\276", nullptr));
+#if QT_CONFIG(tooltip)
+        actionInputScale->setToolTip(QCoreApplication::translate("MainWindow", "\345\233\276\345\205\203\346\227\213\350\275\254", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionInputScale->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P, Ctrl+S", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionInputClip->setText(QCoreApplication::translate("MainWindow", "\350\243\201\345\211\252", nullptr));
+#if QT_CONFIG(tooltip)
+        actionInputClip->setToolTip(QCoreApplication::translate("MainWindow", "\345\233\276\345\205\203\350\243\201\345\211\252", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionInputClip->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P, Ctrl+C", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)

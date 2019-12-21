@@ -71,6 +71,12 @@ private slots:
 
     void on_actionInputTranslate_triggered();
 
+    void on_actionInputRotate_triggered();
+
+    void on_actionInputScale_triggered();
+
+    void on_actionInputClip_triggered();
+
 private:
     Ui::MainWindow *ui;
 

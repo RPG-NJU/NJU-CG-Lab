@@ -128,6 +128,10 @@
      <string>图元</string>
     </property>
     <addaction name="actionInputTranslate"/>
+    <addaction name="actionInputRotate"/>
+    <addaction name="actionInputScale"/>
+    <addaction name="actionInputClip"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuProject"/>
@@ -415,6 +419,60 @@
      <family>华文中宋</family>
      <pointsize>11</pointsize>
     </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P, Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionInputRotate">
+   <property name="text">
+    <string>旋转</string>
+   </property>
+   <property name="toolTip">
+    <string>图元旋转</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P, Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionInputScale">
+   <property name="text">
+    <string>缩放</string>
+   </property>
+   <property name="toolTip">
+    <string>图元旋转</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionInputClip">
+   <property name="text">
+    <string>裁剪</string>
+   </property>
+   <property name="toolTip">
+    <string>图元裁剪</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P, Ctrl+C</string>
    </property>
   </action>
  </widget>

@@ -20,6 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AboutAuthorDialog.cpp \
     AboutSoftwareDialog.cpp \
+    ClipDialog.cpp \
     Define.cpp \
     DrawingArea.cpp \
     DrawingArea_API.cpp \
@@ -32,12 +33,15 @@ SOURCES += \
     DrawingArea_Polygon.cpp \
     DrawingArea_PrimitiveResponse.cpp \
     DrawingArea_StraightLine.cpp \
+    GeneralMessageBox.cpp \
     OpFile.cpp \
     Primitive.cpp \
     Primitive_Clip.cpp \
     Primitive_Rotate.cpp \
     Primitive_Scale.cpp \
     Primitive_Translate.cpp \
+    RotateDialog.cpp \
+    ScaleDialog.cpp \
     SetPaperSizeDialog.cpp \
     TranslateDialog.cpp \
     main.cpp \
@@ -47,10 +51,14 @@ SOURCES += \
 HEADERS += \
     AboutAuthorDialog.h \
     AboutSoftwareDialog.h \
+    ClipDialog.h \
     Define.h \
     DrawingArea.h \
+    GeneralMessageBox.h \
     OpFile.h \
     Primitive.h \
+    RotateDialog.h \
+    ScaleDialog.h \
     SetPaperSizeDialog.h \
     TranslateDialog.h \
     mainwindow.h
@@ -58,6 +66,9 @@ HEADERS += \
 FORMS += \
     AboutAuthorDialog.ui \
     AboutSoftwareDialog.ui \
+    ClipDialog.ui \
+    RotateDialog.ui \
+    ScaleDialog.ui \
     SetPaperSizeDialog.ui \
     TranslateDialog.ui \
     mainwindow.ui
