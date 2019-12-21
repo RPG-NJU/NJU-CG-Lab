@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <sstream>
 #include <io.h>
+#include <ctime>
 
 using std::vector;
 using std::swap;
@@ -87,7 +88,10 @@ public:
 	void mouseDrawCurve_B_spline(QImage& thisPaper);
 	void mouseDrawPolygonAddPoint(QImage& thisPaper);
 	void mouseDrawCurveAddPoint(QImage& thisPaper);
-	
+
+
+	// 通过输入框来进行图元平移的响应函数
+	void inputTranslate(const int id, const int dx, const int dy, const time_t uid);
 	
 	
 
@@ -131,6 +135,7 @@ public:
 	void drawAll(); // 用于绘制所有图元
 	void drawPrimitive(Primitive* primitive, QImage &thisPaper); // 用于绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
+	void refresh(); // 用于刷新整个画布
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }
@@ -143,6 +148,7 @@ signals:
 	void newLocationStatus(const QString& location, int timeout = 0); // 传递给状态栏鼠标新的位置信息，第一个参数为要显示的字符，第二个参数为延迟
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口
 	void setPaperSizeSignal(int x, int y);
+	void dialogStatus(time_t uid, bool flag);
 };
 
 #endif // DRAWINGAERA_H

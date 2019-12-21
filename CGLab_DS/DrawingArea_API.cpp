@@ -51,6 +51,14 @@ void DrawingArea::changePenMode(const DrawMode new_mode)
 }
 
 
+void DrawingArea::refresh()
+{
+	clearPaper(true);
+	drawAll();
+	return;
+}
+
+
 
 void DrawingArea::drawAll()
 {

@@ -69,6 +69,8 @@ private slots:
 
     void on_actionCurveB_spline_triggered();
 
+    void on_actionInputTranslate_triggered();
+
 private:
     Ui::MainWindow *ui;
 

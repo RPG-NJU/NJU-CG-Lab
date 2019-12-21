@@ -45,6 +45,7 @@ public:
     QAction *actionPolygon;
     QAction *actionCurveBezier;
     QAction *actionCurveB_spline;
+    QAction *actionInputTranslate;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -55,6 +56,7 @@ public:
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuProject;
+    QMenu *menu;
     QToolBar *toolBar;
     QStatusBar *statusBar;
 
@@ -158,6 +160,9 @@ public:
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/MainWindow/Curve_B_spline"), QSize(), QIcon::Normal, QIcon::Off);
         actionCurveB_spline->setIcon(icon9);
+        actionInputTranslate = new QAction(MainWindow);
+        actionInputTranslate->setObjectName(QString::fromUtf8("actionInputTranslate"));
+        actionInputTranslate->setFont(font3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -191,6 +196,8 @@ public:
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         menuProject = new QMenu(menubar);
         menuProject->setObjectName(QString::fromUtf8("menuProject"));
+        menu = new QMenu(menubar);
+        menu->setObjectName(QString::fromUtf8("menu"));
         MainWindow->setMenuBar(menubar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
@@ -201,6 +208,7 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuProject->menuAction());
+        menubar->addAction(menu->menuAction());
         menubar->addAction(menuEdit->menuAction());
         menubar->addAction(menuAbout->menuAction());
         menuAbout->addAction(actionAboutAuthor);
@@ -214,6 +222,7 @@ public:
         menuProject->addAction(actionRedrawAll);
         menuProject->addAction(actionClearPaper);
         menuProject->addAction(actionSetPaperSize);
+        menu->addAction(actionInputTranslate);
         toolBar->addAction(actionChooseNature);
         toolBar->addAction(actionStraightLine);
         toolBar->addAction(actionCircle);
@@ -300,6 +309,10 @@ public:
 #if QT_CONFIG(tooltip)
         actionCurveB_spline->setToolTip(QCoreApplication::translate("MainWindow", "B\346\240\267\346\235\241\346\233\262\347\272\277", nullptr));
 #endif // QT_CONFIG(tooltip)
+        actionInputTranslate->setText(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273", nullptr));
+#if QT_CONFIG(tooltip)
+        actionInputTranslate->setToolTip(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273\345\233\276\345\205\203", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
@@ -313,6 +326,7 @@ public:
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "\347\274\226\350\276\221", nullptr));
         menuProject->setTitle(QCoreApplication::translate("MainWindow", "\347\224\273\345\270\203", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "\345\233\276\345\205\203", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

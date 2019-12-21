@@ -30,6 +30,7 @@ SOURCES += \
     DrawingArea_File.cpp \
     DrawingArea_Mouse.cpp \
     DrawingArea_Polygon.cpp \
+    DrawingArea_PrimitiveResponse.cpp \
     DrawingArea_StraightLine.cpp \
     OpFile.cpp \
     Primitive.cpp \
@@ -38,8 +39,10 @@ SOURCES += \
     Primitive_Scale.cpp \
     Primitive_Translate.cpp \
     SetPaperSizeDialog.cpp \
+    TranslateDialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mainwindow_Primitive.cpp
 
 HEADERS += \
     AboutAuthorDialog.h \
@@ -49,12 +52,14 @@ HEADERS += \
     OpFile.h \
     Primitive.h \
     SetPaperSizeDialog.h \
+    TranslateDialog.h \
     mainwindow.h
 
 FORMS += \
     AboutAuthorDialog.ui \
     AboutSoftwareDialog.ui \
     SetPaperSizeDialog.ui \
+    TranslateDialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -23,7 +23,7 @@ vector<MyPoint> DrawingArea::createCurveByBezier(const vector<MyPoint>& fixed_po
 	{
 		MyPoint_double point = Bezier_P(fixed_points, 0, r, u);
 		//points.push_back({ (int)point.x, (int)point.y });
-		points.push_back({ round(point.x), round(point.y) });
+		points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
 	}
 
 	return points;
@@ -61,7 +61,7 @@ vector<MyPoint> DrawingArea::createCurveByB_spline(const vector<MyPoint>& fixed_
 			for (double u(0.0); u <= 1; u = u + B_SPLINE_DELTA)
 			{
 				const MyPoint_double point = B_spline_3(p_points, u);
-				points.push_back({ round(point.x), round(point.y) });
+				points.push_back({ static_cast<int>(round(point.x)), static_cast<int>(round(point.y)) });
 			}
 		}
 	}
@@ -80,7 +80,7 @@ MyPoint_double DrawingArea::B_spline_3(const vector<MyPoint> p_points, double u)
 	b2 = 1.0 / 6.0 * (-3 * u * u * u + 3 * u * u + 3 * u + 1);
 	b3 = 1.0 / 6.0 * u * u * u;
 
-	MyPoint_double point({0.0, 0.0});
+	MyPoint_double point;
 	point = p_points[0] * b0 + p_points[1] * b1 + p_points[2] * b2 + p_points[3] * b3;
 	return point;
 }
