@@ -1,4 +1,5 @@
 ﻿#include "DrawingArea.h"
+#include "GeneralMessageBox.h"
 
 /*
  * 这是用来响应mainwindow中的“图元”下拉菜单中的对话框的函数定义部分
@@ -21,7 +22,8 @@ void DrawingArea::inputTranslate(const int id, const int dx, const int dy, const
 	}
 
 	// 如果执行到这里，则说明没有找到对应的图元
-	QMessageBox::warning(this, tr("警告"), tr(("没有找到" + std::to_string(id) + "号图元").c_str()));
+	/*QMessageBox::warning(this, tr("警告"), tr(("没有找到" + std::to_string(id) + "号图元").c_str()));*/
+	GeneralMessageBox::NoSuchPrimitive(id, this);
 
 	return;
 }
@@ -39,7 +41,8 @@ void DrawingArea::inputScale(const int id, const int x0, const int y0, const dou
 		}
 	}
 
-	QMessageBox::warning(this, tr("警告"), tr(("没有找到" + std::to_string(id) + "号图元").c_str()));
-
+	/*QMessageBox::warning(this, tr("警告"), tr(("没有找到" + std::to_string(id) + "号图元").c_str()));*/
+	GeneralMessageBox::NoSuchPrimitive(id, this);
+	
 	return;
 }
