@@ -49,11 +49,26 @@ void DrawingArea::inputScale(const int id, const int x0, const int y0, const dou
 
 void DrawingArea::inputClip(const int id, const int x1, const int y1, const int x2, const int y2, const time_t uid)
 {
-	for (auto& primitive : primitives)
+	//for (auto& primitive : primitives)
+	//{
+	//	if (primitive->id() == id)
+	//	{
+	//		primitive->clip(x1, y1, x2, y2, ClipAlgorithm::Liang_Barsky); // 这里默认使用Liang-Barsky算法进行裁剪
+	//		refresh();
+	//		emit dialogStatus(uid, true);
+	//		return;
+	//	}
+	//}
+	for (auto primitive = primitives.begin(); primitive < primitives.end(); ++primitive)
 	{
-		if (primitive->id() == id)
+		if ((*primitive)->id() == id) // 这里不同于之前使用的范围遍历，使用的是迭代器的方法遍历
 		{
-			primitive->clip(x1, y1, x2, y2, ClipAlgorithm::Liang_Barsky); // 这里默认使用Liang-Barsky算法进行裁剪
+			bool flag = (*primitive)->clip(x1, y1, x2, y2, ClipAlgorithm::Liang_Barsky);
+			(*primitive)->print();
+			if (!flag) // 此时需要删除图元
+			{
+				primitives.erase(primitive); // 删除
+			}
 			refresh();
 			emit dialogStatus(uid, true);
 			return;
