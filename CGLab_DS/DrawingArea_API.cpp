@@ -314,11 +314,13 @@ void DrawingArea::beginSelect()
 {
 	isSelect = true;
 	isDrawing = false;
+	isSelectArea = true;
 }
 
 void DrawingArea::endSelect()
 {
 	isSelect = false;
+	selectedArea->hide();
 }
 
 

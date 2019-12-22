@@ -61,6 +61,15 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 				temp_primitive = nullptr;
 			}
 		}
+
+		else if (isSelectArea) // 此时是正在选择区域
+		{
+			begin_point = event->pos();
+			end_point = event->pos();
+			selectedArea->move(begin_point);
+			selectedArea->resize(0, 0);
+			selectedArea->show();
+		}
 	}
 
 	else if (event->button() == Qt::RightButton) // 识别右键，用于如多边形，曲线的增加信息点
@@ -68,7 +77,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Right Button]" << endl;
 #endif
-		if (isDrawing)
+		if (isDrawing) // 如果正在绘图
 		{
 			mouseDrawAdd(tempPaper);
 			tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
@@ -89,6 +98,10 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Release Mouse Left Button]" << endl;
 #endif
+		if (isSelectArea)
+		{
+			isSelectArea = false;
+		}
 	}
 	else if (event->button() == Qt::RightButton) // 识别右键
 	{
@@ -132,6 +145,22 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		mouseDraw(tempPaper);
 	}
 
+	else if (isSelectArea) // 选择区域
+	{
+		end_point = event->pos();
+		selectedArea->resize(abs(end_point.x() - begin_point.x()), abs(end_point.y() - begin_point.y()));
+
+		// ----------对方位进行讨论----------
+		if (begin_point.x() <= end_point.x() && begin_point.y() <= end_point.y())
+			selectedArea->move(begin_point);
+		else if (end_point.x() < begin_point.x() && end_point.y() < begin_point.y())
+			selectedArea->move(end_point);
+		else if (end_point.x() < begin_point.x() && end_point.y() > begin_point.y())
+			selectedArea->move(end_point.x(), begin_point.y());
+		else
+			selectedArea->move(begin_point.x(), end_point.y());
+		// ----------对方位进行讨论----------
+	}
 	this->update();
 	// END of Drawing Works
 	return;

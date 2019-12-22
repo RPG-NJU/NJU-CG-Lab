@@ -42,6 +42,7 @@ private:
 	// ----------状态区----------
 	bool isDrawing = false; // 用于表示是否正在作图
 	bool isSelect = false; // 表示是否进行选择状态
+	bool isSelectArea = false;
 	// ----------状态区----------
 	
 	DrawMode drawMode = DrawMode::StraightLine; // 用于表示当前画笔的状态
@@ -69,7 +70,13 @@ private:
 	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
 	Primitive* temptemp_primitive = nullptr; // 临时的临时图元
 	// ----------图元部分----------
-	
+
+
+	// ----------选择部分----------
+	vector<int> selected_primitives_id;
+	QRubberBand* selectedArea;
+	QImage selectPaper; // 在选择阶段所特定的绘制图层
+	// ----------选择部分----------
 	
 
 	//QTextEdit* show_command_text;
@@ -156,6 +163,7 @@ public:
 	
 	void beginSelect(); // 开始进行选择操作
 	void endSelect(); // 结束选择操作
+	void setIsSelectArea(const bool flag) { isSelectArea = flag; return; }
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }

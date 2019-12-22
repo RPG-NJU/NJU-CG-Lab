@@ -37,6 +37,7 @@ void MainWindow::selectBegin()
 	setToolBarEnable(false, SetToolBarEnableMode::Primitive); // 关闭输入框的图元变化模式
 
 	ui->drawingArea->beginSelect();
+	//ui->drawingArea->setIsSelectArea(true);
 	return;
 }
 
@@ -72,12 +73,7 @@ void MainWindow::selectAreaEnd()
 
 void MainWindow::on_actionSelect_triggered()
 {
-	/*QRubberBand* qrb = new QRubberBand(QRubberBand::Line, this);
-	qrb->resize(100, 100);
-	qrb->move(100, 100);
-	qrb->setBackgroundRole(QPalette::Light);
-	qrb->setAutoFillBackground(false);
-	qrb->show();*/
+
 	selectBegin();
 	return;
 }
