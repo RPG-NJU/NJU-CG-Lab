@@ -177,7 +177,6 @@ void DrawingArea::beginTransform()
 		default: break;
 		}
 	}
-	qDebug() << save_primitives.size();
 
 	return;
 }
@@ -191,5 +190,29 @@ void DrawingArea::endTransform()
 		center_y += dy;
 	}
 	return;
+}
+
+
+void DrawingArea::wheelScale(QImage& thisPaper, const bool bigger)
+{
+	for (const auto id : selected_primitives_id)
+	{
+		for (auto& p : primitives)
+		{
+			if (p->id() == id)
+			{
+				if (bigger)
+				{
+					p->scale(center_x, center_y, 1.1);
+				}
+				else
+				{
+					p->scale(center_x, center_y, 0.9);
+				}
+			}
+		}
+	}
+
+	this->update();
 }
 

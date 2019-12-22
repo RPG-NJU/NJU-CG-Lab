@@ -247,6 +247,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 	{
 		ui->actionMouseTranslate->setChecked(false);
 		ui->actionMouseRotate->setChecked(false);
+		ui->actionWheelScale->setChecked(false);
 	}break;
 	}
 }
@@ -281,3 +282,4 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	}
 	return;
 }
+

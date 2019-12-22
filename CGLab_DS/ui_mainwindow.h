@@ -53,6 +53,7 @@ public:
     QAction *actionCancelSelect;
     QAction *actionMouseTranslate;
     QAction *actionMouseRotate;
+    QAction *actionWheelScale;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -206,6 +207,13 @@ public:
         QIcon icon13;
         icon13.addFile(QString::fromUtf8(":/MainWindow/mouseRotate"), QSize(), QIcon::Normal, QIcon::Off);
         actionMouseRotate->setIcon(icon13);
+        actionWheelScale = new QAction(MainWindow);
+        actionWheelScale->setObjectName(QString::fromUtf8("actionWheelScale"));
+        actionWheelScale->setCheckable(true);
+        actionWheelScale->setEnabled(false);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/MainWindow/wheelScale"), QSize(), QIcon::Normal, QIcon::Off);
+        actionWheelScale->setIcon(icon14);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -285,6 +293,7 @@ public:
         toolBar->addAction(actionCancelSelect);
         toolBar->addAction(actionMouseTranslate);
         toolBar->addAction(actionMouseRotate);
+        toolBar->addAction(actionWheelScale);
 
         retranslateUi(MainWindow);
 
@@ -406,6 +415,10 @@ public:
         actionMouseRotate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\346\227\213\350\275\254", nullptr));
 #if QT_CONFIG(tooltip)
         actionMouseRotate->setToolTip(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionWheelScale->setText(QCoreApplication::translate("MainWindow", "\346\273\232\350\275\256\347\274\251\346\224\276", nullptr));
+#if QT_CONFIG(tooltip)
+        actionWheelScale->setToolTip(QCoreApplication::translate("MainWindow", "\347\274\251\346\224\276", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

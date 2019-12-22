@@ -164,6 +164,7 @@
    <addaction name="actionCancelSelect"/>
    <addaction name="actionMouseTranslate"/>
    <addaction name="actionMouseRotate"/>
+   <addaction name="actionWheelScale"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -552,6 +553,24 @@
    </property>
    <property name="toolTip">
     <string>旋转</string>
+   </property>
+  </action>
+  <action name="actionWheelScale">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/wheelScale</normaloff>:/MainWindow/wheelScale</iconset>
+   </property>
+   <property name="text">
+    <string>滚轮缩放</string>
+   </property>
+   <property name="toolTip">
+    <string>缩放</string>
    </property>
   </action>
  </widget>

@@ -99,6 +99,7 @@ public:
 	void enterEvent(QEvent* event) override; // 移入当前组件的重写
 	void mousePressEvent(QMouseEvent* event) override; // 鼠标点击的函数重写
 	void mouseReleaseEvent(QMouseEvent* event) override; // 鼠标释放的函数重写
+	void wheelEvent(QWheelEvent* event) override; // 滚轮事件的重写
 
 	void draw(QImage& thisPaper); // 绘图函数
 	void changePenMode(const DrawMode new_mode); // 用于响应画笔的更改
@@ -125,6 +126,7 @@ public:
 	void endTransform();
 	void mouseTranslate(QImage& thisPaper);
 	void mouseRotate(QImage& thisPaper);
+	void wheelScale(QImage& thisPaper, const bool bigger); // 使用滚轮进行缩放操作，与前面的不统一
 
 
 	// 通过输入框来进行图元平移的响应函数

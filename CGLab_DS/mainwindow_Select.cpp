@@ -24,6 +24,12 @@ void MainWindow::setToolBarEnable(const bool enable, const SetToolBarEnableMode 
 		ui->actionInputScale->setEnabled(enable);
 		ui->actionInputTranslate->setEnabled(enable);
 	} break;
+	case SetToolBarEnableMode::Transform:
+	{
+		ui->actionMouseTranslate->setEnabled(enable);
+		ui->actionMouseRotate->setEnabled(enable);
+		ui->actionWheelScale->setEnabled(enable);
+	}break;
 	}
 }
 
@@ -54,8 +60,9 @@ void MainWindow::selectEnd()
 	ui->actionSelect->setChecked(false);
 	clearToolBarChecked(ClearToolBarCheckedMode::Transform);
 
-	ui->actionMouseTranslate->setEnabled(false);
-	ui->actionMouseRotate->setEnabled(false);
+	/*ui->actionMouseTranslate->setEnabled(false);
+	ui->actionMouseRotate->setEnabled(false);*/
+	setToolBarEnable(false, SetToolBarEnableMode::Transform);
 
 	ui->actionCancelSelect->setEnabled(false);
 	// ----------关闭相关的选中特效----------
@@ -84,8 +91,10 @@ void MainWindow::selectAreaEnd()
 {
 	ui->actionSelect->setChecked(false);
 
-	ui->actionMouseTranslate->setEnabled(true);
-	ui->actionMouseRotate->setEnabled(true);
+	/*ui->actionMouseTranslate->setEnabled(true);
+	ui->actionMouseRotate->setEnabled(true);*/
+	setToolBarEnable(true, SetToolBarEnableMode::Transform);
+	
 	return;
 }
 
@@ -113,6 +122,7 @@ void MainWindow::on_actionMouseTranslate_triggered()
 
 	ui->actionMouseTranslate->setChecked(true);
 	ui->actionMouseRotate->setChecked(false);
+	ui->actionWheelScale->setChecked(false);
 	return;
 }
 
@@ -125,5 +135,21 @@ void MainWindow::on_actionMouseRotate_triggered()
 
 	ui->actionMouseTranslate->setChecked(false);
 	ui->actionMouseRotate->setChecked(true);
+	ui->actionWheelScale->setChecked(false);
+	return;
+}
+
+
+void MainWindow::on_actionWheelScale_triggered()
+{
+	ui->drawingArea->setIsTranslate(false);
+	ui->drawingArea->setIsClip(false);
+	ui->drawingArea->setIsRotate(false);
+	ui->drawingArea->setIsScale(true);
+
+	ui->actionMouseTranslate->setChecked(false);
+	ui->actionMouseRotate->setChecked(false);
+	ui->actionWheelScale->setChecked(true);
+
 	return;
 }

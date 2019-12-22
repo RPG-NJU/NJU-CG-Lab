@@ -68,7 +68,8 @@ enum class SetToolBarEnableMode
 {
 	DrawMode,
 	All,
-	Primitive
+	Primitive,
+	Transform
 };
 
 

@@ -244,3 +244,21 @@ void DrawingArea::enterEvent(QEvent* event)
 
 	return;
 }
+
+
+void DrawingArea::wheelEvent(QWheelEvent* event)
+{
+	if (isScale)
+	{
+		if (event->delta() > 0) // 放大
+		{
+			wheelScale(paper, true);
+		}
+		else
+		{
+			wheelScale(paper, false);
+		}
+	}
+
+	return;
+}

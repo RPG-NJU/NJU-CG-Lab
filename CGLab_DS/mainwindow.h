@@ -89,6 +89,8 @@ private slots:
 
     void on_actionMouseRotate_triggered();
 
+    void on_actionWheelScale_triggered();
+
 private:
     Ui::MainWindow *ui;
 
