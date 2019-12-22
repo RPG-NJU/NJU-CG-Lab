@@ -86,6 +86,7 @@ private:
 	int center_x = 0;
 	int center_y = 0;
 	int last_r = 0;
+	QRubberBand* clipWindow; // 用于展示裁剪窗口
 	// ----------选择部分----------
 	
 
@@ -127,6 +128,7 @@ public:
 	void mouseTranslate(QImage& thisPaper);
 	void mouseRotate(QImage& thisPaper);
 	void wheelScale(QImage& thisPaper, const bool bigger); // 使用滚轮进行缩放操作，与前面的不统一
+	void mouseClip(QImage& thisPaper);
 
 
 	// 通过输入框来进行图元平移的响应函数

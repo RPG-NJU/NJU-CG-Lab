@@ -15,5 +15,6 @@
         <file alias="mouseTranslate">img/MainWindow/mouseTranslate.png</file>
         <file alias="mouseRotate">img/MainWindow/mouseRotate.png</file>
         <file alias="wheelScale">img/MainWindow/wheelScale.png</file>
+        <file alias="mouseClip">img/MainWindow/mouseClip.png</file>
     </qresource>
 </RCC>

@@ -29,6 +29,7 @@ void MainWindow::setToolBarEnable(const bool enable, const SetToolBarEnableMode 
 		ui->actionMouseTranslate->setEnabled(enable);
 		ui->actionMouseRotate->setEnabled(enable);
 		ui->actionWheelScale->setEnabled(enable);
+		ui->actionMouseClip->setEnabled(enable);
 	}break;
 	}
 }
@@ -123,6 +124,7 @@ void MainWindow::on_actionMouseTranslate_triggered()
 	ui->actionMouseTranslate->setChecked(true);
 	ui->actionMouseRotate->setChecked(false);
 	ui->actionWheelScale->setChecked(false);
+	ui->actionMouseClip->setChecked(false);
 	return;
 }
 
@@ -136,6 +138,7 @@ void MainWindow::on_actionMouseRotate_triggered()
 	ui->actionMouseTranslate->setChecked(false);
 	ui->actionMouseRotate->setChecked(true);
 	ui->actionWheelScale->setChecked(false);
+	ui->actionMouseClip->setChecked(false);
 	return;
 }
 
@@ -150,6 +153,20 @@ void MainWindow::on_actionWheelScale_triggered()
 	ui->actionMouseTranslate->setChecked(false);
 	ui->actionMouseRotate->setChecked(false);
 	ui->actionWheelScale->setChecked(true);
+	ui->actionMouseClip->setChecked(false);
+	return;
+}
 
+void MainWindow::on_actionMouseClip_triggered()
+{
+	ui->drawingArea->setIsTranslate(false);
+	ui->drawingArea->setIsClip(true);
+	ui->drawingArea->setIsRotate(false);
+	ui->drawingArea->setIsScale(false);
+
+	ui->actionMouseTranslate->setChecked(false);
+	ui->actionMouseRotate->setChecked(false);
+	ui->actionWheelScale->setChecked(false);
+	ui->actionMouseClip->setChecked(true);
 	return;
 }

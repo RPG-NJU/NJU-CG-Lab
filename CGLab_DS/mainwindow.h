@@ -91,6 +91,8 @@ private slots:
 
     void on_actionWheelScale_triggered();
 
+    void on_actionMouseClip_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -77,7 +77,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 			selectedArea->show();
 		}
 
-		else if (isRotate | isTranslate | isClip | isScale) // 如果是四种图元变换之一
+		else if (isRotate | isTranslate | isClip) // 如果是这三种变换之一，因为缩放不是用这个框架完成的
 		{
 			begin_point = event->pos();
 			end_point = event->pos();

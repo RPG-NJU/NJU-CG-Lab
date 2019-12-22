@@ -165,6 +165,7 @@
    <addaction name="actionMouseTranslate"/>
    <addaction name="actionMouseRotate"/>
    <addaction name="actionWheelScale"/>
+   <addaction name="actionMouseClip"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -571,6 +572,24 @@
    </property>
    <property name="toolTip">
     <string>缩放</string>
+   </property>
+  </action>
+  <action name="actionMouseClip">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseClip</normaloff>:/MainWindow/mouseClip</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标裁剪</string>
+   </property>
+   <property name="toolTip">
+    <string>裁剪</string>
    </property>
   </action>
  </widget>

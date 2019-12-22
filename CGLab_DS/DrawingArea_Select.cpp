@@ -101,6 +101,10 @@ void DrawingArea::mouseTransform(QImage& thisPaper)
 	{
 		mouseRotate(thisPaper);
 	}
+	else if (isClip)
+	{
+		mouseClip(thisPaper);
+	}
 }
 
 void DrawingArea::mouseTranslate(QImage& thisPaper)
@@ -160,6 +164,28 @@ void DrawingArea::mouseRotate(QImage& thisPaper)
 	this->update();
 }
 
+void DrawingArea::mouseClip(QImage& thisPaper)
+{
+	/*
+	 * 根据对于裁剪的理解，全程应该都不做任何操作，只是作为一个展示，之后将通过release事件来完成裁剪
+	 */
+	clipWindow->resize(abs(end_point.x() - begin_point.x()), abs(end_point.y() - begin_point.y()));
+
+	// ----------对方位进行讨论----------
+	if (begin_point.x() <= end_point.x() && begin_point.y() <= end_point.y())
+		clipWindow->move(begin_point);
+	else if (end_point.x() < begin_point.x() && end_point.y() < begin_point.y())
+		clipWindow->move(end_point);
+	else if (end_point.x() < begin_point.x() && end_point.y() > begin_point.y())
+		clipWindow->move(end_point.x(), begin_point.y());
+	else
+		clipWindow->move(begin_point.x(), end_point.y());
+	clipWindow->show();
+
+	return;
+}
+
+
 void DrawingArea::beginTransform()
 {
 	for (auto& p : save_primitives)
@@ -188,6 +214,27 @@ void DrawingArea::endTransform()
 		const int dx(end_point.x() - begin_point.x()), dy(end_point.y() - begin_point.y());
 		center_x += dx;
 		center_y += dy;
+	}
+
+	else if (isClip)
+	{
+		clipWindow->hide();
+		for (const auto id : selected_primitives_id)
+		{
+			for (auto primitive = primitives.begin(); primitive < primitives.end(); ++primitive)
+			{
+				if ((*primitive)->id() == id) // 这里不同于之前使用的范围遍历，使用的是迭代器的方法遍历
+				{
+					bool flag = (*primitive)->clip(begin_point.x(), begin_point.y(), end_point.x(), end_point.y(), ClipAlgorithm::Liang_Barsky);
+					(*primitive)->print();
+					if (!flag) // 此时需要删除图元
+					{
+						primitives.erase(primitive); // 删除
+					}
+					break; // 保证了id的唯一性，当然如果是唯一的，这句话也没有什么必要，只是作为一个体现
+				}
+			}
+		}
 	}
 	return;
 }
