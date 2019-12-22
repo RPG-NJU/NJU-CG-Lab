@@ -178,6 +178,10 @@ public:
         actionInputClip->setFont(font3);
         actionSelect = new QAction(MainWindow);
         actionSelect->setObjectName(QString::fromUtf8("actionSelect"));
+        actionSelect->setCheckable(true);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/MainWindow/Select"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSelect->setIcon(icon10);
         actionSelect->setFont(font3);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
@@ -252,6 +256,7 @@ public:
         toolBar->addAction(actionCurveBezier);
         toolBar->addAction(actionCurveB_spline);
         toolBar->addAction(actionPalette);
+        toolBar->addAction(actionSelect);
 
         retranslateUi(MainWindow);
 

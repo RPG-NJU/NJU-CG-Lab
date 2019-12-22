@@ -10,5 +10,6 @@
         <file alias="Ploygon">img/MainWindow/Polygon.png</file>
         <file alias="Curve_Bezier">img/MainWindow/Curve_Bezier.png</file>
         <file alias="Curve_B_spline">img/MainWindow/Curve_B_spline.png</file>
+        <file alias="Select">img/MainWindow/Select.png</file>
     </qresource>
 </RCC>

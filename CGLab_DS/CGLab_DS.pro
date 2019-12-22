@@ -46,7 +46,8 @@ SOURCES += \
     TranslateDialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    mainwindow_Primitive.cpp
+    mainwindow_Primitive.cpp \
+    mainwindow_Select.cpp
 
 HEADERS += \
     AboutAuthorDialog.h \
