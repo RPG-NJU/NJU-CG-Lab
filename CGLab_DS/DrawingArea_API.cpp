@@ -309,4 +309,18 @@ void DrawingArea::setOutputPath(string dir_path)
 	return;
 }
 
+
+void DrawingArea::beginSelect()
+{
+	isSelect = true;
+	isDrawing = false;
+}
+
+void DrawingArea::endSelect()
+{
+	isSelect = false;
+}
+
+
+
 // 对外接口结束

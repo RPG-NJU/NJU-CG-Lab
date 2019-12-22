@@ -40,7 +40,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Left Button]" << endl;
 #endif
-		if (!isDrawing)
+		if (!isSelect && !isDrawing)
 		{
 			isDrawing = true;
 			begin_point = event->pos(); // 获得当前鼠标的位置

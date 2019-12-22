@@ -38,14 +38,21 @@ class DrawingArea : public QWidget
 	Q_OBJECT
 private:
 	// 所需要的数据成员
+
+	// ----------状态区----------
 	bool isDrawing = false; // 用于表示是否正在作图
+	bool isSelect = false; // 表示是否进行选择状态
+	// ----------状态区----------
 	
 	DrawMode drawMode = DrawMode::StraightLine; // 用于表示当前画笔的状态
 	
-	
+
+	// ----------图层区----------
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
 	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
 	QImage temptempPaper; // 只用于曲线的绘制中的多缓冲
+	// ----------图层区----------
+	
 	QRgb paperBackground;
 	QPen pen; // 绘图笔
 	QPoint begin_point, end_point; // 鼠标绘图事件中的鼠标起始点和终点
@@ -56,10 +63,13 @@ private:
 
 	QString penModeToQString(DrawMode mode);
 
+	// ----------图元部分----------
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
 	int now_primitive_num = 0;
 	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
 	Primitive* temptemp_primitive = nullptr; // 临时的临时图元
+	// ----------图元部分----------
+	
 	
 
 	//QTextEdit* show_command_text;
@@ -143,9 +153,13 @@ public:
 	void drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper); // 用于虚线绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 	void refresh(); // 用于刷新整个画布
+	
+	void beginSelect(); // 开始进行选择操作
+	void endSelect(); // 结束选择操作
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }
+	DrawMode getDrawMode() const { return drawMode; }
 
 	void setOutputPath(string dir_path);
 	// 命令接口

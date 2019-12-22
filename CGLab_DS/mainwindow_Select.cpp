@@ -36,11 +36,31 @@ void MainWindow::selectBegin()
 	setToolBarEnable(false, SetToolBarEnableMode::DrawMode); // 关闭绘图模式
 	setToolBarEnable(false, SetToolBarEnableMode::Primitive); // 关闭输入框的图元变化模式
 
+	ui->drawingArea->beginSelect();
 	return;
 }
 
 void MainWindow::selectEnd()
 {
+	ui->actionSelect->setChecked(false);
+
+	setToolBarEnable(true, SetToolBarEnableMode::DrawMode);
+	setToolBarEnable(true, SetToolBarEnableMode::Primitive);
+
+	ui->drawingArea->endSelect();
+
+	// ----------恢复绘图模式的显示----------
+	switch (ui->drawingArea->getDrawMode())
+	{
+	case DrawMode::StraightLine: ui->actionStraightLine->setChecked(true); break;
+	case DrawMode::Circle: ui->actionCircle->setChecked(true); break;
+	case DrawMode::Ellipse: ui->actionEllipse->setChecked(true); break;
+	case DrawMode::Polygon: ui->actionPolygon->setChecked(true); break;
+	case DrawMode::Curve_Bezier: ui->actionCurveBezier->setChecked(true); break;
+	case DrawMode::Curve_B_spline: ui->actionCurveB_spline->setChecked(true); break;
+	default: break;
+	}
+	// ----------
 	return;
 }
 
@@ -64,11 +84,7 @@ void MainWindow::on_actionSelect_triggered()
 
 void MainWindow::on_actionCancelSelect_triggered() // 退出选择模式
 {
-	ui->actionSelect->setChecked(false);
-
-	setToolBarEnable(true, SetToolBarEnableMode::DrawMode);
-	setToolBarEnable(true, SetToolBarEnableMode::Primitive);
-
+	selectEnd();
 	return;
 }
 
