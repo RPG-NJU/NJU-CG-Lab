@@ -515,6 +515,9 @@
    </property>
   </action>
   <action name="actionMouseTranslate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/mouseTranslate</normaloff>:/MainWindow/mouseTranslate</iconset>

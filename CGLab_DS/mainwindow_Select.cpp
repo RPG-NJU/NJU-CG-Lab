@@ -85,3 +85,14 @@ void MainWindow::on_actionCancelSelect_triggered() // 退出选择模式
 }
 
 
+void MainWindow::on_actionMouseTranslate_triggered()
+{
+	ui->drawingArea->setIsTranslate(true);
+	ui->drawingArea->setIsClip(false);
+	ui->drawingArea->setIsRotate(false);
+	ui->drawingArea->setIsScale(false);
+
+	ui->actionMouseTranslate->setChecked(true);
+	
+	return;
+}

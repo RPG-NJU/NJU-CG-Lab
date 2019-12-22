@@ -76,6 +76,13 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 			selectedArea->resize(0, 0);
 			selectedArea->show();
 		}
+
+		else if (isRotate | isTranslate | isClip | isScale) // 如果是四种图元变换之一
+		{
+			begin_point = event->pos();
+			end_point = event->pos();
+			isTransform = true;
+		}
 	}
 
 	else if (event->button() == Qt::RightButton) // 识别右键，用于如多边形，曲线的增加信息点
@@ -109,6 +116,11 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 			isSelectArea = false;
 			selectPrimitive(begin_point, end_point);
 			selectedArea->hide();
+		}
+
+		else if (isTransform)
+		{
+			isTransform = false;
 		}
 	}
 	else if (event->button() == Qt::RightButton) // 识别右键
@@ -168,6 +180,13 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		else
 			selectedArea->move(begin_point.x(), end_point.y());
 		// ----------对方位进行讨论----------
+	}
+
+	else if (isTransform)
+	{
+		end_point = event->pos();
+		mouseTransform(paper);
+		begin_point = end_point;
 	}
 	this->update();
 	// END of Drawing Works

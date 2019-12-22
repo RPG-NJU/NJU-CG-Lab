@@ -192,6 +192,7 @@ public:
         actionCancelSelect->setIcon(icon11);
         actionMouseTranslate = new QAction(MainWindow);
         actionMouseTranslate->setObjectName(QString::fromUtf8("actionMouseTranslate"));
+        actionMouseTranslate->setCheckable(true);
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/MainWindow/mouseTranslate"), QSize(), QIcon::Normal, QIcon::Off);
         actionMouseTranslate->setIcon(icon12);

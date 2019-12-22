@@ -62,3 +62,38 @@ void DrawingArea::selectPrimitive(QPoint begin, QPoint end)
 
 	return;
 }
+
+
+void DrawingArea::selectCenter(QPoint begin, QPoint end)
+{
+	center_x = (begin.x() + end.x()) / 2;
+	center_y = (begin.y() + end.y()) / 2;
+	return;
+}
+
+
+void DrawingArea::mouseTransform(QImage& thisPaper)
+{
+	if (isTranslate)
+	{
+		mouseTranslate(thisPaper);
+	}
+}
+
+void DrawingArea::mouseTranslate(QImage& thisPaper)
+{
+	const int dx(end_point.x() - begin_point.x()), dy(end_point.y() - begin_point.y());
+	for (const auto id : selected_primitives_id)
+	{
+		for (auto &p : primitives)
+		{
+			if (p->id() == id)
+			{
+				p->translate(dx, dy);
+			}
+		}
+	}
+
+	this->update();
+}
+

@@ -356,8 +356,18 @@ void DrawingArea::beginSelect()
 
 void DrawingArea::endSelect()
 {
+	// ----------状态置位----------
 	isSelect = false;
+	isSelectArea = false;
+	isTransform = false;
+	isTranslate = false;
+	isScale = false;
+	isRotate = false;
+	// ----------状态置位----------
+	
 	selectedArea->hide();
+	
+	isClip = false;
 	clearPaper(true);
 	drawAll();
 }

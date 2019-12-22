@@ -43,6 +43,12 @@ private:
 	bool isDrawing = false; // 用于表示是否正在作图
 	bool isSelect = false; // 表示是否进行选择状态
 	bool isSelectArea = false;
+
+	bool isTransform = false;
+	bool isTranslate = false;
+	bool isScale = false;
+	bool isRotate = false;
+	bool isClip = false;
 	// ----------状态区----------
 	
 	DrawMode drawMode = DrawMode::StraightLine; // 用于表示当前画笔的状态
@@ -112,6 +118,9 @@ public:
 	void mouseDrawPolygonAddPoint(QImage& thisPaper);
 	void mouseDrawCurveAddPoint(QImage& thisPaper);
 
+	void mouseTransform(QImage& thisPaper);
+	void mouseTranslate(QImage& thisPaper);
+
 
 	// 通过输入框来进行图元平移的响应函数
 	void inputTranslate(const int id, const int dx, const int dy, const time_t uid);
@@ -138,6 +147,7 @@ public:
 
 	// ----------选择部分----------
 	void selectPrimitive(QPoint begin, QPoint end);
+	void selectCenter(QPoint begin, QPoint end);
 	// ----------选择部分----------
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
@@ -172,6 +182,10 @@ public:
 	void beginSelect(); // 开始进行选择操作
 	void endSelect(); // 结束选择操作
 	void setIsSelectArea(const bool flag) { isSelectArea = flag; return; }
+	void setIsTranslate(const bool flag) { isTranslate = flag; return; }
+	void setIsRotate(const bool flag) { isRotate = flag; return; }
+	void setIsClip(const bool flag) { isClip = flag; return; }
+	void setIsScale(const bool flag) { isScale = flag; return; }
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }

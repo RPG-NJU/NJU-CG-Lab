@@ -278,4 +278,3 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	return;
 }
 
-
