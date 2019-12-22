@@ -124,6 +124,7 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 		else if (isTransform)
 		{
 			isTransform = false;
+			endTransform();
 		}
 	}
 	else if (event->button() == Qt::RightButton) // 识别右键

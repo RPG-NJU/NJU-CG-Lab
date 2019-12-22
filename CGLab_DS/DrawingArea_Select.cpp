@@ -116,8 +116,6 @@ void DrawingArea::mouseTranslate(QImage& thisPaper)
 			}
 		}
 	}
-	center_x += dx;
-	center_y += dy;
 	
 	this->update();
 }
@@ -186,6 +184,12 @@ void DrawingArea::beginTransform()
 
 void DrawingArea::endTransform()
 {
+	if (isTranslate)
+	{
+		const int dx(end_point.x() - begin_point.x()), dy(end_point.y() - begin_point.y());
+		center_x += dx;
+		center_y += dy;
+	}
 	return;
 }
 
