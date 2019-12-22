@@ -135,6 +135,19 @@ void DrawingArea::mouseRotate(QImage& thisPaper)
 	double cos = (a * a + b * b - c * c) / (2 * a * b);
 	int r = 180 * acos(cos) / PI;
 
+	// 这里还需要考虑角度的正负问题
+    double y_standard = ((double)end_point.x() - begin_point.x()) / ((double)center_x - begin_point.x()) * ((double)center_y - begin_point.y()) + begin_point.y();
+	if (begin_point.x() < center_x)
+	{
+		if (end_point.y() > y_standard)
+			r = -r;
+	}
+	else
+	{
+		if (end_point.y() < y_standard)
+			r = -r;
+	}
+
 	for (const auto id : selected_primitives_id)
 	{
 		for (auto& p : primitives)
