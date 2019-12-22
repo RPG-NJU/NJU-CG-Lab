@@ -16,7 +16,6 @@ int Primitive::rotate_x(int x, int x0, int y, int y0, int r)
 	const double x_double(static_cast<double>(x)), x0_double(static_cast<double>(x0)), y_double(static_cast<double>(y)), y0_double(static_cast<double>(y0));
 	const double r_pi = PI * static_cast<double>(r) / 180.0;
 	double x_ret(0.0);
-	qDebug() << r_pi << endl;
 
 	x_ret = x0_double + (x_double - x0_double) * cos(r_pi) - (y_double - y0_double) * sin(r_pi);
 	return static_cast<int>(x_ret);
