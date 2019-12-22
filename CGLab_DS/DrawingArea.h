@@ -75,7 +75,9 @@ private:
 	// ----------选择部分----------
 	vector<int> selected_primitives_id;
 	QRubberBand* selectedArea;
-	QImage selectPaper; // 在选择阶段所特定的绘制图层
+	//QImage selectPaper; // 在选择阶段所特定的绘制图层
+	int center_x = 0;
+	int center_y = 0;
 	// ----------选择部分----------
 	
 
@@ -132,7 +134,11 @@ public:
 
 	MyPoint_double Bezier_P(const vector<MyPoint>& fixed_points, int i, int r, double u); // 用于迭代计算贝塞尔曲线
 	MyPoint_double B_spline_3(const vector<MyPoint> p_points, double u); // 用于计算三次B样条曲线
-	
+
+
+	// ----------选择部分----------
+	void selectPrimitive(QPoint begin, QPoint end);
+	// ----------选择部分----------
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 
@@ -155,8 +161,10 @@ public:
 	void setPenColor(QColor color);
 	void setPaperSize(int x, int y);
 
-	void drawAll(); // 用于绘制所有图元
+	void drawAll(); // 用于绘制所有图
+	void drawAllincludeSelected();
 	void drawPrimitive(Primitive* primitive, QImage &thisPaper); // 用于绘制某个特定的图元
+	void drawSelectedPrimitive(Primitive* primitive, QImage& thisPaper); // 用于绘制每个已经选中的图元
 	void drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper); // 用于虚线绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 	void refresh(); // 用于刷新整个画布

@@ -11,6 +11,12 @@ void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
 
+	if (isSelect)
+	{
+		clearPaper(true);
+		drawAllincludeSelected();
+	}
+
 	//painter.drawImage(0, 0, paper);
 	//isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);	// 当处于画图阶段的时候，输出的是临时图像，否则则为真实图像
 	if (isDrawing)
@@ -101,6 +107,8 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 		if (isSelectArea)
 		{
 			isSelectArea = false;
+			selectPrimitive(begin_point, end_point);
+			selectedArea->hide();
 		}
 	}
 	else if (event->button() == Qt::RightButton) // 识别右键
