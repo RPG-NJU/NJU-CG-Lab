@@ -13,5 +13,6 @@
         <file alias="Select">img/MainWindow/Select.png</file>
         <file alias="CancelSelect">img/MainWindow/CancelSelect.png</file>
         <file alias="mouseTranslate">img/MainWindow/mouseTranslate.png</file>
+        <file alias="mouseRotate">img/MainWindow/mouseRotate.png</file>
     </qresource>
 </RCC>

@@ -56,7 +56,6 @@ private slots:
 	void selectEnd(); // 结束选择模式，恢复绘图模式
 	void selectAreaEnd(); // 选择框结束
 
-
     void on_actionCircle_triggered(); // 用户选择了圆形绘制
 
     void on_actionEllipse_triggered();
@@ -87,6 +86,8 @@ private slots:
     void on_actionCancelSelect_triggered();
 
     void on_actionMouseTranslate_triggered();
+
+    void on_actionMouseRotate_triggered();
 
 private:
     Ui::MainWindow *ui;

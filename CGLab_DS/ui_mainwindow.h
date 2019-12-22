@@ -52,6 +52,7 @@ public:
     QAction *actionSelect;
     QAction *actionCancelSelect;
     QAction *actionMouseTranslate;
+    QAction *actionMouseRotate;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -187,15 +188,24 @@ public:
         actionSelect->setFont(font3);
         actionCancelSelect = new QAction(MainWindow);
         actionCancelSelect->setObjectName(QString::fromUtf8("actionCancelSelect"));
+        actionCancelSelect->setEnabled(false);
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/MainWindow/CancelSelect"), QSize(), QIcon::Normal, QIcon::Off);
         actionCancelSelect->setIcon(icon11);
         actionMouseTranslate = new QAction(MainWindow);
         actionMouseTranslate->setObjectName(QString::fromUtf8("actionMouseTranslate"));
         actionMouseTranslate->setCheckable(true);
+        actionMouseTranslate->setEnabled(false);
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/MainWindow/mouseTranslate"), QSize(), QIcon::Normal, QIcon::Off);
         actionMouseTranslate->setIcon(icon12);
+        actionMouseRotate = new QAction(MainWindow);
+        actionMouseRotate->setObjectName(QString::fromUtf8("actionMouseRotate"));
+        actionMouseRotate->setCheckable(true);
+        actionMouseRotate->setEnabled(false);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/MainWindow/mouseRotate"), QSize(), QIcon::Normal, QIcon::Off);
+        actionMouseRotate->setIcon(icon13);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -274,6 +284,7 @@ public:
         toolBar->addAction(actionSelect);
         toolBar->addAction(actionCancelSelect);
         toolBar->addAction(actionMouseTranslate);
+        toolBar->addAction(actionMouseRotate);
 
         retranslateUi(MainWindow);
 
@@ -391,6 +402,10 @@ public:
         actionMouseTranslate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\345\271\263\347\247\273", nullptr));
 #if QT_CONFIG(tooltip)
         actionMouseTranslate->setToolTip(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMouseRotate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\346\227\213\350\275\254", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMouseRotate->setToolTip(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

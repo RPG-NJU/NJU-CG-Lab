@@ -6,7 +6,7 @@
  */
 
 
-// 重写绘制函数
+ // 重写绘制函数
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
@@ -82,6 +82,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 			begin_point = event->pos();
 			end_point = event->pos();
 			isTransform = true;
+			beginTransform();
 		}
 	}
 
@@ -115,7 +116,9 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 		{
 			isSelectArea = false;
 			selectPrimitive(begin_point, end_point);
+			selectCenter(begin_point, end_point);
 			selectedArea->hide();
+			emit finishSelectArea();
 		}
 
 		else if (isTransform)
@@ -184,9 +187,30 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 
 	else if (isTransform)
 	{
+		//if (!isRotate)
+		//{
+		//	end_point = event->pos();
+		//	mouseTransform(paper);
+		//	begin_point = end_point;
+		//}
+		//else if (isRotate)
+		//{
+		//	end_point = event->pos();
+		//	double a, b, c;
+		//	a = sqrt((begin_point.x() - center_x) * (begin_point.x() - center_x) + (begin_point.y() - center_y) * (begin_point.y() - center_y));
+		//	b = sqrt((end_point.x() - center_x) * (end_point.x() - center_x) + (end_point.y() - center_y) * (end_point.y() - center_y));
+		//	c = sqrt((begin_point.x() - end_point.x()) * (begin_point.x() - end_point.x()) + (begin_point.y() - end_point.y()) * (begin_point.y() - end_point.y()));
+		//	double cos = (a * a + b * b - c * c) / (2 * a * b);
+		//	int r = acos(cos) * 180 / PI;
+		//	/*if (abs(r) >= 1)
+		//	{
+		//		mouseTransform(paper);
+		//		begin_point = end_point;
+		//	}*/
+		//	mouseTransform(paper);
+		//}
 		end_point = event->pos();
 		mouseTransform(paper);
-		begin_point = end_point;
 	}
 	this->update();
 	// END of Drawing Works

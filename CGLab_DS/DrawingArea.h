@@ -72,6 +72,7 @@ private:
 
 	// ----------图元部分----------
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
+	vector<Primitive*> save_primitives;
 	int now_primitive_num = 0;
 	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
 	Primitive* temptemp_primitive = nullptr; // 临时的临时图元
@@ -84,6 +85,7 @@ private:
 	//QImage selectPaper; // 在选择阶段所特定的绘制图层
 	int center_x = 0;
 	int center_y = 0;
+	int last_r = 0;
 	// ----------选择部分----------
 	
 
@@ -119,7 +121,10 @@ public:
 	void mouseDrawCurveAddPoint(QImage& thisPaper);
 
 	void mouseTransform(QImage& thisPaper);
+	void beginTransform();
+	void endTransform();
 	void mouseTranslate(QImage& thisPaper);
+	void mouseRotate(QImage& thisPaper);
 
 
 	// 通过输入框来进行图元平移的响应函数
@@ -183,7 +188,7 @@ public:
 	void endSelect(); // 结束选择操作
 	void setIsSelectArea(const bool flag) { isSelectArea = flag; return; }
 	void setIsTranslate(const bool flag) { isTranslate = flag; return; }
-	void setIsRotate(const bool flag) { isRotate = flag; return; }
+	void setIsRotate(const bool flag) { isRotate = flag; last_r = 0; return; }
 	void setIsClip(const bool flag) { isClip = flag; return; }
 	void setIsScale(const bool flag) { isScale = flag; return; }
 
@@ -200,6 +205,7 @@ signals:
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口
 	void setPaperSizeSignal(int x, int y);
 	void dialogStatus(time_t uid, bool flag);
+	void finishSelectArea(); // 表示已经结束了区域的选择
 };
 
 #endif // DRAWINGAERA_H

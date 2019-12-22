@@ -227,7 +227,7 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 	switch (mode)
 	{
 	case ClearToolBarCheckedMode::DrawMode:
-		{
+	{
 		ui->actionChooseNature->setChecked(false);
 		ui->actionStraightLine->setChecked(false);
 		ui->actionCircle->setChecked(false);
@@ -235,15 +235,19 @@ void MainWindow::clearToolBarChecked(ClearToolBarCheckedMode mode)
 		ui->actionPolygon->setChecked(false);
 		ui->actionCurveBezier->setChecked(false);
 		ui->actionCurveB_spline->setChecked(false);
-		break;
-		}
+	}break;
 	case ClearToolBarCheckedMode::All:
-		{
+	{
 		clearToolBarChecked(ClearToolBarCheckedMode::DrawMode);
+		clearToolBarChecked(ClearToolBarCheckedMode::Transform);
 		ui->actionPalette->setChecked(false);
 		ui->actionSelect->setChecked(false);
-		break;
-		}
+	}break;
+	case ClearToolBarCheckedMode::Transform:
+	{
+		ui->actionMouseTranslate->setChecked(false);
+		ui->actionMouseRotate->setChecked(false);
+	}break;
 	}
 }
 
@@ -277,4 +281,3 @@ void MainWindow::on_actionSetPaperSize_triggered()
 	}
 	return;
 }
-

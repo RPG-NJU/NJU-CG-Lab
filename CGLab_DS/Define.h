@@ -7,6 +7,7 @@
 #define PRINT_DRAW
 #define PRINT_ACTION // 如果定义，则调试输出所有action触发
 #define PRINT_FILE_OP // 如果定义，则调试输出文件读写的过程
+//#define PRINT_PRIMITIVE
 
 
 #define PI 3.141592653
@@ -59,7 +60,8 @@ enum class CurveAlgorithm
 enum class ClearToolBarCheckedMode // 定义了对于清除工具栏选中状态的模式
 {
 	DrawMode,
-	All
+	All,
+	Transform
 };
 
 enum class SetToolBarEnableMode

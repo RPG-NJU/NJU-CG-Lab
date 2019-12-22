@@ -31,22 +31,37 @@ void MainWindow::setToolBarEnable(const bool enable, const SetToolBarEnableMode 
 void MainWindow::selectBegin()
 {
 	clearToolBarChecked(ClearToolBarCheckedMode::All);
+
 	ui->actionSelect->setChecked(true);
+	
 
 	setToolBarEnable(false, SetToolBarEnableMode::DrawMode); // 关闭绘图模式
 	setToolBarEnable(false, SetToolBarEnableMode::Primitive); // 关闭输入框的图元变化模式
 
 	ui->drawingArea->beginSelect();
 	//ui->drawingArea->setIsSelectArea(true);
+
+	ui->actionCancelSelect->setEnabled(true);
+
+	connect(ui->drawingArea, &DrawingArea::finishSelectArea, this, &MainWindow::selectAreaEnd);
 	return;
 }
 
 void MainWindow::selectEnd()
 {
-	ui->actionSelect->setChecked(false);
 
-	setToolBarEnable(true, SetToolBarEnableMode::DrawMode);
-	setToolBarEnable(true, SetToolBarEnableMode::Primitive);
+	// ----------关闭相关的选中特效----------
+	ui->actionSelect->setChecked(false);
+	clearToolBarChecked(ClearToolBarCheckedMode::Transform);
+
+	ui->actionMouseTranslate->setEnabled(false);
+	ui->actionMouseRotate->setEnabled(false);
+
+	ui->actionCancelSelect->setEnabled(false);
+	// ----------关闭相关的选中特效----------
+
+	setToolBarEnable(true, SetToolBarEnableMode::DrawMode); // 恢复绘图模式
+	setToolBarEnable(true, SetToolBarEnableMode::Primitive); // 恢复图元变化模式
 
 	ui->drawingArea->endSelect();
 
@@ -67,6 +82,10 @@ void MainWindow::selectEnd()
 
 void MainWindow::selectAreaEnd()
 {
+	ui->actionSelect->setChecked(false);
+
+	ui->actionMouseTranslate->setEnabled(true);
+	ui->actionMouseRotate->setEnabled(true);
 	return;
 }
 
@@ -93,6 +112,18 @@ void MainWindow::on_actionMouseTranslate_triggered()
 	ui->drawingArea->setIsScale(false);
 
 	ui->actionMouseTranslate->setChecked(true);
-	
+	ui->actionMouseRotate->setChecked(false);
+	return;
+}
+
+void MainWindow::on_actionMouseRotate_triggered()
+{
+	ui->drawingArea->setIsTranslate(false);
+	ui->drawingArea->setIsClip(false);
+	ui->drawingArea->setIsRotate(true);
+	ui->drawingArea->setIsScale(false);
+
+	ui->actionMouseTranslate->setChecked(false);
+	ui->actionMouseRotate->setChecked(true);
 	return;
 }

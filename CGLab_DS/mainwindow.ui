@@ -163,6 +163,7 @@
    <addaction name="actionSelect"/>
    <addaction name="actionCancelSelect"/>
    <addaction name="actionMouseTranslate"/>
+   <addaction name="actionMouseRotate"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -503,6 +504,9 @@
    </property>
   </action>
   <action name="actionCancelSelect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/CancelSelect</normaloff>:/MainWindow/CancelSelect</iconset>
@@ -518,6 +522,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="img.qrc">
      <normaloff>:/MainWindow/mouseTranslate</normaloff>:/MainWindow/mouseTranslate</iconset>
@@ -527,6 +534,24 @@
    </property>
    <property name="toolTip">
     <string>平移</string>
+   </property>
+  </action>
+  <action name="actionMouseRotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseRotate</normaloff>:/MainWindow/mouseRotate</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标旋转</string>
+   </property>
+   <property name="toolTip">
+    <string>旋转</string>
    </property>
   </action>
  </widget>

@@ -1,5 +1,6 @@
 ﻿#include "DrawingArea.h"
 #include <algorithm>
+#include <cmath>
 
 using std::swap;
 
@@ -74,9 +75,31 @@ void DrawingArea::selectCenter(QPoint begin, QPoint end)
 
 void DrawingArea::mouseTransform(QImage& thisPaper)
 {
+	for (auto &p : primitives)
+	{
+		delete p;
+	}
+	primitives.clear();
+
+	for (const auto& p : save_primitives)
+	{
+		switch (p->_type())
+		{
+		case PrimitiveType::StraightLine: primitives.push_back(new StraightLine(*dynamic_cast<StraightLine*>(p))); break;
+		case PrimitiveType::Ellipse: primitives.push_back(new Ellipse(*dynamic_cast<Ellipse*>(p))); break;
+		case PrimitiveType::Polygon: primitives.push_back(new Polygon(*dynamic_cast<Polygon*>(p))); break;
+		case PrimitiveType::Curve: primitives.push_back(new Curve(*dynamic_cast<Curve*>(p))); break;
+		default: break;
+		}
+	}
+	
 	if (isTranslate)
 	{
 		mouseTranslate(thisPaper);
+	}
+	else if (isRotate)
+	{
+		mouseRotate(thisPaper);
 	}
 }
 
@@ -93,7 +116,63 @@ void DrawingArea::mouseTranslate(QImage& thisPaper)
 			}
 		}
 	}
+	center_x += dx;
+	center_y += dy;
+	
+	this->update();
+}
+
+void DrawingArea::mouseRotate(QImage& thisPaper)
+{
+	/*
+	 * 在旋转中有许多不可以忽视的误差，所以需要对它进行一定的重构
+	 */
+	double a, b, c;
+	a = sqrt((begin_point.x() - center_x) * (begin_point.x() - center_x) + (begin_point.y() - center_y) * (begin_point.y() - center_y));
+	b = sqrt((end_point.x() - center_x) * (end_point.x() - center_x) + (end_point.y() - center_y) * (end_point.y() - center_y));
+	c = sqrt((begin_point.x() - end_point.x()) * (begin_point.x() - end_point.x()) + (begin_point.y() - end_point.y()) * (begin_point.y() - end_point.y()));
+
+	double cos = (a * a + b * b - c * c) / (2 * a * b);
+	int r = 180 * acos(cos) / PI;
+
+	for (const auto id : selected_primitives_id)
+	{
+		for (auto& p : primitives)
+		{
+			if (p->id() == id)
+			{
+				p->rotate(center_x, center_y, r);
+			}
+		}
+	}
 
 	this->update();
+}
+
+void DrawingArea::beginTransform()
+{
+	for (auto& p : save_primitives)
+		delete p;
+	save_primitives.clear();
+
+	for (const auto& p : primitives)
+	{
+		switch(p->_type())
+		{
+		case PrimitiveType::StraightLine: save_primitives.push_back(new StraightLine(*dynamic_cast<StraightLine*>(p))); break;
+		case PrimitiveType::Ellipse: save_primitives.push_back(new Ellipse(*dynamic_cast<Ellipse*>(p))); break;
+		case PrimitiveType::Polygon: save_primitives.push_back(new Polygon(*dynamic_cast<Polygon*>(p))); break;
+		case PrimitiveType::Curve: save_primitives.push_back(new Curve(*dynamic_cast<Curve*>(p))); break;
+		default: break;
+		}
+	}
+	qDebug() << save_primitives.size();
+
+	return;
+}
+
+void DrawingArea::endTransform()
+{
+	return;
 }
 

@@ -139,12 +139,13 @@ void DrawingArea::drawPrimitive(Primitive* primitive, QImage &thisPaper)
 		painter.drawPoint(point.x, point.y);
 	}
 
+#ifdef PRINT_PRIMITIVE
 	if (!isDrawing)
 	{
 		qDebug() << "绘制图元：";
 		primitive->print();
 	}
-
+#endif
 	
 	return;
 }
@@ -192,11 +193,13 @@ void DrawingArea::drawSelectedPrimitive(Primitive* primitive, QImage& thisPaper)
 		painter.drawPoint(point.x, point.y);
 	}
 
+#ifdef PRINT_PRIMITIVE
 	if (!isDrawing)
 	{
 		qDebug() << "绘制图元：";
 		primitive->print();
 	}
+#endif
 
 
 	return;
@@ -250,12 +253,13 @@ void DrawingArea::drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper)
 		i += 5;
 	}
 
+#ifdef PRINT_PRIMITIVE
 	if (!isDrawing)
 	{
 		qDebug() << "绘制Virtual图元：";
 		primitive->print();
 	}
-
+#endif
 
 	return;
 }
@@ -352,6 +356,11 @@ void DrawingArea::beginSelect()
 	isDrawing = false;
 	isSelectArea = true;
 	selected_primitives_id.clear();
+
+	isTransform = false;
+	isTranslate = false;
+	isScale = false;
+	isRotate = false;
 }
 
 void DrawingArea::endSelect()
