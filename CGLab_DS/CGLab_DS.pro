@@ -32,6 +32,7 @@ SOURCES += \
     DrawingArea_Mouse.cpp \
     DrawingArea_Polygon.cpp \
     DrawingArea_PrimitiveResponse.cpp \
+    DrawingArea_Select.cpp \
     DrawingArea_StraightLine.cpp \
     GeneralMessageBox.cpp \
     OpFile.cpp \
@@ -46,7 +47,8 @@ SOURCES += \
     TranslateDialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    mainwindow_Primitive.cpp
+    mainwindow_Primitive.cpp \
+    mainwindow_Select.cpp
 
 HEADERS += \
     AboutAuthorDialog.h \

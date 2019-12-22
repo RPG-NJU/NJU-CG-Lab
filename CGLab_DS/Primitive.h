@@ -65,6 +65,8 @@ public:
 		Primitive(), begin_x(0), begin_y(0), end_x(0), end_y(0), algorithm(StraightLineAlgorithm::Bresenham) { }
 	StraightLine(QPoint begin, QPoint end, QPen pen, int p_num, StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
 		Primitive(p_num, pen, PrimitiveType::StraightLine), begin_x(begin.x()), begin_y(begin.y()), end_x(end.x()), end_y(end.y()), algorithm(algorithm) { }
+	StraightLine(const StraightLine &straight_line) :
+		Primitive(straight_line.p_num, straight_line.pen_in_use, straight_line.type), begin_x(straight_line.begin_x), begin_y(straight_line.begin_y), end_x(straight_line.end_x), end_y(straight_line.end_y), algorithm(straight_line.algorithm) { }
 	bool setDataByMouseEvent(int p_num, QPen pen, QPoint begin_xy, QPoint end_xy);
 	
 	void print() const override;
@@ -97,7 +99,8 @@ public:
 	Ellipse(int x0 = 0, int y0 = 0 , int rx = 0, int ry = 0, int p_num = 0, QPen pen = QPen()) :
 		Primitive(p_num, pen, PrimitiveType::Ellipse), x0(x0), y0(y0), rx(rx), ry(ry) { }
 	Ellipse(QPoint begin, QPoint end, QPen pen, int p_num);
-	
+	Ellipse(const Ellipse& ellipse) :
+		Primitive(ellipse.p_num, ellipse.pen_in_use, ellipse.type), x0(ellipse.x0), y0(ellipse.y0), rx(ellipse.rx), ry(ellipse.ry) { }
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;
@@ -123,7 +126,10 @@ private:
 public:
 	Polygon(vector<MyPoint> vertices, int p_num, QPen pen = QPen(), StraightLineAlgorithm algorithm = StraightLineAlgorithm::Bresenham) :
 		Primitive(p_num, pen, PrimitiveType::Polygon), vertices(vertices), algorithm(algorithm) { }
-
+	Polygon(const Polygon &polygon) :
+		Primitive(polygon.p_num, polygon.pen_in_use, polygon.type), algorithm(polygon.algorithm) {
+		vertices.assign(polygon.vertices.begin(), polygon.vertices.end());
+	}
 	void print() const override;
 	void translate(const int dx, const int dy) override;
 	void rotate(const int x, const int y, const int r) override;

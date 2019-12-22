@@ -38,14 +38,28 @@ class DrawingArea : public QWidget
 	Q_OBJECT
 private:
 	// 所需要的数据成员
+
+	// ----------状态区----------
 	bool isDrawing = false; // 用于表示是否正在作图
+	bool isSelect = false; // 表示是否进行选择状态
+	bool isSelectArea = false;
+
+	bool isTransform = false;
+	bool isTranslate = false;
+	bool isScale = false;
+	bool isRotate = false;
+	bool isClip = false;
+	// ----------状态区----------
 	
 	DrawMode drawMode = DrawMode::StraightLine; // 用于表示当前画笔的状态
 	
-	
+
+	// ----------图层区----------
 	QImage paper; // 用于存储画布，作为当前显示的画面存储
 	QImage tempPaper; // 用于存储临时画布，作为画布的临时存储
 	QImage temptempPaper; // 只用于曲线的绘制中的多缓冲
+	// ----------图层区----------
+	
 	QRgb paperBackground;
 	QPen pen; // 绘图笔
 	QPoint begin_point, end_point; // 鼠标绘图事件中的鼠标起始点和终点
@@ -56,10 +70,24 @@ private:
 
 	QString penModeToQString(DrawMode mode);
 
+	// ----------图元部分----------
 	vector<Primitive*> primitives; // 使用指针变量，可以使用父类统一所有的子类
+	vector<Primitive*> save_primitives;
 	int now_primitive_num = 0;
 	Primitive* temp_primitive = nullptr; // 临时图元，用于进行鼠标绘制的时候操作
 	Primitive* temptemp_primitive = nullptr; // 临时的临时图元
+	// ----------图元部分----------
+
+
+	// ----------选择部分----------
+	vector<int> selected_primitives_id;
+	QRubberBand* selectedArea;
+	//QImage selectPaper; // 在选择阶段所特定的绘制图层
+	int center_x = 0;
+	int center_y = 0;
+	int last_r = 0;
+	QRubberBand* clipWindow; // 用于展示裁剪窗口
+	// ----------选择部分----------
 	
 
 	//QTextEdit* show_command_text;
@@ -72,6 +100,7 @@ public:
 	void enterEvent(QEvent* event) override; // 移入当前组件的重写
 	void mousePressEvent(QMouseEvent* event) override; // 鼠标点击的函数重写
 	void mouseReleaseEvent(QMouseEvent* event) override; // 鼠标释放的函数重写
+	void wheelEvent(QWheelEvent* event) override; // 滚轮事件的重写
 
 	void draw(QImage& thisPaper); // 绘图函数
 	void changePenMode(const DrawMode new_mode); // 用于响应画笔的更改
@@ -92,6 +121,14 @@ public:
 	void mouseDrawCurve_B_spline(QImage& thisPaper);
 	void mouseDrawPolygonAddPoint(QImage& thisPaper);
 	void mouseDrawCurveAddPoint(QImage& thisPaper);
+
+	void mouseTransform(QImage& thisPaper);
+	void beginTransform();
+	void endTransform();
+	void mouseTranslate(QImage& thisPaper);
+	void mouseRotate(QImage& thisPaper);
+	void wheelScale(QImage& thisPaper, const bool bigger); // 使用滚轮进行缩放操作，与前面的不统一
+	void mouseClip(QImage& thisPaper);
 
 
 	// 通过输入框来进行图元平移的响应函数
@@ -115,7 +152,12 @@ public:
 
 	MyPoint_double Bezier_P(const vector<MyPoint>& fixed_points, int i, int r, double u); // 用于迭代计算贝塞尔曲线
 	MyPoint_double B_spline_3(const vector<MyPoint> p_points, double u); // 用于计算三次B样条曲线
-	
+
+
+	// ----------选择部分----------
+	void selectPrimitive(QPoint begin, QPoint end);
+	void selectCenter(QPoint begin, QPoint end);
+	// ----------选择部分----------
 
 	void appendPrimitiveByMouseEvent(); // 在鼠标事件中，向容器中添加新的图元信息
 
@@ -138,14 +180,25 @@ public:
 	void setPenColor(QColor color);
 	void setPaperSize(int x, int y);
 
-	void drawAll(); // 用于绘制所有图元
+	void drawAll(); // 用于绘制所有图
+	void drawAllincludeSelected();
 	void drawPrimitive(Primitive* primitive, QImage &thisPaper); // 用于绘制某个特定的图元
+	void drawSelectedPrimitive(Primitive* primitive, QImage& thisPaper); // 用于绘制每个已经选中的图元
 	void drawVirtualPrimitive(Primitive* primitive, QImage& thisPaper); // 用于虚线绘制某个特定的图元
 	void clearPaper(bool save_primitives); // 用于清除所有内容
 	void refresh(); // 用于刷新整个画布
+	
+	void beginSelect(); // 开始进行选择操作
+	void endSelect(); // 结束选择操作
+	void setIsSelectArea(const bool flag) { isSelectArea = flag; return; }
+	void setIsTranslate(const bool flag) { isTranslate = flag; return; }
+	void setIsRotate(const bool flag) { isRotate = flag; last_r = 0; return; }
+	void setIsClip(const bool flag) { isClip = flag; return; }
+	void setIsScale(const bool flag) { isScale = flag; return; }
 
 	int getXsize() const { return this->geometry().width(); }
 	int getYsize() const { return this->geometry().height(); }
+	DrawMode getDrawMode() const { return drawMode; }
 
 	void setOutputPath(string dir_path);
 	// 命令接口
@@ -156,6 +209,7 @@ signals:
 	void mouseLeave(); // 传递给状态栏用于清空信息的信号，代表鼠标已经移出了当前的窗口
 	void setPaperSizeSignal(int x, int y);
 	void dialogStatus(time_t uid, bool flag);
+	void finishSelectArea(); // 表示已经结束了区域的选择
 };
 
 #endif // DRAWINGAERA_H

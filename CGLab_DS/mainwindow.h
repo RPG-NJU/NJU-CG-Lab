@@ -50,7 +50,11 @@ private slots:
     void on_actionPalette_triggered(); // 用户选择了调色板
 
 	void clearToolBarChecked(ClearToolBarCheckedMode mode); // 用于清除
+	void setToolBarEnable(const bool enable, const SetToolBarEnableMode mode);
 
+	void selectBegin(); // 开启选择模式，选择模式下绘图模式将会被屏蔽
+	void selectEnd(); // 结束选择模式，恢复绘图模式
+	void selectAreaEnd(); // 选择框结束
 
     void on_actionCircle_triggered(); // 用户选择了圆形绘制
 
@@ -78,6 +82,16 @@ private slots:
     void on_actionInputClip_triggered();
 
     void on_actionSelect_triggered();
+
+    void on_actionCancelSelect_triggered();
+
+    void on_actionMouseTranslate_triggered();
+
+    void on_actionMouseRotate_triggered();
+
+    void on_actionWheelScale_triggered();
+
+    void on_actionMouseClip_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -157,7 +157,15 @@
    <addaction name="actionPolygon"/>
    <addaction name="actionCurveBezier"/>
    <addaction name="actionCurveB_spline"/>
+   <addaction name="separator"/>
    <addaction name="actionPalette"/>
+   <addaction name="separator"/>
+   <addaction name="actionSelect"/>
+   <addaction name="actionCancelSelect"/>
+   <addaction name="actionMouseTranslate"/>
+   <addaction name="actionMouseRotate"/>
+   <addaction name="actionWheelScale"/>
+   <addaction name="actionMouseClip"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -477,6 +485,13 @@
    </property>
   </action>
   <action name="actionSelect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/Select</normaloff>:/MainWindow/Select</iconset>
+   </property>
    <property name="text">
     <string>选择</string>
    </property>
@@ -488,6 +503,93 @@
      <family>华文中宋</family>
      <pointsize>11</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionCancelSelect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/CancelSelect</normaloff>:/MainWindow/CancelSelect</iconset>
+   </property>
+   <property name="text">
+    <string>退出选择模式</string>
+   </property>
+   <property name="toolTip">
+    <string>退出选择模式</string>
+   </property>
+  </action>
+  <action name="actionMouseTranslate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseTranslate</normaloff>:/MainWindow/mouseTranslate</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标平移</string>
+   </property>
+   <property name="toolTip">
+    <string>平移</string>
+   </property>
+  </action>
+  <action name="actionMouseRotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseRotate</normaloff>:/MainWindow/mouseRotate</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标旋转</string>
+   </property>
+   <property name="toolTip">
+    <string>旋转</string>
+   </property>
+  </action>
+  <action name="actionWheelScale">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/wheelScale</normaloff>:/MainWindow/wheelScale</iconset>
+   </property>
+   <property name="text">
+    <string>滚轮缩放</string>
+   </property>
+   <property name="toolTip">
+    <string>缩放</string>
+   </property>
+  </action>
+  <action name="actionMouseClip">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseClip</normaloff>:/MainWindow/mouseClip</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标裁剪</string>
+   </property>
+   <property name="toolTip">
+    <string>裁剪</string>
    </property>
   </action>
  </widget>

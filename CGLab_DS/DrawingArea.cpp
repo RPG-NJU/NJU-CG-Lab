@@ -27,6 +27,26 @@ DrawingArea::DrawingArea(QWidget* parent) : QWidget(parent)
 	pen.setWidth(1);
 	pen.setColor(qRgb(0, 0, 0));
 
+	// ----------选择框初始化----------
+	/*QRubberBand* qrb = new QRubberBand(QRubberBand::Line, this);
+	qrb->resize(100, 100);
+	qrb->move(100, 100);
+	qrb->setBackgroundRole(QPalette::Light);
+	qrb->setAutoFillBackground(false);
+	qrb->show();*/
+	selectedArea = new QRubberBand(QRubberBand::Line, this);
+	selectedArea->setBackgroundRole(QPalette::Light);
+	selectedArea->setAutoFillBackground(false);
+
+	clipWindow = new QRubberBand(QRubberBand::Rectangle, this);
+	/*clipWindow->setBackgroundRole(QPalette::NoRole);
+	clipWindow->setAutoFillBackground(false);*/
+	/*clipWindow->setWindowOpacity(1);
+	clipWindow->resize(100, 100);
+	clipWindow->move(0, 0);
+	clipWindow->show();*/
+	// ----------选择框初始化----------
+
 	this->setMouseTracking(true);
 	this->update();
 

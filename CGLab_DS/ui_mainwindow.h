@@ -50,6 +50,11 @@ public:
     QAction *actionInputScale;
     QAction *actionInputClip;
     QAction *actionSelect;
+    QAction *actionCancelSelect;
+    QAction *actionMouseTranslate;
+    QAction *actionMouseRotate;
+    QAction *actionWheelScale;
+    QAction *actionMouseClip;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -178,7 +183,45 @@ public:
         actionInputClip->setFont(font3);
         actionSelect = new QAction(MainWindow);
         actionSelect->setObjectName(QString::fromUtf8("actionSelect"));
+        actionSelect->setCheckable(true);
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/MainWindow/Select"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSelect->setIcon(icon10);
         actionSelect->setFont(font3);
+        actionCancelSelect = new QAction(MainWindow);
+        actionCancelSelect->setObjectName(QString::fromUtf8("actionCancelSelect"));
+        actionCancelSelect->setEnabled(false);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/MainWindow/CancelSelect"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCancelSelect->setIcon(icon11);
+        actionMouseTranslate = new QAction(MainWindow);
+        actionMouseTranslate->setObjectName(QString::fromUtf8("actionMouseTranslate"));
+        actionMouseTranslate->setCheckable(true);
+        actionMouseTranslate->setEnabled(false);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/MainWindow/mouseTranslate"), QSize(), QIcon::Normal, QIcon::Off);
+        actionMouseTranslate->setIcon(icon12);
+        actionMouseRotate = new QAction(MainWindow);
+        actionMouseRotate->setObjectName(QString::fromUtf8("actionMouseRotate"));
+        actionMouseRotate->setCheckable(true);
+        actionMouseRotate->setEnabled(false);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/MainWindow/mouseRotate"), QSize(), QIcon::Normal, QIcon::Off);
+        actionMouseRotate->setIcon(icon13);
+        actionWheelScale = new QAction(MainWindow);
+        actionWheelScale->setObjectName(QString::fromUtf8("actionWheelScale"));
+        actionWheelScale->setCheckable(true);
+        actionWheelScale->setEnabled(false);
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/MainWindow/wheelScale"), QSize(), QIcon::Normal, QIcon::Off);
+        actionWheelScale->setIcon(icon14);
+        actionMouseClip = new QAction(MainWindow);
+        actionMouseClip->setObjectName(QString::fromUtf8("actionMouseClip"));
+        actionMouseClip->setCheckable(true);
+        actionMouseClip->setEnabled(false);
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/MainWindow/mouseClip"), QSize(), QIcon::Normal, QIcon::Off);
+        actionMouseClip->setIcon(icon15);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -251,7 +294,15 @@ public:
         toolBar->addAction(actionPolygon);
         toolBar->addAction(actionCurveBezier);
         toolBar->addAction(actionCurveB_spline);
+        toolBar->addSeparator();
         toolBar->addAction(actionPalette);
+        toolBar->addSeparator();
+        toolBar->addAction(actionSelect);
+        toolBar->addAction(actionCancelSelect);
+        toolBar->addAction(actionMouseTranslate);
+        toolBar->addAction(actionMouseRotate);
+        toolBar->addAction(actionWheelScale);
+        toolBar->addAction(actionMouseClip);
 
         retranslateUi(MainWindow);
 
@@ -361,6 +412,26 @@ public:
         actionSelect->setText(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251", nullptr));
 #if QT_CONFIG(tooltip)
         actionSelect->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251\345\214\272\345\237\237", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionCancelSelect->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCancelSelect->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMouseTranslate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\345\271\263\347\247\273", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMouseTranslate->setToolTip(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMouseRotate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\346\227\213\350\275\254", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMouseRotate->setToolTip(QCoreApplication::translate("MainWindow", "\346\227\213\350\275\254", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionWheelScale->setText(QCoreApplication::translate("MainWindow", "\346\273\232\350\275\256\347\274\251\346\224\276", nullptr));
+#if QT_CONFIG(tooltip)
+        actionWheelScale->setToolTip(QCoreApplication::translate("MainWindow", "\347\274\251\346\224\276", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMouseClip->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\350\243\201\345\211\252", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMouseClip->setToolTip(QCoreApplication::translate("MainWindow", "\350\243\201\345\211\252", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

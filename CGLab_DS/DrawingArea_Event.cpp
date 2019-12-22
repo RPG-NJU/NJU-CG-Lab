@@ -6,10 +6,16 @@
  */
 
 
-// 重写绘制函数
+ // 重写绘制函数
 void DrawingArea::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
+
+	if (isSelect)
+	{
+		clearPaper(true);
+		drawAllincludeSelected();
+	}
 
 	//painter.drawImage(0, 0, paper);
 	//isDrawing ? painter.drawImage(0, 0, tempPaper) : painter.drawImage(0, 0, paper);	// 当处于画图阶段的时候，输出的是临时图像，否则则为真实图像
@@ -40,7 +46,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Left Button]" << endl;
 #endif
-		if (!isDrawing)
+		if (!isSelect && !isDrawing)
 		{
 			isDrawing = true;
 			begin_point = event->pos(); // 获得当前鼠标的位置
@@ -61,6 +67,23 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 				temp_primitive = nullptr;
 			}
 		}
+
+		else if (isSelectArea) // 此时是正在选择区域
+		{
+			begin_point = event->pos();
+			end_point = event->pos();
+			selectedArea->move(begin_point);
+			selectedArea->resize(0, 0);
+			selectedArea->show();
+		}
+
+		else if (isRotate | isTranslate | isClip) // 如果是这三种变换之一，因为缩放不是用这个框架完成的
+		{
+			begin_point = event->pos();
+			end_point = event->pos();
+			isTransform = true;
+			beginTransform();
+		}
 	}
 
 	else if (event->button() == Qt::RightButton) // 识别右键，用于如多边形，曲线的增加信息点
@@ -68,7 +91,7 @@ void DrawingArea::mousePressEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Press Mouse Right Button]" << endl;
 #endif
-		if (isDrawing)
+		if (isDrawing) // 如果正在绘图
 		{
 			mouseDrawAdd(tempPaper);
 			tempPaper = paper; // 将当前的图层保存到临时图层，之后都基于临时图层进行操作
@@ -89,6 +112,20 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 		qDebug() << "[Release Mouse Left Button]" << endl;
 #endif
+		if (isSelectArea)
+		{
+			isSelectArea = false;
+			selectPrimitive(begin_point, end_point);
+			selectCenter(begin_point, end_point);
+			selectedArea->hide();
+			emit finishSelectArea();
+		}
+
+		else if (isTransform)
+		{
+			isTransform = false;
+			endTransform();
+		}
 	}
 	else if (event->button() == Qt::RightButton) // 识别右键
 	{
@@ -132,6 +169,50 @@ void DrawingArea::mouseMoveEvent(QMouseEvent* event)
 		mouseDraw(tempPaper);
 	}
 
+	else if (isSelectArea) // 选择区域
+	{
+		end_point = event->pos();
+		selectedArea->resize(abs(end_point.x() - begin_point.x()), abs(end_point.y() - begin_point.y()));
+
+		// ----------对方位进行讨论----------
+		if (begin_point.x() <= end_point.x() && begin_point.y() <= end_point.y())
+			selectedArea->move(begin_point);
+		else if (end_point.x() < begin_point.x() && end_point.y() < begin_point.y())
+			selectedArea->move(end_point);
+		else if (end_point.x() < begin_point.x() && end_point.y() > begin_point.y())
+			selectedArea->move(end_point.x(), begin_point.y());
+		else
+			selectedArea->move(begin_point.x(), end_point.y());
+		// ----------对方位进行讨论----------
+	}
+
+	else if (isTransform)
+	{
+		//if (!isRotate)
+		//{
+		//	end_point = event->pos();
+		//	mouseTransform(paper);
+		//	begin_point = end_point;
+		//}
+		//else if (isRotate)
+		//{
+		//	end_point = event->pos();
+		//	double a, b, c;
+		//	a = sqrt((begin_point.x() - center_x) * (begin_point.x() - center_x) + (begin_point.y() - center_y) * (begin_point.y() - center_y));
+		//	b = sqrt((end_point.x() - center_x) * (end_point.x() - center_x) + (end_point.y() - center_y) * (end_point.y() - center_y));
+		//	c = sqrt((begin_point.x() - end_point.x()) * (begin_point.x() - end_point.x()) + (begin_point.y() - end_point.y()) * (begin_point.y() - end_point.y()));
+		//	double cos = (a * a + b * b - c * c) / (2 * a * b);
+		//	int r = acos(cos) * 180 / PI;
+		//	/*if (abs(r) >= 1)
+		//	{
+		//		mouseTransform(paper);
+		//		begin_point = end_point;
+		//	}*/
+		//	mouseTransform(paper);
+		//}
+		end_point = event->pos();
+		mouseTransform(paper);
+	}
 	this->update();
 	// END of Drawing Works
 	return;
@@ -160,6 +241,24 @@ void DrawingArea::enterEvent(QEvent* event)
 #ifdef PRINT_MOUSE_EVENT
 	qDebug() << "[Mouse In]" << endl;
 #endif
+
+	return;
+}
+
+
+void DrawingArea::wheelEvent(QWheelEvent* event)
+{
+	if (isScale)
+	{
+		if (event->delta() > 0) // 放大
+		{
+			wheelScale(paper, true);
+		}
+		else
+		{
+			wheelScale(paper, false);
+		}
+	}
 
 	return;
 }
