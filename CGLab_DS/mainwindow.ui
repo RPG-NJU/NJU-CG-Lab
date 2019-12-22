@@ -157,8 +157,11 @@
    <addaction name="actionPolygon"/>
    <addaction name="actionCurveBezier"/>
    <addaction name="actionCurveB_spline"/>
+   <addaction name="separator"/>
    <addaction name="actionPalette"/>
+   <addaction name="separator"/>
    <addaction name="actionSelect"/>
+   <addaction name="actionCancelSelect"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -496,6 +499,18 @@
      <family>华文中宋</family>
      <pointsize>11</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionCancelSelect">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/CancelSelect</normaloff>:/MainWindow/CancelSelect</iconset>
+   </property>
+   <property name="text">
+    <string>退出选择模式</string>
+   </property>
+   <property name="toolTip">
+    <string>退出选择模式</string>
    </property>
   </action>
  </widget>

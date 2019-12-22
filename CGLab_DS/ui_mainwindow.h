@@ -50,6 +50,7 @@ public:
     QAction *actionInputScale;
     QAction *actionInputClip;
     QAction *actionSelect;
+    QAction *actionCancelSelect;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -183,6 +184,11 @@ public:
         icon10.addFile(QString::fromUtf8(":/MainWindow/Select"), QSize(), QIcon::Normal, QIcon::Off);
         actionSelect->setIcon(icon10);
         actionSelect->setFont(font3);
+        actionCancelSelect = new QAction(MainWindow);
+        actionCancelSelect->setObjectName(QString::fromUtf8("actionCancelSelect"));
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/MainWindow/CancelSelect"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCancelSelect->setIcon(icon11);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -255,8 +261,11 @@ public:
         toolBar->addAction(actionPolygon);
         toolBar->addAction(actionCurveBezier);
         toolBar->addAction(actionCurveB_spline);
+        toolBar->addSeparator();
         toolBar->addAction(actionPalette);
+        toolBar->addSeparator();
         toolBar->addAction(actionSelect);
+        toolBar->addAction(actionCancelSelect);
 
         retranslateUi(MainWindow);
 
@@ -366,6 +375,10 @@ public:
         actionSelect->setText(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251", nullptr));
 #if QT_CONFIG(tooltip)
         actionSelect->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\211\346\213\251\345\214\272\345\237\237", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionCancelSelect->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCancelSelect->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());

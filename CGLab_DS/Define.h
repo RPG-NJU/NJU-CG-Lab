@@ -65,7 +65,8 @@ enum class ClearToolBarCheckedMode // 定义了对于清除工具栏选中状态的模式
 enum class SetToolBarEnableMode
 {
 	DrawMode,
-	All
+	All,
+	Primitive
 };
 
 
