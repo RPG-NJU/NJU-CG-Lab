@@ -162,6 +162,7 @@
    <addaction name="separator"/>
    <addaction name="actionSelect"/>
    <addaction name="actionCancelSelect"/>
+   <addaction name="actionMouseTranslate"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAboutAuthor">
@@ -511,6 +512,18 @@
    </property>
    <property name="toolTip">
     <string>退出选择模式</string>
+   </property>
+  </action>
+  <action name="actionMouseTranslate">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/MainWindow/mouseTranslate</normaloff>:/MainWindow/mouseTranslate</iconset>
+   </property>
+   <property name="text">
+    <string>鼠标平移</string>
+   </property>
+   <property name="toolTip">
+    <string>平移</string>
    </property>
   </action>
  </widget>

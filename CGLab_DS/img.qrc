@@ -12,5 +12,6 @@
         <file alias="Curve_B_spline">img/MainWindow/Curve_B_spline.png</file>
         <file alias="Select">img/MainWindow/Select.png</file>
         <file alias="CancelSelect">img/MainWindow/CancelSelect.png</file>
+        <file alias="mouseTranslate">img/MainWindow/mouseTranslate.png</file>
     </qresource>
 </RCC>

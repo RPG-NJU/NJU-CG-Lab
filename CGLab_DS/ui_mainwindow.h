@@ -51,6 +51,7 @@ public:
     QAction *actionInputClip;
     QAction *actionSelect;
     QAction *actionCancelSelect;
+    QAction *actionMouseTranslate;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QScrollArea *scrollArea;
@@ -189,6 +190,11 @@ public:
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/MainWindow/CancelSelect"), QSize(), QIcon::Normal, QIcon::Off);
         actionCancelSelect->setIcon(icon11);
+        actionMouseTranslate = new QAction(MainWindow);
+        actionMouseTranslate->setObjectName(QString::fromUtf8("actionMouseTranslate"));
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/MainWindow/mouseTranslate"), QSize(), QIcon::Normal, QIcon::Off);
+        actionMouseTranslate->setIcon(icon12);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -266,6 +272,7 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionSelect);
         toolBar->addAction(actionCancelSelect);
+        toolBar->addAction(actionMouseTranslate);
 
         retranslateUi(MainWindow);
 
@@ -379,6 +386,10 @@ public:
         actionCancelSelect->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
 #if QT_CONFIG(tooltip)
         actionCancelSelect->setToolTip(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\351\200\211\346\213\251\346\250\241\345\274\217", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionMouseTranslate->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\345\271\263\347\247\273", nullptr));
+#if QT_CONFIG(tooltip)
+        actionMouseTranslate->setToolTip(QCoreApplication::translate("MainWindow", "\345\271\263\347\247\273", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         drawingArea->setStatusTip(QString());
