@@ -61,7 +61,7 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 	//qDebug() << "output" << rx << ry << endl;
 	// 首先依照圆心在原点，进行计算
 	//points.push_back({ 0, ry }); // 第一个点
-	int p1(ry * ry - rx * rx * ry + rx * rx / 4);
+	double p1(static_cast<double>(ry) * ry - static_cast<double>(rx) * rx * ry + static_cast<double>(rx) * rx / 4.0);
 	int x(0), y(ry); // 设置初始点
 
 	while (2 * ry * ry * x < 2 * rx * rx * y)
@@ -70,28 +70,28 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 		++x;
 		if (p1 < 0)
 		{
-			p1 += 2 * ry * ry * x + ry * ry;
+			p1 += 2 * static_cast<double>(ry) * ry * x + static_cast<double>(ry) * ry;
 		}
 		else
 		{
 			--y;
-			p1 += 2 * ry * ry * x - 2 * rx * rx * y + ry * ry;
+			p1 += 2 * static_cast<double>(ry) * ry * x - 2 * static_cast<double>(rx) * rx * y + static_cast<double>(ry) * ry;
 		}
 	}
 
-	int p2(ry * ry * (x + 1/2) * (x + 1/2) + rx * rx * (y - 1) * (y - 1) - rx * rx * ry * ry);
+	double p2(static_cast<double>(ry) * ry * (x + 1.0/2.0) * (x + 1.0/2.0) + static_cast<double>(rx) * rx * (static_cast<double>(y) - 1) * (static_cast<double>(y) - 1) - static_cast<double>(rx) * rx * ry * ry);
 	while (x <= rx && y >= 0)
 	{
 		points.push_back({ x, y });
 		--y;
 		if (p2 > 0)
 		{
-			p2 += + rx * rx - 2 * rx * rx * y;
+			p2 += +static_cast<double>(rx) * rx - 2 * static_cast<double>(rx) * rx * y;
 		}
 		else
 		{
 			++x;
-			p2 += 2 * ry * ry * x - 2 * rx * rx * y + rx * rx;
+			p2 += 2 * static_cast<double>(ry) * ry * x - 2 * static_cast<double>(rx) * rx * y + rx * rx;
 		}
 	}
 
