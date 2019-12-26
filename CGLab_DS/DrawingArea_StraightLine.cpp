@@ -130,11 +130,11 @@ vector<MyPoint> DrawingArea::createStraightLineByDDA(int x1, int y1, int x2, int
 			swap(x1, x2);
 			swap(y1, y2);
 		}
-		double y = y1;
+		double y(y1);
 		for (int x(x1); x <= x2; ++x)
 		{
+			points.push_back({ x, static_cast<int>(round(y))});
 			y += m;
-			points.push_back({ x, static_cast<int>(floor(y))});
 		}
 	}
 	else
@@ -145,11 +145,11 @@ vector<MyPoint> DrawingArea::createStraightLineByDDA(int x1, int y1, int x2, int
 			swap(y1, y2);
 			swap(x1, x2);
 		}
-		double x = x1;
+		double x(x1);
 		for (int y(y1); y <= y2; ++y)
 		{
+			points.push_back({ static_cast<int>(round(x)), y});
 			x += m;
-			points.push_back({ static_cast<int>(floor(x)), y});
 		}
 	}
 
