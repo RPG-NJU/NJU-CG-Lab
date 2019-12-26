@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
 	else
 	{
 		MainWindow window;
+		window.setWindowIcon(QIcon(":/img/Logo"));
 		window.show();
 		return app.exec();
 	}
