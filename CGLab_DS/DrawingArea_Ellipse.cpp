@@ -61,7 +61,7 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 	//qDebug() << "output" << rx << ry << endl;
 	// 首先依照圆心在原点，进行计算
 	//points.push_back({ 0, ry }); // 第一个点
-	int p1(ry * ry - rx * rx * ry + (rx * rx) / 4);
+	int p1(ry * ry - rx * rx * ry + rx * rx / 4);
 	int x(0), y(ry); // 设置初始点
 
 	while (2 * ry * ry * x < 2 * rx * rx * y)
@@ -70,24 +70,18 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 		++x;
 		if (p1 < 0)
 		{
-			//points.push_back({ x, y });
 			p1 += 2 * ry * ry * x + ry * ry;
 		}
 		else
 		{
 			--y;
-			//points.push_back({ x ,y });
 			p1 += 2 * ry * ry * x - 2 * rx * rx * y + ry * ry;
 		}
 	}
 
-	//qDebug() << x << y << endl;
 	int p2(ry * ry * (x + 1/2) * (x + 1/2) + rx * rx * (y - 1) * (y - 1) - rx * rx * ry * ry);
-	//int i(0);
 	while (x <= rx && y >= 0)
 	{
-		//qDebug() << "p2=" << p2;
-		//qDebug() << "x, y" << x << y;
 		points.push_back({ x, y });
 		--y;
 		if (p2 > 0)
@@ -97,12 +91,9 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 		else
 		{
 			++x;
-			//qDebug() << "here!!!!!!" << endl;
-			//++i;
 			p2 += 2 * ry * ry * x - 2 * rx * rx * y + rx * rx;
 		}
 	}
-	//qDebug() << "times" << i << endl;
 
 	// 下面需要将所有的坐标都取对称
 	int old_length(points.size());
