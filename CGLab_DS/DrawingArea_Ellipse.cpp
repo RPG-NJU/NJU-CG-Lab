@@ -66,8 +66,9 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 
 	while (2.0 * static_cast<double>(ry) * ry * x < 2.0 * static_cast<double>(rx) * rx * y)
 	{
+		//qDebug() << x << y << p1;
 		points.push_back({ x, y });
-		++x;
+		++x; // 此时x已经是xk+1
 		if (p1 < 0)
 		{
 			p1 += 2 * static_cast<double>(ry) * ry * x + static_cast<double>(ry) * ry;
@@ -79,11 +80,23 @@ vector<MyPoint> DrawingArea::createEllipse(int x0, int y0, int rx, int ry)
 		}
 	}
 
+	/*if (points.size() != 0)
+	{
+		x = points[points.size() - 1].x;
+		y = points[points.size() - 1].y;
+	}*/
+	// 这一段对应导致不满足上述条件的运算，进行还原
+	
+	
 	double p2(static_cast<double>(ry) * ry * (x + 1.0/2.0) * (x + 1.0/2.0) + static_cast<double>(rx) * rx * (static_cast<double>(y) - 1) * (static_cast<double>(y) - 1) - static_cast<double>(rx) * rx * ry * ry);
+	//qDebug() << x << y << p2;
+	//p2 = -151;
+	//points.push_back({ 4, 14 });
 	while (x <= rx && y >= 0)
 	{
+		//qDebug() << x << y << p2;
 		points.push_back({ x, y });
-		--y;
+		--y; // 此时的y已经是yk-1
 		if (p2 > 0)
 		{
 			p2 += static_cast<double>(rx) * rx - 2 * static_cast<double>(rx) * rx * y;
