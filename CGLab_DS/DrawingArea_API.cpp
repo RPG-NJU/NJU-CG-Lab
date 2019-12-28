@@ -369,6 +369,7 @@ void DrawingArea::endSelect()
 	// ----------状态置位----------
 	isSelect = false;
 	isSelectArea = false;
+	setCursor(Qt::ArrowCursor);
 	isTransform = false;
 	isTranslate = false;
 	isScale = false;
