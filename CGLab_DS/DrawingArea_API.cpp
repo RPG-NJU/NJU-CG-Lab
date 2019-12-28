@@ -355,6 +355,7 @@ void DrawingArea::beginSelect()
 	isSelect = true;
 	isDrawing = false;
 	isSelectArea = true;
+	setCursor(Qt::CrossCursor);
 	selected_primitives_id.clear();
 
 	isTransform = false;

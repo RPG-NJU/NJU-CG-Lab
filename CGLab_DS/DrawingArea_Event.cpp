@@ -115,6 +115,7 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent* event)
 		if (isSelectArea)
 		{
 			isSelectArea = false;
+			setCursor(Qt::ArrowCursor);
 			selectPrimitive(begin_point, end_point);
 			selectCenter(begin_point, end_point);
 			selectedArea->hide();
