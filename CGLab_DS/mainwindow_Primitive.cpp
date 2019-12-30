@@ -16,9 +16,9 @@ void MainWindow::on_actionInputTranslate_triggered()
 	TranslateDialog* translate_dialog = new TranslateDialog(uid, this);
 
 	//translate_dialog->show();
-	translate_dialog->exec();
+	translate_dialog->show();
 
-	connect(translate_dialog, &TranslateDialog::translate_data, this->ui->drawingArea, &DrawingArea::inputTranslate);
+	connect(translate_dialog, &TranslateDialog::translate_data, ui->drawingArea, &DrawingArea::inputTranslate);
 	connect(this->ui->drawingArea, &DrawingArea::dialogStatus, translate_dialog, &TranslateDialog::receive);
 
 	return;

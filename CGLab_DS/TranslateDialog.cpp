@@ -1,6 +1,7 @@
 #include "TranslateDialog.h"
 #include "ui_TranslateDialog.h"
 #include "GeneralMessageBox.h"
+#include "QDebug"
 
 TranslateDialog::TranslateDialog(time_t uid, QWidget *parent) :
     QDialog(parent), uid(uid),
