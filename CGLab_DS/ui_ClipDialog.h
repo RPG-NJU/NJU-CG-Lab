@@ -134,7 +134,7 @@ public:
 
     void retranslateUi(QDialog *ClipDialog)
     {
-        ClipDialog->setWindowTitle(QCoreApplication::translate("ClipDialog", "Dialog", nullptr));
+        ClipDialog->setWindowTitle(QCoreApplication::translate("ClipDialog", "\350\243\201\345\211\252\345\233\276\345\205\203", nullptr));
         label_8->setText(QCoreApplication::translate("ClipDialog", "x1=", nullptr));
         label_10->setText(QCoreApplication::translate("ClipDialog", "\345\233\276\345\205\203\347\274\226\345\217\267\357\274\232", nullptr));
         label_5->setText(QCoreApplication::translate("ClipDialog", "\350\243\201\345\211\252\347\252\227\345\217\243\357\274\232", nullptr));

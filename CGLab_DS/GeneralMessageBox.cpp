@@ -10,4 +10,9 @@ void GeneralMessageBox::NoSuchPrimitive(const int id, QWidget* parent)
 	QMessageBox::warning(parent, QObject::tr("警告"), QObject::tr(("没有找到" + std::to_string(id) + "号图元").c_str()));
 }
 
+void GeneralMessageBox::NotCompleteArg(QWidget* parent)
+{
+    QMessageBox::warning(parent, QObject::tr("警告"), QObject::tr("请完整的输入参数"));
+}
+
 

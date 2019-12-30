@@ -134,7 +134,7 @@ public:
 
     void retranslateUi(QDialog *RotateDialog)
     {
-        RotateDialog->setWindowTitle(QCoreApplication::translate("RotateDialog", "Dialog", nullptr));
+        RotateDialog->setWindowTitle(QCoreApplication::translate("RotateDialog", "\346\227\213\350\275\254\345\233\276\345\205\203", nullptr));
         label_6->setText(QCoreApplication::translate("RotateDialog", "y=", nullptr));
         label_8->setText(QCoreApplication::translate("RotateDialog", "x=", nullptr));
         label_5->setText(QCoreApplication::translate("RotateDialog", "\346\227\213\350\275\254\350\247\222\345\272\246\357\274\232", nullptr));
