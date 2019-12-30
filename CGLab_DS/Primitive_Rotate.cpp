@@ -18,7 +18,7 @@ int Primitive::rotate_x(int x, int x0, int y, int y0, int r)
 	double x_ret(0.0);
 
 	x_ret = x0_double + (x_double - x0_double) * cos(r_pi) - (y_double - y0_double) * sin(r_pi);
-	return static_cast<int>(x_ret);
+	return static_cast<int>(round(x_ret));
 }
 
 int Primitive::rotate_y(int y, int y0, int x, int x0, int r)
@@ -28,7 +28,7 @@ int Primitive::rotate_y(int y, int y0, int x, int x0, int r)
 	double y_ret(0.0);
 
 	y_ret = y0_double + (x_double - x0_double) * sin(r_pi) + (y_double - y0_double) * cos(r_pi);
-	return static_cast<int>(y_ret);
+	return static_cast<int>(round(y_ret));
 }
 
 

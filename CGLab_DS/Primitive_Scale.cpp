@@ -5,7 +5,7 @@ int Primitive::scale_t(int t, int t0, double s)
 	// 在这个函数中，t作为一个参数，既可以承载x，也可以承载y，所以用t作为一个通用的参数
 	double t_double(static_cast<double>(t)), t0_double(static_cast<double>(t0)), t_ret(0.0);
 	t_ret = t_double * s + t0_double * (1.0 - s);
-	return t_ret;
+	return static_cast<int>(round(t_ret));
 }
 
 

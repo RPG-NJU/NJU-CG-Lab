@@ -12,7 +12,7 @@
 
 #define PI 3.141592653
 
-#define BEZIER_DELTA 0.005
+#define BEZIER_DELTA 0.004
 #define B_SPLINE_DELTA 0.001
 #define B_SPLINE_K 3 // 代表三次B样条曲线
 

@@ -66,12 +66,12 @@ bool StraightLine::clipByCohen_Sutherland(const int x1, const int y1, const int 
 	else if (begin_x < left && end_x > left)
 	{
 		begin_x = left;
-		begin_y = static_cast<int>(y_left);
+		begin_y = static_cast<int>(round(y_left));
 	}
 	else if (begin_x > left && end_x < left)
 	{
 		end_x = left;
-		end_y = static_cast<int>(y_left);
+		end_y = static_cast<int>(round(y_left));
 	}
 
 	// 右
@@ -88,12 +88,12 @@ bool StraightLine::clipByCohen_Sutherland(const int x1, const int y1, const int 
 	else if (begin_x > right && end_x < right)
 	{
 		begin_x = right;
-		begin_y = static_cast<int>(y_right);
+		begin_y = static_cast<int>(round(y_right));
 	}
 	else if (begin_x < right && end_x > right)
 	{
 		end_x = right;
-		end_y = static_cast<int>(y_right);
+		end_y = static_cast<int>(round(y_right));
 	}
 
 	// 下
@@ -110,12 +110,12 @@ bool StraightLine::clipByCohen_Sutherland(const int x1, const int y1, const int 
 	else if (begin_y < down && end_y > down)
 	{
 		begin_y = down;
-		begin_x = static_cast<int>(x_down);
+		begin_x = static_cast<int>(round(x_down));
 	}
 	else if (begin_y > down && end_y < down)
 	{
 		end_y = down;
-		end_x = static_cast<int>(x_down);
+		end_x = static_cast<int>(round(x_down));
 	}
 
 	// 上
@@ -132,12 +132,12 @@ bool StraightLine::clipByCohen_Sutherland(const int x1, const int y1, const int 
 	else if (begin_y > up && end_y < up)
 	{
 		begin_y = up;
-		begin_x = static_cast<int>(x_up);
+		begin_x = static_cast<int>(round(x_up));
 	}
 	else if (begin_y < up && end_y > up)
 	{
 		end_y = up;
-		end_x = static_cast<int>(x_up);
+		end_x = static_cast<int>(round(x_up));
 	}
 	
 	return true;
@@ -196,10 +196,10 @@ bool StraightLine::clipByLiang_Barsky(const int x1, const int y1, const int x2, 
 	}
 
 	const int temp_begin_x(begin_x), temp_begin_y(begin_y), temp_end_x(end_x), temp_end_y(end_y);
-	begin_x = static_cast<int>(temp_begin_x + u1 * dx);
-	begin_y = static_cast<int>(temp_begin_y + u1 * dy);
-	end_x = static_cast<int>(temp_begin_x + u2 * dx);
-	end_y = static_cast<int>(temp_begin_y + u2 * dy);
+	begin_x = static_cast<int>(round(temp_begin_x + u1 * dx));
+	begin_y = static_cast<int>(round(temp_begin_y + u1 * dy));
+	end_x = static_cast<int>(round(temp_begin_x + u2 * dx));
+	end_y = static_cast<int>(round(temp_begin_y + u2 * dy));
 	
 	return true;
 }

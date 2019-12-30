@@ -1,4 +1,7 @@
 ﻿#include "DrawingArea.h"
+#include <cmath>
+
+using std::min;
 
 
 vector<MyPoint> DrawingArea::createCurve(const vector<MyPoint>& fixed_points, CurveAlgorithm algorithm)
@@ -19,7 +22,7 @@ vector<MyPoint> DrawingArea::createCurveByBezier(const vector<MyPoint>& fixed_po
 
 	int r(fixed_points.size() - 1); // 用于表示需要迭代的次数，也是贝塞尔曲线的次数
 
-	for (double u(0); u <= 1; u = u + BEZIER_DELTA / fixed_points.size())
+	for (double u(0); u <= 1; u = u + BEZIER_DELTA / fixed_points.size() * (u > 0.15 && u < 0.85 ? 1 : (u == 0 ? 0.4 : min(u / 0.15, u >= 0.99 ? 0.5 : (1.0 - u) / 0.15))))
 	{
 		MyPoint_double point = Bezier_P(fixed_points, 0, r, u);
 		//points.push_back({ (int)point.x, (int)point.y });

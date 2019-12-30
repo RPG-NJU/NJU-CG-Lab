@@ -6,7 +6,9 @@
 #include <QDebug>
 
 #include <vector>
+#include <cmath>
 using std::vector;
+using std::round;
 
 #include "Define.h"
 
